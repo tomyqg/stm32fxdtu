@@ -268,7 +268,7 @@
 
   <Group>
     <GroupName>ST_Lib</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
@@ -566,8 +566,8 @@
       <Focus>0</Focus>
       <ColumnNumber>36</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>50</TopLine>
-      <CurrentLine>68</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Code\User\src\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -578,13 +578,27 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>21</ColumnNumber>
+      <ColumnNumber>25</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>7</TopLine>
+      <CurrentLine>15</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Code\User\src\stm32f10x_it.c</PathWithFileName>
       <FilenameWithoutPath>stm32f10x_it.c</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>25</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>27</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>441</TopLine>
+      <CurrentLine>475</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\Code\User\src\gtm900c.c</PathWithFileName>
+      <FilenameWithoutPath>gtm900c.c</FilenameWithoutPath>
     </File>
   </Group>
 
@@ -595,11 +609,11 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>25</FileNumber>
+      <FileNumber>26</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>6</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
@@ -610,9 +624,9 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>E:\stm32\EM_STM3210C\STM3210C_UCOSII_2.8.6\Code\Libraries\CMSIS\Core\CM3\stm32f10x.h</PathWithFilename>
-    <TopLine>304</TopLine>
-    <CurrentLine>334</CurrentLine>
+    <PathWithFilename>E:\stm32\project\GprsDtu\gprsdtu\STM3210C_UCOSII_2.8.6\Code\User\inc\gtm900c.h</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>6</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -2231,14 +2245,20 @@
         <Doc>
           <Name>..\Code\User\src\main.c</Name>
           <ColumnNumber>36</ColumnNumber>
-          <TopLine>50</TopLine>
-          <CurrentLine>68</CurrentLine>
+          <TopLine>1</TopLine>
+          <CurrentLine>1</CurrentLine>
         </Doc>
         <Doc>
-          <Name>..\Code\Libraries\CMSIS\Core\CM3\stm32f10x.h</Name>
-          <ColumnNumber>25</ColumnNumber>
-          <TopLine>304</TopLine>
-          <CurrentLine>334</CurrentLine>
+          <Name>..\Code\User\src\gtm900c.c</Name>
+          <ColumnNumber>27</ColumnNumber>
+          <TopLine>441</TopLine>
+          <CurrentLine>475</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>E:\stm32\project\GprsDtu\gprsdtu\STM3210C_UCOSII_2.8.6\Code\User\inc\gtm900c.h</Name>
+          <ColumnNumber>38</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>6</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

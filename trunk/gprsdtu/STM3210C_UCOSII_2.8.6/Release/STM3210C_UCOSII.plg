@@ -3,56 +3,9 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-E:\stm32\project\GprsDtu\STM3210C_UCOSII_2.8.6\uvision\STM3210C_UCOSII.uvproj
-Project File Date:  08/25/2010
+E:\stm32\project\GprsDtu\gprsdtu\STM3210C_UCOSII_2.8.6\uvision\STM3210C_UCOSII.uvproj
+Project File Date:  08/31/2010
 
 <h2>Output:</h2>
-Build target 'STM3210C_UCOSII'
-compiling os_core.c...
-compiling gtm900c.c...
-..\Code\User\inc\gtm900c.h(28): warning:  #1-D: last line of file ends without a newline
-..\Code\User\src\gtm900c.c(41): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(126): warning:  #223-D: function "usart_send_char" declared implicitly
-..\Code\User\src\gtm900c.c(136): warning:  #223-D: function "usart_receive_char" declared implicitly
-..\Code\User\src\gtm900c.c(136): error:  #20: identifier "data" is undefined
-..\Code\User\src\gtm900c.c(201): warning:  #192-D: unrecognized character escape sequence
-..\Code\User\src\gtm900c.c(201): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(201): warning:  #226-D: invalid format string conversion
-..\Code\User\src\gtm900c.c(202): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(217): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(218): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(286): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(286): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(292): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(293): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(298): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(298): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
-..\Code\User\src\gtm900c.c(299): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(303): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(303): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
-..\Code\User\src\gtm900c.c(305): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(328): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(329): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(330): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(331): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(333): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(334): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(335): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(357): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(358): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(359): warning:  #1293-D: assignment in condition
-..\Code\User\src\gtm900c.c(360): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(361): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(362): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(363): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(365): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(366): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(367): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gtm900c.c(383): warning:  #1293-D: assignment in condition
-..\Code\User\src\gtm900c.c(384): warning:  #192-D: unrecognized character escape sequence
-..\Code\User\src\gtm900c.c(384): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gtm900c.c(384): warning:  #226-D: invalid format string conversion
-..\Code\User\src\gtm900c.c(385): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-Target not created
 Clean started: Project: 'STM3210C_UCOSII'
    deleting intermediate output files for target 'STM3210C_UCOSII'
