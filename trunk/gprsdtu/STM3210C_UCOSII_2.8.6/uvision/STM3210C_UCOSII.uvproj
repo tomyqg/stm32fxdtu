@@ -530,11 +530,6 @@
               <FileType>1</FileType>
               <FilePath>..\Code\User\src\stm32f10x_it.c</FilePath>
             </File>
-            <File>
-              <FileName>gtm900c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Code\User\src\gtm900c.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>

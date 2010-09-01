@@ -1,10 +1,43 @@
 ==========================================================================================
-UCOSII in STM3210C Test
+DEV:	GPRS DTU
+MCU: STM3210C
+OS:	 UCOSII 
+moderm:	GTM900c/EM310 
 ==========================================================================================
-After download the application to the EM_STM3210C Development Board, the display result is
-as follows:
-1. LEDs D1, D3 turn on 1s, then turn out.
-2. LEDs D2, D4 turn on 1s, then turn out.
-3. LEDs D1, D3 turn on 1s, then turn out.
-4. LEDs D2, D4 turn on 1s, then turn out.
-......
+
+
+
+	
+					-------------
+					|			|
+					|	GPRS	|
+					-------------						  GPRS module
+					  /		\
+					 /		 \
+	 ............ tx/  usart  \rx	...................
+				   /	 	   \
+				  /			    \
+		-------------		 -------------
+		|	task1	|		 |	task2	 |				  
+		-------------		 -------------
+				 \	 		   /	   
+				  \	 		  /	   							  
+	 			   \ 		 /	 	   					stm32
+				 -------------
+				 |	 main 	 |
+				 |	 task	 | 通过中断来调度task1~4
+				 -------------
+			     /		    \
+			    /			 \
+			   /			  \
+		-------------  		 -------------
+		|	task3	|		 |	task4	 |			   
+		-------------		 -------------
+				 \				  /
+				  \				 /	
+	  ...........tx\   	usart	/rx		....................
+					\		   /
+					 \		  /
+					 ...........
+	  				 .	 user  .
+					 ...........									user
