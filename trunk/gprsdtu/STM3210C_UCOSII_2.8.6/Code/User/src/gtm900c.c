@@ -510,11 +510,26 @@ s8	gtm900c_tcpip_recvbuf_query(u8 *unread, u8 *total)
 
 /*****************************************
 tcp/ip 数据接收缓冲区删除
-入口参数：
-		 
-出口参数：
+入口参数： index 数据包序号0-50
+		   type 类型 0、1、2 在index=0时有效 0删已读 1删未读 2全部
+出口参数： 成功返回删除的数据包数量 错误返回值<0
 *******************************************/
-s8	gtm900c_tcpip_recvbuf_delete(u8 )
+s8	gtm900c_tcpip_recvbuf_delete(u8 index, u8 type)
+{
+	u8 *buf[17], *pF, *pB;
+	if(index>50 || type>2)	return -1;	
+	sprintf(buf,"AT\%IPDD=%d,%d", index, type);
+	at_send_data(buf, strlen(buf));
+	at_return_data(buf, 17);
+	pB =  check_string(buf, "OK", 17);
+	pF =  check_string(buf, ":", 17);
+	if(~(pF&&pB)) return -2;
+	return char_to_int(pF, pB-pF);
+	
+}
 
-
+/**********************************************
+tcp/ip 数据接收缓冲区删除模式不设置
+		采用默认：自动删除
+**********************************************/
 
