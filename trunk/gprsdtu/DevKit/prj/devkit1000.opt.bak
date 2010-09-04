@@ -1,0 +1,425 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+ cExt (*.c)
+ aExt (*.s*; *.src; *.a*)
+ oExt (*.obj)
+ lExt (*.lib)
+ tExt (*.txt; *.h; *.inc)
+ pExt (*.plm)
+ CppX (*.cpp)
+ DaveTm { 0,0,0,0,0,0,0,0 }
+
+Target (DevKit1000), 0x0004 // Tools: 'ARM-ADS'
+GRPOPT 1,(cfg),0,0,0
+GRPOPT 2,(boot),0,0,0
+GRPOPT 3,(ucos-ii/port),0,0,0
+GRPOPT 4,(ucos-ii/kernel),0,0,0
+GRPOPT 5,(stm32lib),0,0,0
+GRPOPT 6,(drivers),0,0,0
+GRPOPT 7,(ucGUI/cfg),0,0,0
+GRPOPT 8,(ucGUI/AntiAlias),0,0,0
+GRPOPT 9,(ucGUI/ConvertColor),0,0,0
+GRPOPT 10,(ucGUI/ConvertMono),0,0,0
+GRPOPT 11,(ucGUI/Core),0,0,0
+GRPOPT 12,(ucGUI/Font),0,0,0
+GRPOPT 13,(ucGUI/MemDev),0,0,0
+GRPOPT 14,(ucGUI/Widget),0,0,0
+GRPOPT 15,(ucGUI/WM),0,0,0
+GRPOPT 16,(ucGUI/LcdDriver),0,0,0
+GRPOPT 17,(ucGUI/ExtLib),0,0,0
+GRPOPT 18,(fatfs),0,0,0
+GRPOPT 19,(menu system),0,0,0
+GRPOPT 20,(lwip/port),0,0,0
+GRPOPT 21,(lwip/core),0,0,0
+GRPOPT 22,(lwip/ppp),0,0,0
+GRPOPT 23,(lwip/api),0,0,0
+GRPOPT 24,(app),0,0,0
+
+OPTFFF 1,1,5,838860800,0,0,0,0,<..\cfg\app_cfg.h><app_cfg.h> 
+OPTFFF 1,2,5,587202560,0,0,0,0,<..\cfg\os_cfg.h><os_cfg.h> 
+OPTFFF 1,3,5,0,0,0,0,0,<..\cfg\stm32f10x_conf.h><stm32f10x_conf.h> 
+OPTFFF 2,4,2,0,0,0,0,0,<..\stm32lib\src\cortexm3_macro.s><cortexm3_macro.s> 
+OPTFFF 2,5,1,872415232,0,0,0,0,<..\boot\stm32f10x_it.c><stm32f10x_it.c> 
+OPTFFF 2,6,2,0,0,0,0,0,<..\boot\stm32f10x_vector.s><stm32f10x_vector.s> 
+OPTFFF 3,7,2,0,0,0,0,0,<..\ucos-ii\Ports\ARM-Cortex-M3\Generic\RealView\os_cpu_a.asm><os_cpu_a.asm> 
+OPTFFF 3,8,1,486539264,0,0,0,0,<..\ucos-ii\Ports\ARM-Cortex-M3\Generic\RealView\os_cpu_c.c><os_cpu_c.c> 
+OPTFFF 3,9,1,0,0,0,0,0,<..\ucos-ii\Ports\ARM-Cortex-M3\Generic\RealView\os_dbg.c><os_dbg.c> 
+OPTFFF 4,10,1,0,0,0,0,0,<..\ucos-ii\kernel\ucos_ii.c><ucos_ii.c> 
+OPTFFF 5,11,1,0,0,0,0,0,<..\stm32lib\src\stm32f10x_flash.c><stm32f10x_flash.c> 
+OPTFFF 5,12,1,0,0,0,0,0,<..\stm32lib\src\stm32f10x_gpio.c><stm32f10x_gpio.c> 
+OPTFFF 5,13,1,0,0,0,0,0,<..\stm32lib\src\stm32f10x_lib.c><stm32f10x_lib.c> 
+OPTFFF 5,14,1,0,0,0,0,0,<..\stm32lib\src\stm32f10x_nvic.c><stm32f10x_nvic.c> 
+OPTFFF 5,15,1,268435456,0,0,0,0,<..\stm32lib\src\stm32f10x_rcc.c><stm32f10x_rcc.c> 
+OPTFFF 5,16,1,234881024,0,0,0,0,<..\stm32lib\src\stm32f10x_usart.c><stm32f10x_usart.c> 
+OPTFFF 5,17,1,0,0,0,0,0,<..\stm32lib\src\stm32f10x_pwr.c><stm32f10x_pwr.c> 
+OPTFFF 5,18,1,0,0,0,0,0,<..\stm32lib\src\stm32f10x_exti.c><stm32f10x_exti.c> 
+OPTFFF 5,19,1,0,0,0,0,0,<..\stm32lib\src\stm32f10x_fsmc.c><stm32f10x_fsmc.c> 
+OPTFFF 5,20,1,0,0,0,0,0,<..\stm32lib\src\stm32f10x_sdio.c><stm32f10x_sdio.c> 
+OPTFFF 5,21,1,0,0,0,0,0,<..\stm32lib\src\stm32f10x_dma.c><stm32f10x_dma.c> 
+OPTFFF 5,22,1,0,0,0,0,0,<..\stm32lib\src\stm32f10x_tim.c><stm32f10x_tim.c> 
+OPTFFF 5,23,1,83886080,0,0,0,0,<..\stm32lib\src\stm32f10x_dac.c><stm32f10x_dac.c> 
+OPTFFF 5,24,1,0,0,0,0,0,<..\stm32lib\src\stm32f10x_adc.c><stm32f10x_adc.c> 
+OPTFFF 5,25,1,369098752,0,0,0,0,<..\stm32lib\src\stm32f10x_bkp.c><stm32f10x_bkp.c> 
+OPTFFF 5,26,1,0,0,0,0,0,<..\stm32lib\src\stm32f10x_rtc.c><stm32f10x_rtc.c> 
+OPTFFF 5,27,1,0,0,0,0,0,<..\stm32lib\src\stm32f10x_spi.c><stm32f10x_spi.c> 
+OPTFFF 6,28,1,201326592,0,0,0,0,<..\drives\drv_init.c><drv_init.c> 
+OPTFFF 6,29,1,0,0,0,0,0,<..\drives\gpio.c><gpio.c> 
+OPTFFF 6,30,1,0,0,0,0,0,<..\drives\led.c><led.c> 
+OPTFFF 6,31,1,301989888,0,0,0,0,<..\drives\retarget.c><retarget.c> 
+OPTFFF 6,32,1,419430400,0,0,0,0,<..\drives\uart_std.c><uart_std.c> 
+OPTFFF 6,33,1,0,0,0,0,0,<..\drives\keys.c><keys.c> 
+OPTFFF 6,34,1,251658240,0,0,0,0,<..\drives\aux_lib.c><aux_lib.c> 
+OPTFFF 6,35,1,218103808,0,0,0,0,<..\drives\lcd_low.c><lcd_low.c> 
+OPTFFF 6,36,1,0,0,0,0,0,<..\drives\fsmc_sram.c><fsmc_sram.c> 
+OPTFFF 6,37,1,0,0,0,0,0,<..\drives\sdcard.c><sdcard.c> 
+OPTFFF 6,38,1,167772160,0,0,0,0,<..\drives\dac_codec.c><dac_codec.c> 
+OPTFFF 6,39,1,469762048,0,0,0,0,<..\drives\adc.c><adc.c> 
+OPTFFF 6,40,1,0,0,0,0,0,<..\drives\fsmc_nand.c><fsmc_nand.c> 
+OPTFFF 6,41,1,184549376,0,0,0,0,<..\drives\rtc.c><rtc.c> 
+OPTFFF 6,42,1,0,0,0,0,0,<..\drives\tmr_drv.c><tmr_drv.c> 
+OPTFFF 6,43,1,0,0,0,0,0,<..\drives\adc_cap.c><adc_cap.c> 
+OPTFFF 6,44,1,0,0,0,0,0,<..\drives\cdrs_op.c><cdrs_op.c> 
+OPTFFF 6,45,1,301989888,0,0,0,0,<..\drives\fm1702.c><fm1702.c> 
+OPTFFF 6,46,1,385875968,0,0,0,0,<..\drives\fm1702_inf.c><fm1702_inf.c> 
+OPTFFF 6,47,1,671088640,0,0,0,0,<..\drives\mifare.c><mifare.c> 
+OPTFFF 6,48,1,0,0,0,0,0,<..\drives\uart_drv.c><uart_drv.c> 
+OPTFFF 6,49,1,184549376,0,0,0,0,<..\drives\uart_hw.c><uart_hw.c> 
+OPTFFF 6,50,1,134217728,0,0,0,0,<..\drives\uart2.c><uart2.c> 
+OPTFFF 7,51,1,0,0,0,0,0,<..\ucgui\uCGUI_Config\GUI_X_uCOS.c><GUI_X_uCOS.c> 
+OPTFFF 7,52,5,0,0,0,0,0,<..\ucgui\uCGUI_Config\GUIConf.h><GUIConf.h> 
+OPTFFF 7,53,5,134217728,0,0,0,0,<..\ucgui\uCGUI_Config\LCDConf.h><LCDConf.h> 
+OPTFFF 8,54,1,0,0,0,0,0,<..\ucgui\uCGui_Source\AntiAlias\GUIAAArc.c><GUIAAArc.c> 
+OPTFFF 8,55,1,0,0,0,0,0,<..\ucgui\uCGui_Source\AntiAlias\GUIAAChar2.c><GUIAAChar2.c> 
+OPTFFF 8,56,1,0,0,0,0,0,<..\ucgui\uCGui_Source\AntiAlias\GUIAAChar4.c><GUIAAChar4.c> 
+OPTFFF 8,57,1,0,0,0,0,0,<..\ucgui\uCGui_Source\AntiAlias\GUIAAChar.c><GUIAAChar.c> 
+OPTFFF 8,58,1,0,0,0,0,0,<..\ucgui\uCGui_Source\AntiAlias\GUIAACircle.c><GUIAACircle.c> 
+OPTFFF 8,59,1,0,0,0,0,0,<..\ucgui\uCGui_Source\AntiAlias\GUIAALib.c><GUIAALib.c> 
+OPTFFF 8,60,1,0,0,0,0,0,<..\ucgui\uCGui_Source\AntiAlias\GUIAALine.c><GUIAALine.c> 
+OPTFFF 8,61,1,0,0,0,0,0,<..\ucgui\uCGui_Source\AntiAlias\GUIAAPoly.c><GUIAAPoly.c> 
+OPTFFF 8,62,1,0,0,0,0,0,<..\ucgui\uCGui_Source\AntiAlias\GUIAAPolyOut.c><GUIAAPolyOut.c> 
+OPTFFF 9,63,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertColor\LCDP111.c><LCDP111.c> 
+OPTFFF 9,64,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertColor\LCDP222.c><LCDP222.c> 
+OPTFFF 9,65,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertColor\LCDP233.c><LCDP233.c> 
+OPTFFF 9,66,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertColor\LCDP323.c><LCDP323.c> 
+OPTFFF 9,67,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertColor\LCDP332.c><LCDP332.c> 
+OPTFFF 9,68,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertColor\LCDP444.c><LCDP444.c> 
+OPTFFF 9,69,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertColor\LCDP555.c><LCDP555.c> 
+OPTFFF 9,70,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertColor\LCDP565.c><LCDP565.c> 
+OPTFFF 9,71,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertColor\LCDP8666.c><LCDP8666.c> 
+OPTFFF 9,72,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertColor\LCDPM233.c><LCDPM233.c> 
+OPTFFF 9,73,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertColor\LCDPM323.c><LCDPM323.c> 
+OPTFFF 9,74,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertColor\LCDPM332.c><LCDPM332.c> 
+OPTFFF 9,75,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertColor\LCDPM555.c><LCDPM555.c> 
+OPTFFF 9,76,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertColor\LCDPM565.c><LCDPM565.c> 
+OPTFFF 10,77,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertMono\LCDP0.c><LCDP0.c> 
+OPTFFF 10,78,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertMono\LCDP2.c><LCDP2.c> 
+OPTFFF 10,79,1,0,0,0,0,0,<..\ucgui\uCGui_Source\ConvertMono\LCDP4.c><LCDP4.c> 
+OPTFFF 11,80,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\gui2dlib.c><gui2dlib.c> 
+OPTFFF 11,81,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI__AddSpaceHex.c><GUI__AddSpaceHex.c> 
+OPTFFF 11,82,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI__DivideRound.c><GUI__DivideRound.c> 
+OPTFFF 11,83,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI__GetFontSizeY.c><GUI__GetFontSizeY.c> 
+OPTFFF 11,84,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI__HandleEOLine.c><GUI__HandleEOLine.c> 
+OPTFFF 11,85,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI__IntersectRect.c><GUI__IntersectRect.c> 
+OPTFFF 11,86,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI__IntersectRects.c><GUI__IntersectRects.c> 
+OPTFFF 11,87,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI__ReduceRect.c><GUI__ReduceRect.c> 
+OPTFFF 11,88,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_AddBin.c><GUI_AddBin.c> 
+OPTFFF 11,89,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_AddDec.c><GUI_AddDec.c> 
+OPTFFF 11,90,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_AddHex.c><GUI_AddHex.c> 
+OPTFFF 11,91,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_AddKeyMsgHook.c><GUI_AddKeyMsgHook.c> 
+OPTFFF 11,92,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_Color2VisColor.c><GUI_Color2VisColor.c> 
+OPTFFF 11,93,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorArrowL.c><GUI_CursorArrowL.c> 
+OPTFFF 11,94,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorArrowLI.c><GUI_CursorArrowLI.c> 
+OPTFFF 11,95,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorArrowLPx.c><GUI_CursorArrowLPx.c> 
+OPTFFF 11,96,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorArrowM.c><GUI_CursorArrowM.c> 
+OPTFFF 11,97,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorArrowMI.c><GUI_CursorArrowMI.c> 
+OPTFFF 11,98,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorArrowMPx.c><GUI_CursorArrowMPx.c> 
+OPTFFF 11,99,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorArrowS.c><GUI_CursorArrowS.c> 
+OPTFFF 11,100,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorArrowSI.c><GUI_CursorArrowSI.c> 
+OPTFFF 11,101,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorArrowSPx.c><GUI_CursorArrowSPx.c> 
+OPTFFF 11,102,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorCrossL.c><GUI_CursorCrossL.c> 
+OPTFFF 11,103,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorCrossLI.c><GUI_CursorCrossLI.c> 
+OPTFFF 11,104,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorCrossLPx.c><GUI_CursorCrossLPx.c> 
+OPTFFF 11,105,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorCrossM.c><GUI_CursorCrossM.c> 
+OPTFFF 11,106,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorCrossMI.c><GUI_CursorCrossMI.c> 
+OPTFFF 11,107,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorCrossMPx.c><GUI_CursorCrossMPx.c> 
+OPTFFF 11,108,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorCrossS.c><GUI_CursorCrossS.c> 
+OPTFFF 11,109,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorCrossSI.c><GUI_CursorCrossSI.c> 
+OPTFFF 11,110,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorCrossSPx.c><GUI_CursorCrossSPx.c> 
+OPTFFF 11,111,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorPal.c><GUI_CursorPal.c> 
+OPTFFF 11,112,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_CursorPalI.c><GUI_CursorPalI.c> 
+OPTFFF 11,113,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DispBin.c><GUI_DispBin.c> 
+OPTFFF 11,114,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DispCEOL.c><GUI_DispCEOL.c> 
+OPTFFF 11,115,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DispChar.c><GUI_DispChar.c> 
+OPTFFF 11,116,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DispChars.c><GUI_DispChars.c> 
+OPTFFF 11,117,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DispHex.c><GUI_DispHex.c> 
+OPTFFF 11,118,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DispStringAt.c><GUI_DispStringAt.c> 
+OPTFFF 11,119,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DispStringAtCEOL.c><GUI_DispStringAtCEOL.c> 
+OPTFFF 11,120,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DispStringHCenter.c><GUI_DispStringHCenter.c> 
+OPTFFF 11,121,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DispStringInRect.c><GUI_DispStringInRect.c> 
+OPTFFF 11,122,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DispStringLen.c><GUI_DispStringLen.c> 
+OPTFFF 11,123,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DrawBitmap.c><GUI_DrawBitmap.c> 
+OPTFFF 11,124,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DrawBitmapExp.c><GUI_DrawBitmapExp.c> 
+OPTFFF 11,125,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DrawBitmapMag.c><GUI_DrawBitmapMag.c> 
+OPTFFF 11,126,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DrawBMP.c><GUI_DrawBMP.c> 
+OPTFFF 11,127,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DrawFocusRect.c><GUI_DrawFocusRect.c> 
+OPTFFF 11,128,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DrawGraph.c><GUI_DrawGraph.c> 
+OPTFFF 11,129,1,83886080,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DrawHLine.c><GUI_DrawHLine.c> 
+OPTFFF 11,130,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DrawPie.c><GUI_DrawPie.c> 
+OPTFFF 11,131,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DrawPixel.c><GUI_DrawPixel.c> 
+OPTFFF 11,132,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DrawPolyline.c><GUI_DrawPolyline.c> 
+OPTFFF 11,133,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DrawRectEx.c><GUI_DrawRectEx.c> 
+OPTFFF 11,134,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_DrawVLine.c><GUI_DrawVLine.c> 
+OPTFFF 11,135,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_ErrorOut.c><GUI_ErrorOut.c> 
+OPTFFF 11,136,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_Exec.c><GUI_Exec.c> 
+OPTFFF 11,137,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_FillPolygon.c><GUI_FillPolygon.c> 
+OPTFFF 11,138,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_FillRect.c><GUI_FillRect.c> 
+OPTFFF 11,139,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_FillRectEx.c><GUI_FillRectEx.c> 
+OPTFFF 11,140,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_GetClientRect.c><GUI_GetClientRect.c> 
+OPTFFF 11,141,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_GetColor.c><GUI_GetColor.c> 
+OPTFFF 11,142,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_GetDispPos.c><GUI_GetDispPos.c> 
+OPTFFF 11,143,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_GetFont.c><GUI_GetFont.c> 
+OPTFFF 11,144,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_GetFontInfo.c><GUI_GetFontInfo.c> 
+OPTFFF 11,145,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_GetFontSizeY.c><GUI_GetFontSizeY.c> 
+OPTFFF 11,146,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_GetLineStyle.c><GUI_GetLineStyle.c> 
+OPTFFF 11,147,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_GetStringDistX.c><GUI_GetStringDistX.c> 
+OPTFFF 11,148,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_GetTextAlign.c><GUI_GetTextAlign.c> 
+OPTFFF 11,149,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_GetTextExtend.c><GUI_GetTextExtend.c> 
+OPTFFF 11,150,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_GetTextMode.c><GUI_GetTextMode.c> 
+OPTFFF 11,151,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_GetVersionString.c><GUI_GetVersionString.c> 
+OPTFFF 11,152,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_GetYSizeOfFont.c><GUI_GetYSizeOfFont.c> 
+OPTFFF 11,153,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_InitLUT.c><GUI_InitLUT.c> 
+OPTFFF 11,154,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_InvertRect.c><GUI_InvertRect.c> 
+OPTFFF 11,155,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_IsInFont.c><GUI_IsInFont.c> 
+OPTFFF 11,156,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_Log.c><GUI_Log.c> 
+OPTFFF 11,157,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_MergeRect.c><GUI_MergeRect.c> 
+OPTFFF 11,158,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_MOUSE.c><GUI_MOUSE.c> 
+OPTFFF 11,159,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_MOUSE_DriverPS2.c><GUI_MOUSE_DriverPS2.c> 
+OPTFFF 11,160,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_MoveRect.c><GUI_MoveRect.c> 
+OPTFFF 11,161,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_OnKey.c><GUI_OnKey.c> 
+OPTFFF 11,162,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_Pen.c><GUI_Pen.c> 
+OPTFFF 11,163,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_PID.c><GUI_PID.c> 
+OPTFFF 11,164,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_RectsIntersect.c><GUI_RectsIntersect.c> 
+OPTFFF 11,165,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SaveContext.c><GUI_SaveContext.c> 
+OPTFFF 11,166,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SelLCD.c><GUI_SelLCD.c> 
+OPTFFF 11,167,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SetColor.c><GUI_SetColor.c> 
+OPTFFF 11,168,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SetColorIndex.c><GUI_SetColorIndex.c> 
+OPTFFF 11,169,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SetDecChar.c><GUI_SetDecChar.c> 
+OPTFFF 11,170,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SetDefault.c><GUI_SetDefault.c> 
+OPTFFF 11,171,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SetDrawMode.c><GUI_SetDrawMode.c> 
+OPTFFF 11,172,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SetFont.c><GUI_SetFont.c> 
+OPTFFF 11,173,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SetLBorder.c><GUI_SetLBorder.c> 
+OPTFFF 11,174,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SetLineStyle.c><GUI_SetLineStyle.c> 
+OPTFFF 11,175,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SetLUTEntry.c><GUI_SetLUTEntry.c> 
+OPTFFF 11,176,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SetOrg.c><GUI_SetOrg.c> 
+OPTFFF 11,177,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SetPhysColor.c><GUI_SetPhysColor.c> 
+OPTFFF 11,178,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SetPixelIndex.c><GUI_SetPixelIndex.c> 
+OPTFFF 11,179,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SetTextAlign.c><GUI_SetTextAlign.c> 
+OPTFFF 11,180,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_SetTextMode.c><GUI_SetTextMode.c> 
+OPTFFF 11,181,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_StreamBMP.c><GUI_StreamBMP.c> 
+OPTFFF 11,182,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_TOUCH.c><GUI_TOUCH.c> 
+OPTFFF 11,183,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_TOUCH_DriverAnalog.c><GUI_TOUCH_DriverAnalog.c> 
+OPTFFF 11,184,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_TOUCH_StoreState.c><GUI_TOUCH_StoreState.c> 
+OPTFFF 11,185,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_TOUCH_StoreUnstable.c><GUI_TOUCH_StoreUnstable.c> 
+OPTFFF 11,186,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_WaitKey.c><GUI_WaitKey.c> 
+OPTFFF 11,187,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUI_Warn.c><GUI_Warn.c> 
+OPTFFF 11,188,1,1291845632,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUIAlloc.c><GUIAlloc.c> 
+OPTFFF 11,189,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\guiarc.c><guiarc.c> 
+OPTFFF 11,190,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUIChar0.c><GUIChar0.c> 
+OPTFFF 11,191,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUIChar.c><GUIChar.c> 
+OPTFFF 11,192,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUICharM.c><GUICharM.c> 
+OPTFFF 11,193,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUICharP.c><GUICharP.c> 
+OPTFFF 11,194,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUICirc.c><GUICirc.c> 
+OPTFFF 11,195,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUIColor2Index.c><GUIColor2Index.c> 
+OPTFFF 11,196,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUICore.c><GUICore.c> 
+OPTFFF 11,197,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUICurs.c><GUICurs.c> 
+OPTFFF 11,198,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUIEncJS.c><GUIEncJS.c> 
+OPTFFF 11,199,1,301989888,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUIIndex2Color.c><GUIIndex2Color.c> 
+OPTFFF 11,200,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUIPolyE.c><GUIPolyE.c> 
+OPTFFF 11,201,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUIPolyM.c><GUIPolyM.c> 
+OPTFFF 11,202,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUIPolyR.c><GUIPolyR.c> 
+OPTFFF 11,203,1,184549376,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUIStream.c><GUIStream.c> 
+OPTFFF 11,204,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\guitask.c><guitask.c> 
+OPTFFF 11,205,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUITime.c><GUITime.c> 
+OPTFFF 11,206,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\guitimer.c><guitimer.c> 
+OPTFFF 11,207,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUIUC0.c><GUIUC0.c> 
+OPTFFF 11,208,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUIUC1.c><GUIUC1.c> 
+OPTFFF 11,209,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUIVal.c><GUIVal.c> 
+OPTFFF 11,210,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\GUIValf.c><GUIValf.c> 
+OPTFFF 11,211,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCD_DrawVLine.c><LCD_DrawVLine.c> 
+OPTFFF 11,212,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCD_GetColorIndex.c><LCD_GetColorIndex.c> 
+OPTFFF 11,213,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCD_GetNumDisplays.c><LCD_GetNumDisplays.c> 
+OPTFFF 11,214,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCD_GetPixelColor.c><LCD_GetPixelColor.c> 
+OPTFFF 11,215,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCD_L0_Generic.c><LCD_L0_Generic.c> 
+OPTFFF 11,216,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCD_SetClipRectEx.c><LCD_SetClipRectEx.c> 
+OPTFFF 11,217,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCDAA.c><LCDAA.c> 
+OPTFFF 11,218,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCDColor.c><LCDColor.c> 
+OPTFFF 11,219,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCDGetP.c><LCDGetP.c> 
+OPTFFF 11,220,1,738197504,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCDInfo0.c><LCDInfo0.c> 
+OPTFFF 11,221,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCDInfo1.c><LCDInfo1.c> 
+OPTFFF 11,222,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCDInfo.c><LCDInfo.c> 
+OPTFFF 11,223,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCDL0Mag.c><LCDL0Mag.c> 
+OPTFFF 11,224,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCDP1.c><LCDP1.c> 
+OPTFFF 11,225,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCDRLE4.c><LCDRLE4.c> 
+OPTFFF 11,226,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCDRLE8.c><LCDRLE8.c> 
+OPTFFF 11,227,1,318767104,0,0,0,0,<..\ucgui\uCGui_Source\Core\LCD.c><LCD.c> 
+OPTFFF 12,228,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F4x6.c><F4x6.c> 
+OPTFFF 12,229,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F6x8.C><F6x8.C> 
+OPTFFF 12,230,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F08_1.c><F08_1.c> 
+OPTFFF 12,231,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F08_ASCII.c><F08_ASCII.c> 
+OPTFFF 12,232,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F8x8.c><F8x8.c> 
+OPTFFF 12,233,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F8x10_ASCII.c><F8x10_ASCII.c> 
+OPTFFF 12,234,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F8x12_ASCII.c><F8x12_ASCII.c> 
+OPTFFF 12,235,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F8x13.c><F8x13.c> 
+OPTFFF 12,236,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F8x13_1.c><F8x13_1.c> 
+OPTFFF 12,237,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F8x13_ASCII.c><F8x13_ASCII.c> 
+OPTFFF 12,238,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F8x15B.c><F8x15B.c> 
+OPTFFF 12,239,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F8x15B_1.c><F8x15B_1.c> 
+OPTFFF 12,240,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F8x15B_ASCII.c><F8x15B_ASCII.c> 
+OPTFFF 12,241,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F8x16.c><F8x16.c> 
+OPTFFF 12,242,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F10_1.c><F10_1.c> 
+OPTFFF 12,243,1,469762048,0,0,0,0,<..\ucgui\uCGui_Source\Font\F10_ASCII.c><F10_ASCII.c> 
+OPTFFF 12,244,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F10S_1.c><F10S_1.c> 
+OPTFFF 12,245,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F10S_ASCII.c><F10S_ASCII.c> 
+OPTFFF 12,246,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F13_1.c><F13_1.c> 
+OPTFFF 12,247,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F13_ASCII.c><F13_ASCII.c> 
+OPTFFF 12,248,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F13B_1.c><F13B_1.c> 
+OPTFFF 12,249,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F13B_ASCII.c><F13B_ASCII.c> 
+OPTFFF 12,250,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F13H_1.c><F13H_1.c> 
+OPTFFF 12,251,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F13H_ASCII.c><F13H_ASCII.c> 
+OPTFFF 12,252,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F13HB_1.c><F13HB_1.c> 
+OPTFFF 12,253,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F13HB_ASCII.c><F13HB_ASCII.c> 
+OPTFFF 12,254,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F16_1.c><F16_1.c> 
+OPTFFF 12,255,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F16_1HK.c><F16_1HK.c> 
+OPTFFF 12,256,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F16_ASCII.c><F16_ASCII.c> 
+OPTFFF 12,257,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F16_HK.c><F16_HK.c> 
+OPTFFF 12,258,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F16B_1.c><F16B_1.c> 
+OPTFFF 12,259,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F16B_ASCII.c><F16B_ASCII.c> 
+OPTFFF 12,260,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F24_1.c><F24_1.c> 
+OPTFFF 12,261,1,117440512,0,0,0,0,<..\ucgui\uCGui_Source\Font\F24_ASCII.c><F24_ASCII.c> 
+OPTFFF 12,262,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F24B_1.c><F24B_1.c> 
+OPTFFF 12,263,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F24B_ASCII.c><F24B_ASCII.c> 
+OPTFFF 12,264,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F32_1.c><F32_1.c> 
+OPTFFF 12,265,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F32_ASCII.c><F32_ASCII.c> 
+OPTFFF 12,266,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F32B_1.c><F32B_1.c> 
+OPTFFF 12,267,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\F32B_ASCII.c><F32B_ASCII.c> 
+OPTFFF 12,268,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\FComic18B_1.c><FComic18B_1.c> 
+OPTFFF 12,269,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\FComic18B_ASCII.c><FComic18B_ASCII.c> 
+OPTFFF 12,270,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\FComic24B_1.c><FComic24B_1.c> 
+OPTFFF 12,271,1,788529152,0,0,0,0,<..\ucgui\uCGui_Source\Font\FComic24B_ASCII.c><FComic24B_ASCII.c> 
+OPTFFF 12,272,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\FD24x32.c><FD24x32.c> 
+OPTFFF 12,273,1,0,0,0,0,0,<..\ucgui\uCGui_Source\Font\FD32.c><FD32.c> 
+OPTFFF 13,274,1,0,0,0,0,0,<..\ucgui\uCGui_Source\MemDev\GUIDEV.c><GUIDEV.c> 
+OPTFFF 13,275,1,0,0,0,0,0,<..\ucgui\uCGui_Source\MemDev\GUIDEV_AA.c><GUIDEV_AA.c> 
+OPTFFF 13,276,1,0,0,0,0,0,<..\ucgui\uCGui_Source\MemDev\GUIDEV_Auto.c><GUIDEV_Auto.c> 
+OPTFFF 13,277,1,0,0,0,0,0,<..\ucgui\uCGui_Source\MemDev\GUIDEV_Banding.c><GUIDEV_Banding.c> 
+OPTFFF 13,278,1,0,0,0,0,0,<..\ucgui\uCGui_Source\MemDev\GUIDEV_Clear.c><GUIDEV_Clear.c> 
+OPTFFF 13,279,1,0,0,0,0,0,<..\ucgui\uCGui_Source\MemDev\GUIDEV_CmpWithLCD.c><GUIDEV_CmpWithLCD.c> 
+OPTFFF 13,280,1,0,0,0,0,0,<..\ucgui\uCGui_Source\MemDev\GUIDEV_CopyFromLCD.c><GUIDEV_CopyFromLCD.c> 
+OPTFFF 13,281,1,0,0,0,0,0,<..\ucgui\uCGui_Source\MemDev\GUIDEV_GetYSize.c><GUIDEV_GetYSize.c> 
+OPTFFF 13,282,1,0,0,0,0,0,<..\ucgui\uCGui_Source\MemDev\GUIDEV_Measure.c><GUIDEV_Measure.c> 
+OPTFFF 13,283,1,0,0,0,0,0,<..\ucgui\uCGui_Source\MemDev\GUIDEV_ReduceYSize.c><GUIDEV_ReduceYSize.c> 
+OPTFFF 13,284,1,0,0,0,0,0,<..\ucgui\uCGui_Source\MemDev\GUIDEV_SetOrg.c><GUIDEV_SetOrg.c> 
+OPTFFF 13,285,1,0,0,0,0,0,<..\ucgui\uCGui_Source\MemDev\GUIDEV_Usage.c><GUIDEV_Usage.c> 
+OPTFFF 13,286,1,0,0,0,0,0,<..\ucgui\uCGui_Source\MemDev\GUIDEV_UsageBM.c><GUIDEV_UsageBM.c> 
+OPTFFF 16,287,1,553648128,0,0,0,0,<..\ucgui\uCGui_Source\LCDDriver\LCD9320.c><LCD9320.c> 
+OPTFFF 17,288,1,67108864,0,0,0,0,<..\ucgui\uCGui_Source\ExtLib\GUI_ShowStreamBMP.c><GUI_ShowStreamBMP.c> 
+OPTFFF 18,289,1,0,0,0,0,0,<..\fatfs\ff.c><ff.c> 
+OPTFFF 18,290,1,0,0,0,0,0,<..\fatfs\diskio.c><diskio.c> 
+OPTFFF 18,291,1,721420288,0,0,0,0,<..\fatfs\option\syncobj.c><syncobj.c> 
+OPTFFF 19,292,1,0,0,0,0,0,<..\menu\Menu.C><Menu.C> 
+OPTFFF 19,293,1,0,0,0,0,0,<..\menu\MenuFSM.C><MenuFSM.C> 
+OPTFFF 19,294,1,218103808,0,0,0,0,<..\menu\MenuCom.C><MenuCom.C> 
+OPTFFF 19,295,1,0,0,0,0,0,<..\menu\MenuTop.C><MenuTop.C> 
+OPTFFF 19,296,1,251658240,0,0,0,0,<..\menu\MenuIcon.C><MenuIcon.C> 
+OPTFFF 19,297,1,0,0,0,0,0,<..\menu\MenuFunc.C><MenuFunc.C> 
+OPTFFF 19,298,1,0,0,0,0,0,<..\menu\MenuBar.C><MenuBar.C> 
+OPTFFF 20,299,1,0,0,0,0,0,<..\lwip\port\sys_arch.c><sys_arch.c> 
+OPTFFF 20,300,1,285212672,0,0,0,0,<..\lwip\port\moden.c><moden.c> 
+OPTFFF 21,301,1,0,0,0,0,0,<..\lwip\core\dhcp.c><dhcp.c> 
+OPTFFF 21,302,1,0,0,0,0,0,<..\lwip\core\dns.c><dns.c> 
+OPTFFF 21,303,1,0,0,0,0,0,<..\lwip\core\init.c><init.c> 
+OPTFFF 21,304,1,0,0,0,0,0,<..\lwip\core\mem.c><mem.c> 
+OPTFFF 21,305,1,0,0,0,0,0,<..\lwip\core\memp.c><memp.c> 
+OPTFFF 21,306,1,0,0,0,0,0,<..\lwip\core\netif.c><netif.c> 
+OPTFFF 21,307,1,0,0,0,0,0,<..\lwip\core\pbuf.c><pbuf.c> 
+OPTFFF 21,308,1,0,0,0,0,0,<..\lwip\core\raw.c><raw.c> 
+OPTFFF 21,309,1,721420288,0,0,0,0,<..\lwip\core\stats.c><stats.c> 
+OPTFFF 21,310,1,218103808,0,0,0,0,<..\lwip\core\sys.c><sys.c> 
+OPTFFF 21,311,1,0,0,0,0,0,<..\lwip\core\tcp.c><tcp.c> 
+OPTFFF 21,312,1,0,0,0,0,0,<..\lwip\core\tcp_in.c><tcp_in.c> 
+OPTFFF 21,313,1,0,0,0,0,0,<..\lwip\core\tcp_out.c><tcp_out.c> 
+OPTFFF 21,314,1,0,0,0,0,0,<..\lwip\core\udp.c><udp.c> 
+OPTFFF 21,315,1,0,0,0,0,0,<..\lwip\core\ipv4\autoip.c><autoip.c> 
+OPTFFF 21,316,1,0,0,0,0,0,<..\lwip\core\ipv4\icmp.c><icmp.c> 
+OPTFFF 21,317,1,0,0,0,0,0,<..\lwip\core\ipv4\igmp.c><igmp.c> 
+OPTFFF 21,318,1,0,0,0,0,0,<..\lwip\core\ipv4\inet.c><inet.c> 
+OPTFFF 21,319,1,0,0,0,0,0,<..\lwip\core\ipv4\inet_chksum.c><inet_chksum.c> 
+OPTFFF 21,320,1,0,0,0,0,0,<..\lwip\core\ipv4\ip.c><ip.c> 
+OPTFFF 21,321,1,0,0,0,0,0,<..\lwip\core\ipv4\ip_addr.c><ip_addr.c> 
+OPTFFF 21,322,1,0,0,0,0,0,<..\lwip\core\ipv4\ip_frag.c><ip_frag.c> 
+OPTFFF 22,323,1,0,0,0,0,0,<..\lwip\netif\ppp\auth.c><auth.c> 
+OPTFFF 22,324,1,0,0,0,0,0,<..\lwip\netif\ppp\chap.c><chap.c> 
+OPTFFF 22,325,1,0,0,0,0,0,<..\lwip\netif\ppp\chpms.c><chpms.c> 
+OPTFFF 22,326,1,0,0,0,0,0,<..\lwip\netif\ppp\fsm.c><fsm.c> 
+OPTFFF 22,327,1,0,0,0,0,0,<..\lwip\netif\ppp\ipcp.c><ipcp.c> 
+OPTFFF 22,328,1,0,0,0,0,0,<..\lwip\netif\ppp\lcp.c><lcp.c> 
+OPTFFF 22,329,1,0,0,0,0,0,<..\lwip\netif\ppp\magic.c><magic.c> 
+OPTFFF 22,330,1,0,0,0,0,0,<..\lwip\netif\ppp\md5.c><md5.c> 
+OPTFFF 22,331,1,0,0,0,0,0,<..\lwip\netif\ppp\pap.c><pap.c> 
+OPTFFF 22,332,1,0,0,0,0,0,<..\lwip\netif\ppp\ppp.c><ppp.c> 
+OPTFFF 22,333,1,0,0,0,0,0,<..\lwip\netif\ppp\ppp_oe.c><ppp_oe.c> 
+OPTFFF 22,334,1,0,0,0,0,0,<..\lwip\netif\ppp\randm.c><randm.c> 
+OPTFFF 22,335,1,0,0,0,0,0,<..\lwip\netif\ppp\vj.c><vj.c> 
+OPTFFF 23,336,1,0,0,0,0,0,<..\lwip\api\api_lib.c><api_lib.c> 
+OPTFFF 23,337,1,452984832,0,0,0,0,<..\lwip\api\api_msg.c><api_msg.c> 
+OPTFFF 23,338,1,0,0,0,0,0,<..\lwip\api\err.c><err.c> 
+OPTFFF 23,339,1,0,0,0,0,0,<..\lwip\api\netbuf.c><netbuf.c> 
+OPTFFF 23,340,1,0,0,0,0,0,<..\lwip\api\netdb.c><netdb.c> 
+OPTFFF 23,341,1,0,0,0,0,0,<..\lwip\api\netifapi.c><netifapi.c> 
+OPTFFF 23,342,1,0,0,0,0,0,<..\lwip\api\sockets.c><sockets.c> 
+OPTFFF 23,343,1,301989888,0,0,0,0,<..\lwip\api\tcpip.c><tcpip.c> 
+OPTFFF 24,344,1,0,0,0,0,0,<..\app\main.c><main.c> 
+OPTFFF 24,345,1,0,0,0,0,0,<..\app\fs_drv.c><fs_drv.c> 
+OPTFFF 24,346,1,0,0,0,0,0,<..\app\com_init.c><com_init.c> 
+OPTFFF 24,347,1,117440512,0,0,0,0,<..\app\mp3_dbg.c><mp3_dbg.c> 
+OPTFFF 24,348,1,50331648,0,0,0,0,<..\app\command.c><command.c> 
+OPTFFF 24,349,1,0,0,0,0,0,<..\app\App_Hook.c><App_Hook.c> 
+OPTFFF 24,350,1,687865856,0,0,0,0,<..\app\monitor.c><monitor.c> 
+OPTFFF 24,351,1,0,0,0,0,0,<..\app\Sys_key_srv.c><Sys_key_srv.c> 
+OPTFFF 24,352,1,0,0,0,0,0,<..\app\App_led.c><App_led.c> 
+OPTFFF 24,353,1,402653184,0,0,0,0,<..\app\App_test.c><App_test.c> 
+OPTFFF 24,354,1,754974720,0,0,0,0,<..\app\GUIDEMO_Automotive.c><GUIDEMO_Automotive.c> 
+OPTFFF 24,355,1,0,0,0,0,0,<..\app\GUIDEMO_Speed.c><GUIDEMO_Speed.c> 
+OPTFFF 24,356,1,0,0,0,0,0,<..\app\GUIDEMO_Graph.c><GUIDEMO_Graph.c> 
+OPTFFF 24,357,1,520093696,0,0,0,0,<..\app\GUIDEMO_Adc.c><GUIDEMO_Adc.c> 
+OPTFFF 24,358,1,218103808,0,0,0,0,<..\app\snd_rec.c><snd_rec.c> 
+OPTFFF 24,359,1,469762048,0,0,0,0,<..\app\dialSrv.c><dialSrv.c> 
+OPTFFF 24,360,1,0,0,0,0,0,<..\app\App_Produce.c><App_Produce.c> 
+
+
+TARGOPT 1, (DevKit1000)
+ ADSCLK=8000000
+  OPTTT 1,1,1,0
+  OPTHX 1,65535,0,0,0
+  OPTLX 79,66,8,<.\lst\>
+  OPTOX 16
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,0
+  OPTFL 1,0,1
+  OPTAX 255
+  OPTDL (SARMCM3.DLL)()(DARMSTM.DLL)(-pSTM32F101RC)(SARMCM3.DLL)()(TARMSTM.DLL)(-pSTM32F101RC)
+  OPTDBG 49150,1,()()()()()()()()()() (BIN\UL2CM3.DLL)()()()
+  OPTKEY 0,(JLTAgdi)(-O1070 -J1 -Y4000 -Z1 -FO15 -FD20000000 -FC800 -FN1 -FF0STM32F10x_512 -FS08000000 -FL080000)
+  OPTKEY 0,(DLGTARM)((1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(100=397,71,1033,737,0)(110=-1,-1,-1,-1,0)(111=-1,-1,-1,-1,0)(1011=-1,-1,-1,-1,0)(180=-1,-1,-1,-1,0)(120=75,107,486,505,0)(121=-1,-1,-1,-1,0)(122=-1,-1,-1,-1,0)(123=-1,-1,-1,-1,0)(124=-1,-1,-1,-1,0)(125=-1,-1,-1,-1,0)(126=-1,-1,-1,-1,0)(140=-1,-1,-1,-1,0)(240=-1,-1,-1,-1,0)(190=-1,-1,-1,-1,0)(200=-1,-1,-1,-1,0)(170=-1,-1,-1,-1,0)(130=-1,-1,-1,-1,0)(131=-1,-1,-1,-1,0)(132=-1,-1,-1,-1,0)(133=-1,-1,-1,-1,0)(160=492,352,930,759,0)(161=-1,-1,-1,-1,0)(162=-1,-1,-1,-1,0)(210=-1,-1,-1,-1,0)(211=-1,-1,-1,-1,0)(220=-1,-1,-1,-1,0)(221=-1,-1,-1,-1,0)(230=-1,-1,-1,-1,0)(231=-1,-1,-1,-1,0)(232=-1,-1,-1,-1,0)(233=-1,-1,-1,-1,0)(150=-1,-1,-1,-1,0)(151=-1,-1,-1,-1,0))
+  OPTKEY 0,(ARMDBGFLAGS)()
+  OPTKEY 0,(DLGUARM)((105=-1,-1,-1,-1,0)(106=-1,-1,-1,-1,0)(107=-1,-1,-1,-1,0))
+  OPTKEY 0,(UL2CM3)(-UV0049UAE -O14 -S0 -C0 -N00("ARM CoreSight JTAG-DP") -D00(3BA00477) -L00(4) -N01("Unknown JTAG device") -D01(06414041) -L01(5) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP7 -FO15 -FD20000000 -FC800 -FN1 -FF0STM32F10x_512 -FS08000000 -FL080000)
+  OPTWA 0,1,(uart_flds)
+  OPTMM 1,1,(0x20006820)
+  OPTMM 4,0,(0xa6801b024)
+  OPTDF 0x86
+  OPTLE <>
+  OPTLC <>
+EndOpt
+
