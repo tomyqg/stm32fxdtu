@@ -162,23 +162,6 @@
           <Name>-UV0049S9E -O206 -S0 -C0 -N00("ARM CoreSight SW-DP") -D00(1BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC800 -FN1 -FF0STM32F10x_CL -FS08000000 -FL040000</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>250</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>stm32_eval.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-      </Breakpoint>
       <DebugFlag>
         <trace>0</trace>
         <periodic>1</periodic>
@@ -256,10 +239,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>44</ColumnNumber>
+      <ColumnNumber>5</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>187</TopLine>
+      <CurrentLine>187</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Code\Libraries\CMSIS\Core\CM3\system_stm32f10x.c</PathWithFileName>
       <FilenameWithoutPath>system_stm32f10x.c</FilenameWithoutPath>
@@ -268,7 +251,7 @@
 
   <Group>
     <GroupName>ST_Lib</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
@@ -333,10 +316,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>81</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>326</TopLine>
+      <CurrentLine>349</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Code\Utilities\stm32_eval.c</PathWithFileName>
       <FilenameWithoutPath>stm32_eval.c</FilenameWithoutPath>
@@ -359,7 +342,7 @@
 
   <Group>
     <GroupName>uCOS_Core</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
@@ -564,10 +547,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>51</ColumnNumber>
+      <ColumnNumber>29</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>13</TopLine>
-      <CurrentLine>13</CurrentLine>
+      <TopLine>44</TopLine>
+      <CurrentLine>62</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Code\User\src\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -592,27 +575,13 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>31</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>3</TopLine>
-      <CurrentLine>17</CurrentLine>
+      <TopLine>79</TopLine>
+      <CurrentLine>99</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Code\User\src\mystring.c</PathWithFileName>
       <FilenameWithoutPath>mystring.c</FilenameWithoutPath>
-    </File>
-    <File>
-      <GroupNumber>6</GroupNumber>
-      <FileNumber>0</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>55</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>357</TopLine>
-      <CurrentLine>357</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\Code\User\src\gprsmodule.c</PathWithFileName>
-      <FilenameWithoutPath>gprsmodule.c</FilenameWithoutPath>
     </File>
   </Group>
 
@@ -623,7 +592,7 @@
     <cbSel>0</cbSel>
     <File>
       <GroupNumber>7</GroupNumber>
-      <FileNumber>25</FileNumber>
+      <FileNumber>27</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -637,36 +606,31 @@
     </File>
   </Group>
 
-  <AlienFiles>
-    <PathWithFilename>E:\stm32\project\GprsDtu\gprsdtu\STM3210C_UCOSII_2.8.6\Code\User\inc\gprsmodule.h</PathWithFilename>
-    <TopLine>13</TopLine>
-    <CurrentLine>43</CurrentLine>
-    <Constant>0</Constant>
-    <WindowPosition>
-      <length>0</length>
-      <flags>0</flags>
-      <showCmd>0</showCmd>
-      <MinPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MinPosition>
-      <MaxPosition>
-        <xPos>0</xPos>
-        <yPos>0</yPos>
-      </MaxPosition>
-      <NormalPosition>
-        <Top>0</Top>
-        <Left>0</Left>
-        <Right>0</Right>
-        <Bottom>0</Bottom>
-      </NormalPosition>
-    </WindowPosition>
-  </AlienFiles>
+  <Group>
+    <GroupName>Driver</GroupName>
+    <tvExp>1</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <File>
+      <GroupNumber>0</GroupNumber>
+      <FileNumber>0</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>10</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>307</TopLine>
+      <CurrentLine>307</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\Code\Driver\gprsmodule.c</PathWithFileName>
+      <FilenameWithoutPath>gprsmodule.c</FilenameWithoutPath>
+    </File>
+  </Group>
 
   <AlienFiles>
-    <PathWithFilename>E:\stm32\project\GprsDtu\gprsdtu\STM3210C_UCOSII_2.8.6\Code\User\inc\mystring.h</PathWithFilename>
-    <TopLine>1</TopLine>
-    <CurrentLine>6</CurrentLine>
+    <PathWithFilename>E:\stm32\project\GprsDtu\gprsdtu\STM3210C_UCOSII_2.8.6\Code\Utilities\stm32_eval.h</PathWithFilename>
+    <TopLine>43</TopLine>
+    <CurrentLine>55</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -2280,37 +2244,31 @@
     <ActiveMDIGroup>0</ActiveMDIGroup>
     <MDIGroup>
       <Size>100</Size>
-      <ActiveTab>4</ActiveTab>
+      <ActiveTab>3</ActiveTab>
       <Documents>
         <Doc>
           <Name>..\Code\User\src\main.c</Name>
-          <ColumnNumber>51</ColumnNumber>
-          <TopLine>13</TopLine>
-          <CurrentLine>13</CurrentLine>
+          <ColumnNumber>29</ColumnNumber>
+          <TopLine>44</TopLine>
+          <CurrentLine>62</CurrentLine>
         </Doc>
         <Doc>
-          <Name>..\Code\User\inc\mystring.h</Name>
-          <ColumnNumber>15</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>6</CurrentLine>
+          <Name>..\Code\Driver\gprsmodule.c</Name>
+          <ColumnNumber>10</ColumnNumber>
+          <TopLine>307</TopLine>
+          <CurrentLine>307</CurrentLine>
         </Doc>
         <Doc>
-          <Name>..\Code\User\src\mystring.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>3</TopLine>
-          <CurrentLine>17</CurrentLine>
+          <Name>..\Code\Utilities\stm32_eval.c</Name>
+          <ColumnNumber>81</ColumnNumber>
+          <TopLine>326</TopLine>
+          <CurrentLine>349</CurrentLine>
         </Doc>
         <Doc>
-          <Name>..\Code\User\inc\gprsmodule.h</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>13</TopLine>
-          <CurrentLine>43</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>..\Code\User\src\gprsmodule.c</Name>
-          <ColumnNumber>55</ColumnNumber>
-          <TopLine>357</TopLine>
-          <CurrentLine>357</CurrentLine>
+          <Name>..\Code\Utilities\stm32_eval.h</Name>
+          <ColumnNumber>52</ColumnNumber>
+          <TopLine>43</TopLine>
+          <CurrentLine>55</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

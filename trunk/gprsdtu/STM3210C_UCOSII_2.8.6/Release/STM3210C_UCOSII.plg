@@ -4,7 +4,7 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 E:\stm32\project\GprsDtu\gprsdtu\STM3210C_UCOSII_2.8.6\uvision\STM3210C_UCOSII.uvproj
-Project File Date:  09/01/2010
+Project File Date:  09/02/2010
 
 <h2>Output:</h2>
 Build target 'STM3210C_UCOSII'
@@ -32,268 +32,367 @@ assembling os_cpu_a.asm...
 compiling os_cpu_c.c...
 compiling main.c...
 ..\Code\User\src\main.c(39): warning:  #167-D: argument of type "void (*)(void)" is incompatible with parameter of type "void (*)(void *)"
-..\Code\User\src\main.c(40): warning:  #167-D: argument of type "void (*)(void)" is incompatible with parameter of type "void (*)(void *)"
 compiling stm32f10x_it.c...
-linking...
-Program Size: Code=13520 RO-data=720 RW-data=116 ZI-data=4444  
-"..\Release\STM3210C_UCOSII.axf" - 0 Error(s), 2 Warning(s).
-Build target 'STM3210C_UCOSII'
-compiling mystring.c...
-..\Code\User\inc\mystring.h(14): error:  #20: identifier "__IO" is undefined
-..\Code\User\inc\mystring.h(14): error:  #256: invalid redeclaration of type name "int32_t" (declared at line 39 of "D:\Keil\ARM\RV31\INC\stdint.h")
-..\Code\User\inc\mystring.h(14): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(15): error:  #20: identifier "__IO" is undefined
-..\Code\User\inc\mystring.h(15): error:  #256: invalid redeclaration of type name "int16_t" (declared at line 38 of "D:\Keil\ARM\RV31\INC\stdint.h")
-..\Code\User\inc\mystring.h(15): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(16): error:  #20: identifier "__IO" is undefined
-..\Code\User\inc\mystring.h(16): error:  #256: invalid redeclaration of type name "int8_t" (declared at line 37 of "D:\Keil\ARM\RV31\INC\stdint.h")
-..\Code\User\inc\mystring.h(16): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(18): error:  #20: identifier "__I" is undefined
-..\Code\User\inc\mystring.h(18): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(19): error:  #20: identifier "__I" is undefined
-..\Code\User\inc\mystring.h(19): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(20): error:  #20: identifier "__I" is undefined
-..\Code\User\inc\mystring.h(20): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(30): error:  #20: identifier "__IO" is undefined
-..\Code\User\inc\mystring.h(30): error:  #256: invalid redeclaration of type name "uint32_t" (declared at line 45 of "D:\Keil\ARM\RV31\INC\stdint.h")
-..\Code\User\inc\mystring.h(30): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(31): error:  #20: identifier "__IO" is undefined
-..\Code\User\inc\mystring.h(31): error:  #256: invalid redeclaration of type name "uint16_t" (declared at line 44 of "D:\Keil\ARM\RV31\INC\stdint.h")
-..\Code\User\inc\mystring.h(31): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(32): error:  #20: identifier "__IO" is undefined
-..\Code\User\inc\mystring.h(32): error:  #256: invalid redeclaration of type name "uint8_t" (declared at line 43 of "D:\Keil\ARM\RV31\INC\stdint.h")
-..\Code\User\inc\mystring.h(32): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(34): error:  #20: identifier "__I" is undefined
-..\Code\User\inc\mystring.h(34): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(35): error:  #20: identifier "__I" is undefined
-..\Code\User\inc\mystring.h(35): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(36): error:  #20: identifier "__I" is undefined
-..\Code\User\inc\mystring.h(36): error:  #65: expected a ";"
 compiling gprsmodule.c...
-..\Code\User\inc\mystring.h(14): error:  #20: identifier "__IO" is undefined
-..\Code\User\inc\mystring.h(14): error:  #256: invalid redeclaration of type name "int32_t" (declared at line 39 of "D:\Keil\ARM\RV31\INC\stdint.h")
-..\Code\User\inc\mystring.h(14): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(15): error:  #20: identifier "__IO" is undefined
-..\Code\User\inc\mystring.h(15): error:  #256: invalid redeclaration of type name "int16_t" (declared at line 38 of "D:\Keil\ARM\RV31\INC\stdint.h")
-..\Code\User\inc\mystring.h(15): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(16): error:  #20: identifier "__IO" is undefined
-..\Code\User\inc\mystring.h(16): error:  #256: invalid redeclaration of type name "int8_t" (declared at line 37 of "D:\Keil\ARM\RV31\INC\stdint.h")
-..\Code\User\inc\mystring.h(16): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(18): error:  #20: identifier "__I" is undefined
-..\Code\User\inc\mystring.h(18): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(19): error:  #20: identifier "__I" is undefined
-..\Code\User\inc\mystring.h(19): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(20): error:  #20: identifier "__I" is undefined
-..\Code\User\inc\mystring.h(20): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(30): error:  #20: identifier "__IO" is undefined
-..\Code\User\inc\mystring.h(30): error:  #256: invalid redeclaration of type name "uint32_t" (declared at line 45 of "D:\Keil\ARM\RV31\INC\stdint.h")
-..\Code\User\inc\mystring.h(30): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(31): error:  #20: identifier "__IO" is undefined
-..\Code\User\inc\mystring.h(31): error:  #256: invalid redeclaration of type name "uint16_t" (declared at line 44 of "D:\Keil\ARM\RV31\INC\stdint.h")
-..\Code\User\inc\mystring.h(31): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(32): error:  #20: identifier "__IO" is undefined
-..\Code\User\inc\mystring.h(32): error:  #256: invalid redeclaration of type name "uint8_t" (declared at line 43 of "D:\Keil\ARM\RV31\INC\stdint.h")
-..\Code\User\inc\mystring.h(32): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(34): error:  #20: identifier "__I" is undefined
-..\Code\User\inc\mystring.h(34): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(35): error:  #20: identifier "__I" is undefined
-..\Code\User\inc\mystring.h(35): error:  #65: expected a ";"
-..\Code\User\inc\mystring.h(36): error:  #20: identifier "__I" is undefined
-..\Code\User\inc\mystring.h(36): error:  #65: expected a ";"
+..\Code\Driver\gprsmodule.c(18): warning:  #223-D: function "usart_send_char" declared implicitly
+..\Code\Driver\gprsmodule.c(92): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(92): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(93): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(175): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(175): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(181): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(182): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\Code\Driver\gprsmodule.c(188): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(192): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(192): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\Code\Driver\gprsmodule.c(194): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(235): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(236): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(237): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(238): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(240): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(241): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(242): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(264): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(265): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(266): warning:  #1293-D: assignment in condition
+..\Code\Driver\gprsmodule.c(267): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(268): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(269): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(270): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(272): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(274): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(290): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(290): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(291): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(315): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(319): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(321): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(358): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(359): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(383): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(383): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(384): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+linking...
+..\Release\STM3210C_UCOSII.axf: Error: L6218E: Undefined symbol char_to_int (referred from gprsmodule.o).
+..\Release\STM3210C_UCOSII.axf: Error: L6218E: Undefined symbol check_string (referred from gprsmodule.o).
+..\Release\STM3210C_UCOSII.axf: Error: L6218E: Undefined symbol hex_to_ascii (referred from gprsmodule.o).
+..\Release\STM3210C_UCOSII.axf: Error: L6218E: Undefined symbol usart_send_char (referred from gprsmodule.o).
 Target not created
 Build target 'STM3210C_UCOSII'
+assembling STM32F10x.s...
+compiling core_cm3.c...
+compiling system_stm32f10x.c...
+compiling misc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_exti.c...
+compiling stm32_eval.c...
+compiling stm32f10x_usart.c...
+compiling os_core.c...
+compiling os_dbg.c...
+compiling os_flag.c...
+compiling os_mbox.c...
+compiling os_mem.c...
+compiling os_mutex.c...
+compiling os_q.c...
+compiling os_sem.c...
+compiling os_task.c...
+compiling os_time.c...
+compiling os_tmr.c...
+assembling os_cpu_a.asm...
+compiling os_cpu_c.c...
+compiling main.c...
+..\Code\User\src\main.c(39): warning:  #167-D: argument of type "void (*)(void)" is incompatible with parameter of type "void (*)(void *)"
+compiling stm32f10x_it.c...
 compiling mystring.c...
 ..\Code\User\src\mystring.c(17): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
 ..\Code\User\src\mystring.c(64): warning:  #68-D: integer conversion resulted in a change of sign
 ..\Code\User\src\mystring.c(120): warning:  #1-D: last line of file ends without a newline
 ..\Code\User\src\mystring.c(104): warning:  #177-D: variable "weight" was declared but never referenced
 compiling gprsmodule.c...
-..\Code\User\src\gprsmodule.c(18): warning:  #223-D: function "usart_send_char" declared implicitly
-..\Code\User\src\gprsmodule.c(40): error:  #20: identifier "AT_AT" is undefined
-..\Code\User\src\gprsmodule.c(49): error:  #20: identifier "AT_ATE0" is undefined
-..\Code\User\src\gprsmodule.c(56): error:  #20: identifier "AT_ATE1" is undefined
-..\Code\User\src\gprsmodule.c(56): error:  #20: identifier "AT_ATE0" is undefined
-..\Code\User\src\gprsmodule.c(91): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(91): error:  #20: identifier "buf" is undefined
-..\Code\User\src\gprsmodule.c(91): warning:  #192-D: unrecognized character escape sequence
-..\Code\User\src\gprsmodule.c(174): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(174): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(180): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(181): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(186): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(186): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
-..\Code\User\src\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(191): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(191): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
-..\Code\User\src\gprsmodule.c(193): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(234): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(235): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(236): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(237): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(239): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(240): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(241): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(263): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(264): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(265): warning:  #1293-D: assignment in condition
-..\Code\User\src\gprsmodule.c(266): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(267): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(268): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(269): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(271): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(273): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(289): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(289): warning:  #192-D: unrecognized character escape sequence
-..\Code\User\src\gprsmodule.c(290): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(314): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(318): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(320): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(357): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(358): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(382): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(382): warning:  #192-D: unrecognized character escape sequence
-..\Code\User\src\gprsmodule.c(383): error:  #167: argument of type "u8 **" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(383): error:  #167: argument of type "u8 **" is incompatible with parameter of type "u8 *"
-..\Code\User\src\gprsmodule.c(385): error:  #167: argument of type "u8 **" is incompatible with parameter of type "u8 *"
-..\Code\User\src\gprsmodule.c(386): error:  #167: argument of type "u8 **" is incompatible with parameter of type "u8 *"
-Target not created
-Build target 'STM3210C_UCOSII'
-compiling gprsmodule.c...
-..\Code\User\src\gprsmodule.c(18): warning:  #223-D: function "usart_send_char" declared implicitly
-..\Code\User\src\gprsmodule.c(91): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(91): error:  #20: identifier "buf" is undefined
-..\Code\User\src\gprsmodule.c(91): warning:  #192-D: unrecognized character escape sequence
-..\Code\User\src\gprsmodule.c(174): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(174): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(180): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(181): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(186): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(186): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
-..\Code\User\src\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(191): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(191): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
-..\Code\User\src\gprsmodule.c(193): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(234): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(235): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(236): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(237): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(239): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(240): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(241): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(263): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(264): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(265): warning:  #1293-D: assignment in condition
-..\Code\User\src\gprsmodule.c(266): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(267): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(268): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(269): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(271): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(273): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(289): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(289): warning:  #192-D: unrecognized character escape sequence
-..\Code\User\src\gprsmodule.c(290): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(314): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(318): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(320): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(357): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(358): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(382): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(382): warning:  #192-D: unrecognized character escape sequence
-..\Code\User\src\gprsmodule.c(383): error:  #167: argument of type "u8 **" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(383): error:  #167: argument of type "u8 **" is incompatible with parameter of type "u8 *"
-..\Code\User\src\gprsmodule.c(385): error:  #167: argument of type "u8 **" is incompatible with parameter of type "u8 *"
-..\Code\User\src\gprsmodule.c(386): error:  #167: argument of type "u8 **" is incompatible with parameter of type "u8 *"
-Target not created
-Build target 'STM3210C_UCOSII'
-compiling gprsmodule.c...
-..\Code\User\src\gprsmodule.c(18): warning:  #223-D: function "usart_send_char" declared implicitly
-..\Code\User\src\gprsmodule.c(92): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(92): warning:  #192-D: unrecognized character escape sequence
-..\Code\User\src\gprsmodule.c(93): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(175): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(175): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(181): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(182): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
-..\Code\User\src\gprsmodule.c(188): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(192): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(192): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
-..\Code\User\src\gprsmodule.c(194): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(235): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(236): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(237): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(238): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(240): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(241): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(242): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(264): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(265): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(266): warning:  #1293-D: assignment in condition
-..\Code\User\src\gprsmodule.c(267): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(268): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(269): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(270): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(272): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(274): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(290): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(290): warning:  #192-D: unrecognized character escape sequence
-..\Code\User\src\gprsmodule.c(291): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(315): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(319): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(321): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(358): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(359): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(383): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(383): warning:  #192-D: unrecognized character escape sequence
-..\Code\User\src\gprsmodule.c(384): error:  #167: argument of type "u8 **" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(384): error:  #167: argument of type "u8 **" is incompatible with parameter of type "u8 *"
-..\Code\User\src\gprsmodule.c(386): error:  #167: argument of type "u8 **" is incompatible with parameter of type "u8 *"
-..\Code\User\src\gprsmodule.c(387): error:  #167: argument of type "u8 **" is incompatible with parameter of type "u8 *"
-Target not created
-Build target 'STM3210C_UCOSII'
-compiling gprsmodule.c...
-..\Code\User\src\gprsmodule.c(18): warning:  #223-D: function "usart_send_char" declared implicitly
-..\Code\User\src\gprsmodule.c(92): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(92): warning:  #192-D: unrecognized character escape sequence
-..\Code\User\src\gprsmodule.c(93): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(175): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(175): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(181): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(182): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
-..\Code\User\src\gprsmodule.c(188): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(192): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(192): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
-..\Code\User\src\gprsmodule.c(194): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(235): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(236): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(237): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(238): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(240): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(241): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(242): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(264): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(265): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(266): warning:  #1293-D: assignment in condition
-..\Code\User\src\gprsmodule.c(267): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(268): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(269): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(270): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(272): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(274): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(290): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(290): warning:  #192-D: unrecognized character escape sequence
-..\Code\User\src\gprsmodule.c(291): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(315): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(319): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(321): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(358): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
-..\Code\User\src\gprsmodule.c(359): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-..\Code\User\src\gprsmodule.c(383): warning:  #223-D: function "sprintf" declared implicitly
-..\Code\User\src\gprsmodule.c(383): warning:  #192-D: unrecognized character escape sequence
-..\Code\User\src\gprsmodule.c(384): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(92): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(92): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(93): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(175): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(175): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(181): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(182): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\Code\Driver\gprsmodule.c(188): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(192): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(192): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\Code\Driver\gprsmodule.c(194): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(235): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(236): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(237): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(238): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(240): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(241): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(242): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(264): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(265): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(266): warning:  #1293-D: assignment in condition
+..\Code\Driver\gprsmodule.c(267): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(268): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(269): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(270): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(272): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(274): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(290): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(290): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(291): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(315): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(319): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(321): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(358): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(359): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(383): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(383): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(384): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
 linking...
-..\Release\STM3210C_UCOSII.axf: Error: L6218E: Undefined symbol usart_send_char (referred from gprsmodule.o).
+Program Size: Code=13500 RO-data=720 RW-data=116 ZI-data=4444  
+"..\Release\STM3210C_UCOSII.axf" - 0 Error(s), 45 Warning(s).
+Build target 'STM3210C_UCOSII'
+compiling main.c...
+..\Code\User\src\main.c(39): warning:  #167-D: argument of type "void (*)(void)" is incompatible with parameter of type "void (*)(void *)"
+compiling mystring.c...
+..\Code\User\src\mystring.c(17): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\User\src\mystring.c(42): error:  #147-D: declaration is incompatible with "u16 ascii_to_hex(u8 *, u8 *, u16)" (declared at line 43 of "..\Code\User\inc\mystring.h")
+..\Code\User\src\mystring.c(120): warning:  #1-D: last line of file ends without a newline
+..\Code\User\src\mystring.c(104): warning:  #177-D: variable "weight" was declared but never referenced
+compiling gprsmodule.c...
+..\Code\Driver\gprsmodule.c(92): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(92): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(93): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(175): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(175): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(181): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(182): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\Code\Driver\gprsmodule.c(188): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(192): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(192): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\Code\Driver\gprsmodule.c(194): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(235): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(236): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(237): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(238): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(240): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(241): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(242): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(264): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(265): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(266): warning:  #1293-D: assignment in condition
+..\Code\Driver\gprsmodule.c(267): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(268): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(269): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(270): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(272): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(274): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(290): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(290): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(291): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(315): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(319): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(321): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(358): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(359): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(383): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(383): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(384): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+compiling uart2.c...
+..\Code\Driver\uart2.c(11): error:  #5: cannot open source input file "gpio.h": No such file or directory
+compiling uart_drv.c...
+..\Code\Driver\uart_drv.h(12): error:  #5: cannot open source input file "aux_lib.h": No such file or directory
+compiling uart_hw.c...
+..\Code\Driver\uart_hw.c(11): error:  #5: cannot open source input file "gpio.h": No such file or directory
+compiling uart_std.c...
+..\Code\Driver\uart_drv.h(12): error:  #5: cannot open source input file "aux_lib.h": No such file or directory
 Target not created
+Build target 'STM3210C_UCOSII'
+compiling mystring.c...
+..\Code\User\src\mystring.c(17): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\User\src\mystring.c(42): error:  #147-D: declaration is incompatible with "u16 ascii_to_hex(u8 *, u8 *, u16)" (declared at line 43 of "..\Code\User\inc\mystring.h")
+..\Code\User\src\mystring.c(120): warning:  #1-D: last line of file ends without a newline
+..\Code\User\src\mystring.c(104): warning:  #177-D: variable "weight" was declared but never referenced
+compiling uart2.c...
+..\Code\Driver\uart2.c(86): warning:  #223-D: function "OSQCreate" declared implicitly
+..\Code\Driver\uart2.c(86): error:  #513: a value of type "int" cannot be assigned to an entity of type "OS_EVENT *"
+..\Code\Driver\uart2.c(100): warning:  #223-D: function "OSQPost" declared implicitly
+..\Code\Driver\uart2.c(122): warning:  #223-D: function "OSQPend" declared implicitly
+..\Code\Driver\uart2.c(122): error:  #513: a value of type "int" cannot be assigned to an entity of type "void *"
+..\Code\Driver\uart2.c(141): warning:  #223-D: function "OSQAccept" declared implicitly
+..\Code\Driver\uart2.c(141): error:  #513: a value of type "int" cannot be assigned to an entity of type "void *"
+..\Code\Driver\uart2.c(157): warning:  #223-D: function "OSQPendAbort" declared implicitly
+..\Code\Driver\uart2.c(161): warning:  #223-D: function "OSQFlush" declared implicitly
+compiling uart_drv.c...
+..\Code\Driver\uart_drv.h(12): error:  #5: cannot open source input file "aux_lib.h": No such file or directory
+compiling uart_hw.c...
+..\Code\Driver\uart_hw.c(12): error:  #5: cannot open source input file "aux_lib.h": No such file or directory
+compiling uart_std.c...
+..\Code\Driver\uart_drv.h(12): error:  #5: cannot open source input file "aux_lib.h": No such file or directory
+compiling gpio.c...
+Target not created
+Build target 'STM3210C_UCOSII'
+compiling mystring.c...
+..\Code\User\src\mystring.c(17): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\User\src\mystring.c(42): error:  #147-D: declaration is incompatible with "u16 ascii_to_hex(u8 *, u8 *, u16)" (declared at line 43 of "..\Code\User\inc\mystring.h")
+..\Code\User\src\mystring.c(120): warning:  #1-D: last line of file ends without a newline
+..\Code\User\src\mystring.c(104): warning:  #177-D: variable "weight" was declared but never referenced
+compiling uart2.c...
+..\Code\Driver\uart2.c(86): warning:  #223-D: function "OSQCreate" declared implicitly
+..\Code\Driver\uart2.c(86): error:  #513: a value of type "int" cannot be assigned to an entity of type "OS_EVENT *"
+..\Code\Driver\uart2.c(100): warning:  #223-D: function "OSQPost" declared implicitly
+..\Code\Driver\uart2.c(122): warning:  #223-D: function "OSQPend" declared implicitly
+..\Code\Driver\uart2.c(122): error:  #513: a value of type "int" cannot be assigned to an entity of type "void *"
+..\Code\Driver\uart2.c(141): warning:  #223-D: function "OSQAccept" declared implicitly
+..\Code\Driver\uart2.c(141): error:  #513: a value of type "int" cannot be assigned to an entity of type "void *"
+..\Code\Driver\uart2.c(157): warning:  #223-D: function "OSQPendAbort" declared implicitly
+..\Code\Driver\uart2.c(161): warning:  #223-D: function "OSQFlush" declared implicitly
+compiling uart_drv.c...
+..\Code\Driver\uart_drv.h(26): error:  #20: identifier "func_none_arg_t" is undefined
+..\Code\Driver\uart_drv.h(27): error:  #20: identifier "func_one_arg_t" is undefined
+..\Code\Driver\uart_drv.c(86): warning:  #223-D: function "OSQPost" declared implicitly
+..\Code\Driver\uart_drv.c(106): warning:  #223-D: function "OSQPendAbort" declared implicitly
+..\Code\Driver\uart_drv.c(124): warning:  #223-D: function "OSQFlush" declared implicitly
+..\Code\Driver\uart_drv.c(153): warning:  #223-D: function "OSQCreate" declared implicitly
+..\Code\Driver\uart_drv.c(153): error:  #513: a value of type "int" cannot be assigned to an entity of type "OS_EVENT *"
+..\Code\Driver\uart_drv.c(190): warning:  #223-D: function "OSQPend" declared implicitly
+..\Code\Driver\uart_drv.c(190): error:  #513: a value of type "int" cannot be assigned to an entity of type "void *"
+..\Code\Driver\uart_drv.c(215): warning:  #223-D: function "OSQPend" declared implicitly
+..\Code\Driver\uart_drv.c(215): error:  #513: a value of type "int" cannot be assigned to an entity of type "void *"
+..\Code\Driver\uart_drv.c(240): warning:  #223-D: function "OSQAccept" declared implicitly
+..\Code\Driver\uart_drv.c(240): error:  #513: a value of type "int" cannot be assigned to an entity of type "void *"
+compiling uart_hw.c...
+..\Code\Driver\uart_hw.c(12): error:  #5: cannot open source input file "aux_lib.h": No such file or directory
+compiling uart_std.c...
+..\Code\Driver\uart_drv.h(26): error:  #20: identifier "func_none_arg_t" is undefined
+..\Code\Driver\uart_drv.h(27): error:  #20: identifier "func_one_arg_t" is undefined
+Target not created
+Build target 'STM3210C_UCOSII'
+compiling mystring.c...
+..\Code\User\src\mystring.c(17): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\User\src\mystring.c(42): error:  #147-D: declaration is incompatible with "u16 ascii_to_hex(u8 *, u8 *, u16)" (declared at line 43 of "..\Code\User\inc\mystring.h")
+..\Code\User\src\mystring.c(120): warning:  #1-D: last line of file ends without a newline
+..\Code\User\src\mystring.c(104): warning:  #177-D: variable "weight" was declared but never referenced
+compiling uart2.c...
+..\Code\Driver\uart2.c(86): warning:  #223-D: function "OSQCreate" declared implicitly
+..\Code\Driver\uart2.c(86): error:  #513: a value of type "int" cannot be assigned to an entity of type "OS_EVENT *"
+..\Code\Driver\uart2.c(100): warning:  #223-D: function "OSQPost" declared implicitly
+..\Code\Driver\uart2.c(122): warning:  #223-D: function "OSQPend" declared implicitly
+..\Code\Driver\uart2.c(122): error:  #513: a value of type "int" cannot be assigned to an entity of type "void *"
+..\Code\Driver\uart2.c(141): warning:  #223-D: function "OSQAccept" declared implicitly
+..\Code\Driver\uart2.c(141): error:  #513: a value of type "int" cannot be assigned to an entity of type "void *"
+..\Code\Driver\uart2.c(157): warning:  #223-D: function "OSQPendAbort" declared implicitly
+..\Code\Driver\uart2.c(161): warning:  #223-D: function "OSQFlush" declared implicitly
+compiling uart_drv.c...
+..\Code\Driver\aux_lib.h(13): error:  #5: cannot open source input file "systick.h": No such file or directory
+compiling uart_hw.c...
+..\Code\Driver\aux_lib.h(13): error:  #5: cannot open source input file "systick.h": No such file or directory
+compiling uart_std.c...
+..\Code\Driver\aux_lib.h(13): error:  #5: cannot open source input file "systick.h": No such file or directory
+compiling aux_lib.c...
+..\Code\Driver\aux_lib.h(13): error:  #5: cannot open source input file "systick.h": No such file or directory
+Target not created
+Build target 'STM3210C_UCOSII'
+compiling mystring.c...
+..\Code\User\src\mystring.c(17): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\User\src\mystring.c(42): error:  #147-D: declaration is incompatible with "u16 ascii_to_hex(u8 *, u8 *, u16)" (declared at line 43 of "..\Code\User\inc\mystring.h")
+..\Code\User\src\mystring.c(120): warning:  #1-D: last line of file ends without a newline
+..\Code\User\src\mystring.c(104): warning:  #177-D: variable "weight" was declared but never referenced
+compiling gprsmodule.c...
+..\Code\Driver\gprsmodule.c(92): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(92): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(93): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(175): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(175): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(181): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(182): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\Code\Driver\gprsmodule.c(188): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(192): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(192): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\Code\Driver\gprsmodule.c(194): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(235): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(236): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(237): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(238): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(240): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(241): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(242): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(264): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(265): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(266): warning:  #1293-D: assignment in condition
+..\Code\Driver\gprsmodule.c(267): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(268): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(269): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(270): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(272): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(274): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(290): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(290): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(291): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(315): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(319): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(321): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(358): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(359): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(383): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(383): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(384): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+Target not created
+Build target 'STM3210C_UCOSII'
+compiling mystring.c...
+..\Code\User\src\mystring.c(17): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\User\src\mystring.c(120): warning:  #1-D: last line of file ends without a newline
+..\Code\User\src\mystring.c(104): warning:  #177-D: variable "weight" was declared but never referenced
+compiling gprsmodule.c...
+..\Code\Driver\gprsmodule.c(92): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(92): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(93): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(175): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(175): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(181): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(182): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(187): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\Code\Driver\gprsmodule.c(188): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(192): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(192): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+..\Code\Driver\gprsmodule.c(194): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(235): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(236): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(237): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(238): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(240): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(241): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(242): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(264): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(265): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(266): warning:  #1293-D: assignment in condition
+..\Code\Driver\gprsmodule.c(267): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(268): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(269): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(270): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(272): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(274): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(290): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(290): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(291): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(315): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(319): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(321): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(358): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "char *restrict"
+..\Code\Driver\gprsmodule.c(359): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+..\Code\Driver\gprsmodule.c(383): warning:  #223-D: function "sprintf" declared implicitly
+..\Code\Driver\gprsmodule.c(383): warning:  #192-D: unrecognized character escape sequence
+..\Code\Driver\gprsmodule.c(384): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+linking...
+Program Size: Code=13500 RO-data=720 RW-data=116 ZI-data=4444  
+"..\Release\STM3210C_UCOSII.axf" - 0 Error(s), 43 Warning(s).

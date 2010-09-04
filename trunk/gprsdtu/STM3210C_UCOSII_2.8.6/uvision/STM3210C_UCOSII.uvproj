@@ -535,11 +535,6 @@
               <FileType>1</FileType>
               <FilePath>..\Code\User\src\mystring.c</FilePath>
             </File>
-            <File>
-              <FileName>gprsmodule.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Code\User\src\gprsmodule.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -549,6 +544,16 @@
               <FileName>Readme.txt</FileName>
               <FileType>5</FileType>
               <FilePath>..\Code\Readme\Readme.txt</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Driver</GroupName>
+          <Files>
+            <File>
+              <FileName>gprsmodule.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Code\Driver\gprsmodule.c</FilePath>
             </File>
           </Files>
         </Group>

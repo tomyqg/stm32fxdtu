@@ -37,7 +37,7 @@ int  main(void)
 		while(1);
 
 	OSTaskCreate(Task1,(void *)0,&Task1Stk[99],0);
-	OSTaskCreate(Task2,(void *)0,&Task2Stk[99],1);
+//	OSTaskCreate(Task2,(void *)0,&Task2Stk[99],1);
 	OSStart();
 }
 

@@ -113,7 +113,7 @@ typedef enum
 {
   COM1 = 0,
   COM2 = 1
-} COM_TypeDef;
+}COM_TypeDef;
  
 /**
   * @}

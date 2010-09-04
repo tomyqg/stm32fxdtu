@@ -35,10 +35,10 @@
 ### ADS-LD Output File: '..\Release\STM3210C_UCOSII.axf'
 ### ADS-LD Command File: '..\Release\STM3210C_UCOSII.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '..\Release\STM3210C_UCOSII.lnp', Handle=0x000004B4
+### Creating CmdFile '..\Release\STM3210C_UCOSII.lnp', Handle=0x000003CC
 ### Writing '.lnp' file
 ### ADS-LD Command file '..\Release\STM3210C_UCOSII.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.
-### ADS-LD: executed with 1 errors
+### ADS-LD: executed with 0 errors
 ### Updating obj list
 ### LDADS_file() completed.
