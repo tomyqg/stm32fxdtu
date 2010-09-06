@@ -32,6 +32,6 @@ void App_TaskMonitor(void *parg)
 	AllAppStart();
 
 	for (;;) {
-	printf("\r\n uC/OS-II%% ");
+//	printf("\r\n uC/OS-II%% ");
  	}
 }

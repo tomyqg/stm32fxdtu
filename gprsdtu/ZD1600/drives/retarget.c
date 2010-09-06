@@ -11,6 +11,7 @@
 #include "aux_lib.h"
 //#include "uart_std.h"
 #define LOCAL_DBG		0
+#define	NO_SERIAL
 
 
 #pragma import(__use_no_semihosting_swi)
@@ -78,8 +79,9 @@ void _sys_exit (int return_code) {
 * Return Value  : 
 =============================================================================*/
 int fgetc(FILE *stream) {
-#if 0
-	return uart_get_key(udev_std);
+#if 1
+	return 0;//test
+//	return uart_get_key(udev_std);
 #else
 	int ch = EOF;
 

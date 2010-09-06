@@ -8,6 +8,9 @@
 #include <stdio.h>
 #include <ucos_ii.h>
 #include "drv_init.h"
+#include "uart_drv.h"
+
+//#include "../app/test.h"	//test
 
 
 /*=============================================================================
@@ -136,6 +139,8 @@ int rfid_init(void) {
 */	return 0;
 }
 
+
+
 /*=============================================================================
 * Function	: 
 * Description	: 
@@ -150,13 +155,12 @@ int drv_all_init(void)
 	led_init();
 	led_on(2);
 
-//	uart_init(udev_std);
+			
+
+
 
 	hwtm_init();
-
-//	dcodec_init();
-
-	key_init();
+//	key_init();
 
 	rtc_init();
 	// SRAM_Init();
@@ -165,14 +169,6 @@ int drv_all_init(void)
 //	STM3210E_LCD_Init();
 
 	adc_init();
-
-//	FSMC_NAND_Init();
-
-//	uart2_init(STD_UART_BAUD);
-
-//	CDRS_Init();
-
-//	rfid_init();
 
 	return 0;
 }

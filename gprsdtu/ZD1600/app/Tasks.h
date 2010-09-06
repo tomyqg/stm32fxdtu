@@ -24,14 +24,15 @@ struct user_task {
 extern struct user_task user_tasks[];
 int Run_Task(struct user_task *ptask);
 
-extern OS_STK App_TaskTestStk[];
-void App_test(void *parg);
-
 extern OS_STK App_TaskMonitorStk[APP_TASK_MONITOR_STK_SIZE];
 void App_TaskMonitor(void *parg);
 
 extern OS_STK App_TaskLedStk[];
 void App_led(void *parg);
+
+/*20100906 test task*/
+extern OS_STK App_TaskTestStk[];
+void App_test(void *parg);
 
 extern OS_STK Sys_TaskKeySrvStk[SYS_TASK_KEY_SRV_STK_SIZE];
 void Task_Key_Srv(void *parg);

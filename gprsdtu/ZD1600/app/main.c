@@ -5,6 +5,9 @@
 //#include "snd_rec.h"
 #include "tasks.h"
 
+
+
+
 struct user_task user_tasks[] = {
 	{"monitor", 
      "Monitor task.", 
@@ -16,6 +19,13 @@ struct user_task user_tasks[] = {
 	 OS_TASK_OPT_STK_CHK,
 	 },
 	{"led", 
+     "User led task.", 
+     1,
+	 App_led, (void *) 0, &App_TaskLedStk[APP_TASK_LED_STK_SIZE - 1],
+	 APP_TASK_LED_PRIO,
+	 2, App_TaskLedStk, APP_TASK_LED_STK_SIZE, 0, OS_TASK_OPT_STK_CHK,
+	 },
+	 {"test", 
      "User led task.", 
      1,
 	 App_led, (void *) 0, &App_TaskLedStk[APP_TASK_LED_STK_SIZE - 1],

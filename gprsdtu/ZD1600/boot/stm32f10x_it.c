@@ -17,12 +17,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 //#include "stm32f10x_it.h"
-//#include "stm32f10x_lib.h"
 #include "ucos_ii.h"
+#include "../drives/uart_drv.h"
+#include "stm32f10x_lib.h"
 
 //void key_isr(void);
-//void uart1_isr(void);
-//void uart2_isr(void);
 //int hwtm_isr(void);
 //int SD_ProcessIRQSrc(void);
 
@@ -507,7 +506,7 @@ void TIM2_IRQHandler(void)
     OSIntNesting++;
     OS_EXIT_CRITICAL();
 
-    hwtm_isr();
+//    hwtm_isr();
 
     OSIntExit();                                 /* Tell uC/OS-II that we are leaving the ISR          */
 }
@@ -617,7 +616,13 @@ void USART1_IRQHandler(void)
     OSIntNesting++;
     OS_EXIT_CRITICAL();
 
-//    uart1_isr();
+	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) {
+		uart1_rx_isr();
+		}
+	if(USART_GetITStatus(USART1, USART_IT_TXE) != RESET) {
+		uart1_tx_isr();
+		}
+
 
     OSIntExit();                                 /* Tell uC/OS-II that we are leaving the ISR          */
 }
@@ -639,7 +644,12 @@ void USART2_IRQHandler(void)
     OSIntNesting++;
     OS_EXIT_CRITICAL();
 
-//    uart2_isr();
+	if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET) {
+		uart2_rx_isr();
+		}
+	if(USART_GetITStatus(USART2, USART_IT_TXE) != RESET) {
+		uart2_tx_isr();
+		}
 
     OSIntExit();                                 /* Tell uC/OS-II that we are leaving the ISR          */
 }
@@ -653,6 +663,22 @@ void USART2_IRQHandler(void)
 *******************************************************************************/
 void USART3_IRQHandler(void)
 {
+#if OS_CRITICAL_METHOD == 3
+    OS_CPU_SR  cpu_sr;
+#endif
+
+    OS_ENTER_CRITICAL();                         /* Tell uC/OS-II that we are starting an ISR          */
+    OSIntNesting++;
+    OS_EXIT_CRITICAL();
+
+	if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET) {
+//		uart3_rx_isr();
+		}
+	if(USART_GetITStatus(USART3, USART_IT_TXE) != RESET) {
+//		uart3_tx_isr();
+		}
+
+    OSIntExit();                                 /* Tell uC/OS-II that we are leaving the ISR          */
 }
 
 /*******************************************************************************
@@ -672,7 +698,7 @@ void EXTI15_10_IRQHandler(void)
     OSIntNesting++;
     OS_EXIT_CRITICAL();
 
-    key_isr();
+//    key_isr();
     
     OSIntExit();                                 /* Tell uC/OS-II that we are leaving the ISR          */
 }

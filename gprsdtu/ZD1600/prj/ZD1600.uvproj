@@ -856,9 +856,19 @@
               <FilePath>..\drives\gpio.c</FilePath>
             </File>
             <File>
-              <FileName>usart_drv.c</FileName>
+              <FileName>uart_drv.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\drives\usart_drv.c</FilePath>
+              <FilePath>..\drives\uart_drv.c</FilePath>
+            </File>
+            <File>
+              <FileName>mystring.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\drives\mystring.c</FilePath>
+            </File>
+            <File>
+              <FileName>retarget.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\drives\retarget.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -943,6 +953,11 @@
               <FileName>App_Hook.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\app\App_Hook.c</FilePath>
+            </File>
+            <File>
+              <FileName>test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\test.c</FilePath>
             </File>
           </Files>
         </Group>
