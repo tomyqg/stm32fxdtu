@@ -870,6 +870,11 @@
               <FileType>1</FileType>
               <FilePath>..\drives\retarget.c</FilePath>
             </File>
+            <File>
+              <FileName>3210c_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\drives\3210c_rcc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
