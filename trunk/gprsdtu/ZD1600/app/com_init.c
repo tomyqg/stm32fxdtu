@@ -23,7 +23,6 @@
 * Return Value  : 
 =============================================================================*/
 int component_init(void) {
-	int r;
 
 	OS_CPU_SysTickInit();
 
