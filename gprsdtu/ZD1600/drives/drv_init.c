@@ -10,7 +10,12 @@
 #include "drv_init.h"
 #include "uart_drv.h"
 
+
+#define STM3210C //test
 //#include "../app/test.h"	//test
+#ifdef STM3210C
+#include "3210c_rcc.h"
+#endif
 
 
 /*=============================================================================
@@ -74,9 +79,14 @@ int RCC_Configuration(void)
 		/* Enable Prefetch Buffer */
 		FLASH_PrefetchBufferCmd(FLASH_PrefetchBuffer_Enable);
 
+#ifdef STM3210C
+
+	rcc_pll_set();		
+#else
+
 		/* PLLCLK = 8MHz * 9 = 72 MHz */
 		RCC_PLLConfig(RCC_PLLSource_HSE_Div1, RCC_PLLMul_9);
-
+#endif
 		/* Enable PLL */ 
 		RCC_PLLCmd(ENABLE);
 

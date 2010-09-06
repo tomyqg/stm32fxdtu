@@ -24,8 +24,9 @@ void App_test(void *parg)
 			memcpy(tx_testbuf, rx_testbuf, datalen);
 			uart_rx_itconf(COM2, ENABLE);
 			uart2_senddata(tx_testbuf, datalen);			
-			OSTimeDlyHMSM(0, 0, 0, 1000);
+
 		}
+		OSTimeDlyHMSM(0, 0, 1, 0);
 	}
 }
 void uart2_senddata(u8 *data, u32 len);
@@ -40,8 +41,6 @@ void uart_init_3210c(void)
 	conf.HwFlowCtrl = None;
 	ZD1600_COMInit(&conf);
 }
-
-
 
 
 

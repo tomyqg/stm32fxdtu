@@ -77,7 +77,7 @@ ARM Macro Assembler    Page 2
                                EQU              0xE000ED04  ; Interrupt control
                                                              state register
    48 00000000 E000ED22 
-                       NVIC_SYSPRI2
+                       NVIC_SYSPRI14
                                EQU              0xE000ED22  ; System priority r
                                                             egister (2)
    49 00000000 000000FF 
@@ -200,9 +200,9 @@ ARM Macro Assembler    Page 4
 
 
   122 0000000E         OSStartHighRdy
-  123 0000000E 4824            LDR              R0, =NVIC_SYSPRI2 ; Set the Pen
-                                                            dSV exception prior
-                                                            ity
+  123 0000000E 4824            LDR              R0, =NVIC_SYSPRI14 ; Set the Pe
+                                                            ndSV exception prio
+                                                            rity
   124 00000010 F04F 01FF       LDR              R1, =NVIC_PENDSV_PRI
   125 00000014 7001            STRB             R1, [R0]
   126 00000016         
@@ -692,16 +692,16 @@ _a.asm
       At line 124 in file ..\ucos-ii\Ports\ARM-Cortex-M3\Generic\RealView\os_cp
 u_a.asm
 Comment: NVIC_PENDSV_PRI used once
-NVIC_SYSPRI2 E000ED22
+NVIC_SYSPRI14 E000ED22
 
-Symbol: NVIC_SYSPRI2
+Symbol: NVIC_SYSPRI14
    Definitions
       At line 48 in file ..\ucos-ii\Ports\ARM-Cortex-M3\Generic\RealView\os_cpu
 _a.asm
    Uses
       At line 123 in file ..\ucos-ii\Ports\ARM-Cortex-M3\Generic\RealView\os_cp
 u_a.asm
-Comment: NVIC_SYSPRI2 used once
+Comment: NVIC_SYSPRI14 used once
 4 symbols
 
 

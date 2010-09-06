@@ -45,7 +45,7 @@
 ;********************************************************************************************************
 
 NVIC_INT_CTRL   EQU     0xE000ED04                              ; Interrupt control state register
-NVIC_SYSPRI2    EQU     0xE000ED22                              ; System priority register (2)
+NVIC_SYSPRI14    EQU    0xE000ED22                              ; System priority register (2)
 NVIC_PENDSV_PRI EQU           0xFF                              ; PendSV priority value (highest)
 NVIC_PENDSVSET  EQU     0x10000000                              ; Value to trigger PendSV exception
 
@@ -120,7 +120,7 @@ OS_CPU_SR_Restore
 ;*********************************************************************************************************
 
 OSStartHighRdy
-    LDR     R0, =NVIC_SYSPRI2                                   ; Set the PendSV exception priority
+    LDR     R0, =NVIC_SYSPRI14                                   ; Set the PendSV exception priority
     LDR     R1, =NVIC_PENDSV_PRI
     STRB    R1, [R0]
 
