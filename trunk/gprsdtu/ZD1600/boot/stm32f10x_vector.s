@@ -29,25 +29,31 @@
 ;//   <o> Stack Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ;// </h>
 
-Stack_Size       EQU     0x00000200
+Stack_Size      EQU     0x00000200
 
-                 AREA    STACK, NOINIT, READWRITE, ALIGN=3
-Stack_Mem        SPACE   Stack_Size
-__initial_sp
+                AREA    STACK, NOINIT, READWRITE, ALIGN=3
+Stack_Mem       SPACE   Stack_Size
 
+__initial_sp    
+; If you need to use external SRAM mounted on STM3210E-EVAL board as data memory
+; and internal SRAM for Stack, uncomment the following line and comment the line above
+;__initial_sp    EQU 0x20000000 + Stack_Size ; "Use MicroLIB" must be checked in
+                                             ; the Project->Options->Target window
 
+; Amount of memory (in bytes) allocated for Heap
+; Tailor this value to your application needs
 ;// <h> Heap Configuration
 ;//   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ;// </h>
 
-Heap_Size        EQU     0x00000200
+Heap_Size        EQU     0 ;(10 * 1024) ;0x00000
 
                  AREA    HEAP, NOINIT, READWRITE, ALIGN=3
 __heap_base
 Heap_Mem         SPACE   Heap_Size
 __heap_limit
+    	
 
-  
                  THUMB
                  PRESERVE8
 
@@ -57,10 +63,10 @@ __heap_limit
                  IMPORT  MemManageException
                  IMPORT  BusFaultException
                  IMPORT  UsageFaultException
-                 IMPORT  SVCHandler
+                 IMPORT  SVCHandler  
                  IMPORT  DebugMonitor
-                 IMPORT  OSPendSV
-                 IMPORT  SysTickHandler
+    	    	 IMPORT     OSPendSV
+    	     	 IMPORT  OS_CPU_SysTickHandler
                  IMPORT  WWDG_IRQHandler
                  IMPORT  PVD_IRQHandler
                  IMPORT  TAMPER_IRQHandler
@@ -104,7 +110,24 @@ __heap_limit
                  IMPORT  EXTI15_10_IRQHandler
                  IMPORT  RTCAlarm_IRQHandler
                  IMPORT  USBWakeUp_IRQHandler
-
+                 IMPORT  TIM8_BRK_IRQHandler
+                 IMPORT  TIM8_UP_IRQHandler
+                 IMPORT  TIM8_TRG_COM_IRQHandler
+                 IMPORT  TIM8_CC_IRQHandler
+                 IMPORT  ADC3_IRQHandler
+                 IMPORT  FSMC_IRQHandler
+                 IMPORT  SDIO_IRQHandler
+                 IMPORT  TIM5_IRQHandler
+                 IMPORT  SPI3_IRQHandler
+                 IMPORT  UART4_IRQHandler
+                 IMPORT  UART5_IRQHandler
+                 IMPORT  TIM6_IRQHandler
+                 IMPORT  TIM7_IRQHandler
+                 IMPORT  DMA2_Channel1_IRQHandler
+                 IMPORT  DMA2_Channel2_IRQHandler
+                 IMPORT  DMA2_Channel3_IRQHandler
+                 IMPORT  DMA2_Channel4_5_IRQHandler
+                 
 ;*******************************************************************************
 ; Fill-up the Vector Table entries with the exceptions ISR address
 ;*******************************************************************************
@@ -125,8 +148,8 @@ __Vectors        DCD  __initial_sp              ; Top of Stack
                  DCD  SVCHandler
                  DCD  DebugMonitor
                  DCD  0                 ; Reserved
-                 DCD  OSPendSV
-                 DCD  SysTickHandler
+    	    	 DCD  OSPendSV
+    	     	 DCD  OS_CPU_SysTickHandler
                  DCD  WWDG_IRQHandler
                  DCD  PVD_IRQHandler
                  DCD  TAMPER_IRQHandler
@@ -170,7 +193,24 @@ __Vectors        DCD  __initial_sp              ; Top of Stack
                  DCD  EXTI15_10_IRQHandler
                  DCD  RTCAlarm_IRQHandler
                  DCD  USBWakeUp_IRQHandler 
-
+                 DCD  TIM8_BRK_IRQHandler
+                 DCD  TIM8_UP_IRQHandler
+                 DCD  TIM8_TRG_COM_IRQHandler
+                 DCD  TIM8_CC_IRQHandler
+                 DCD  ADC3_IRQHandler
+                 DCD  FSMC_IRQHandler
+                 DCD  SDIO_IRQHandler
+                 DCD  TIM5_IRQHandler
+                 DCD  SPI3_IRQHandler
+                 DCD  UART4_IRQHandler
+                 DCD  UART5_IRQHandler
+                 DCD  TIM6_IRQHandler
+                 DCD  TIM7_IRQHandler
+                 DCD  DMA2_Channel1_IRQHandler
+                 DCD  DMA2_Channel2_IRQHandler
+                 DCD  DMA2_Channel3_IRQHandler
+                 DCD  DMA2_Channel4_5_IRQHandler
+                 
                  AREA    |.text|, CODE, READONLY
 
 ; Reset handler routine

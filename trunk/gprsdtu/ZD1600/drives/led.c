@@ -10,7 +10,11 @@
 #include "led.h"
 #include "gpio.h"
 
+#ifdef	STM3210C
+static int LedPins[] = {GPIO_Pin_2, GPIO_Pin_3, GPIO_Pin_4, GPIO_Pin_5};
+#else
 static int LedPins[] = {GPIO_Pin_6, GPIO_Pin_7, GPIO_Pin_8, GPIO_Pin_9};
+#endif
 int led_init(void) {
 	/* Configure the LED IOs as Output PP */
 	int i;

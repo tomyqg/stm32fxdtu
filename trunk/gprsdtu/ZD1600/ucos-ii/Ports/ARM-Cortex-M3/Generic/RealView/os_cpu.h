@@ -92,7 +92,7 @@ typedef unsigned int   OS_CPU_SR;                /* Define size of CPU status re
 
 #define  OS_TASK_SW()         OSCtxSw()
 
-#define  CPU_OSC_FREQ	      25*1000*1000 		  /* OSC 8MHz */
+#define  CPU_OSC_FREQ	      8*1000*1000 		  /* OSC 8MHz */
 
 INT32U  OS_CPU_ClkFreq (void);
 
