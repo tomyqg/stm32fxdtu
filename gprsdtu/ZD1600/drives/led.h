@@ -9,9 +9,17 @@
 #ifndef	__LED_H__
 #define	__LED_H__
 
+#define STM3210C
+
+#ifdef STM3210C
+#define LED_PORT			GPIOE
+#define RCC_APB2Periph_LED		RCC_APB2Periph_GPIOE
+#else
 #define LED_PORT			GPIOF
 //#define LED_PIN				GPIO_Pin_6   /* PB.0 */
 #define RCC_APB2Periph_LED		RCC_APB2Periph_GPIOF
+
+#endif
 
 int led_init(void);
 int get_led_state(int idx);

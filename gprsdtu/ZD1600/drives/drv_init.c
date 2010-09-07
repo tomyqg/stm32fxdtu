@@ -20,13 +20,14 @@
 
 /*=============================================================================
 * Function	: NVIC_Configuration
-* Description	: 中断向量表基址，优先组配置
+* Description	: 中断向量表基址，优先组配置   NVIC_init
 * Input Para	: 
 * Output Para	: 
 * Return Value  : 
 =============================================================================*/
 int NVIC_Configuration(void)
 {
+	NVIC_InitTypeDef NVIC_InitStructure;
 #ifdef  VECT_TAB_RAM  
 	/* Set the Vector Table base location at 0x20000000 */ 
 	NVIC_SetVectorTable(NVIC_VectTab_RAM, 0x0); 
@@ -38,6 +39,20 @@ int NVIC_Configuration(void)
 
 	/* Configure one bit for preemption priority */
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
+
+
+
+	NVIC_StructInit(&NVIC_InitStructure);
+	/* Enable USART1 USART2 Interrupt */
+	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQChannel;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
+	NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQChannel;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 3;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
+
 
 	return 0;
 }

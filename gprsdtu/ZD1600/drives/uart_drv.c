@@ -83,12 +83,12 @@ const u16 COM_HwFlowControl[4] = {	((u16)0x0000),
 
 
 
-
-
 void ZD1600_COMInit(COM_Conf_T *uart_conf)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 	USART_InitTypeDef USART_InitStructure;
+
+	
 	/* Enable GPIO clock */
 	RCC_APB2PeriphClockCmd(COM_POR_CLK[uart_conf->com] | RCC_APB2Periph_AFIO, ENABLE);
 
@@ -159,7 +159,7 @@ u32* uart_rx_bufset(COM_TypeDef comx, u8 *buf, u32 maxlen)
 /*uart1收发中断*/
 void uart1_rx_isr(void)
 {
-	if(uart1_buff.rxlen < uart2_buff.rxbuflen_max) {
+	if(uart1_buff.rxlen < uart1_buff.rxbuflen_max) {
 		uart1_buff.rxbuf[uart1_buff.rxlen++] = USART_ReceiveData(ZD1600_COM1);
 		}else{
 		uart1_buff.rxlen = 0;
@@ -179,7 +179,11 @@ void uart1_tx_isr(void)
 /*uart2收发中断*/
 void uart2_rx_isr(void)
 {
-	uart2_buff.rxbuf[uart2_buff.rxlen++] = USART_ReceiveData(ZD1600_COM2);
+	if(uart2_buff.rxlen < uart2_buff.rxbuflen_max) {
+		uart2_buff.rxbuf[uart2_buff.rxlen++] = USART_ReceiveData(ZD1600_COM2);
+		}else{
+		uart1_buff.rxlen = 0;
+		}
 }
 void uart2_tx_isr(void)
 {

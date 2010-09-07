@@ -29,10 +29,10 @@ void App_TaskMonitor(void *parg)
 
 	// 在打开优先级更高的任务前
 	// 所有的设备及组件必须初使化
-//	AllAppStart();
-
+	AllAppStart();
+	
 	for (;;) {
 //	printf("\r\n uC/OS-II%% ");
-			OSTimeDlyHMSM(0, 0, 1, 0);
+	OSTimeDlyHMSM(0, 0, 1, 0);
  	}
 }
