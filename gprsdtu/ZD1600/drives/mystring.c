@@ -10,11 +10,11 @@
 返回str中flg起始位置
 没有返回NULL
 **************************************************/
-u8* check_string(u8 *str, u8 *flg, u16 len)
+u8* check_string(u8 *str, u8 *flg, u32 len)
 {
 	u8	*p;
-	u16	i;
-	u16 flg_len = strlen(flg);
+	u32	i;
+	u32 flg_len = strlen(flg);
 	p = memchr(str, flg[0], len);
 	while(p)
 	{
@@ -39,9 +39,9 @@ ASCII 到 HEX 的转换函数
 其它：转换后数据长度
 注意：O_data[]数组中的数据在转换过程中会被修改。
 ****************************************/
-s32 ascii_to_hex(u8 *O_data, u8 *N_data, u16 len)
+s32 ascii_to_hex(u8 *O_data, u8 *N_data, u32 len)
 {
-	u16 i,j,tmp_len;
+	u32 i,j,tmp_len;
 	u8 tmpData;
 	u8 *O_buf = O_data;
 	u8 *N_buf = N_data;
@@ -78,11 +78,11 @@ HEX 到 ASCII 的转换函数
 			len : 需要转换的长度
 返回参数：转换后数据长度
 *******************************************/
-u16 hex_to_ascii(u8 *data, u8 *buffer, u16 len)
+u32 hex_to_ascii(u8 *data, u8 *buffer, u32 len)
 {
 	uc8 ascTable[17] = {"0123456789ABCDEF"};
 	u8 *tmp_p = buffer;
-	u16 i, pos;
+	u32 i, pos;
 	pos = 0;
 	for(i = 0; i < len; i++)
 	{
@@ -99,7 +99,7 @@ u16 hex_to_ascii(u8 *data, u8 *buffer, u16 len)
 		  len 长度
 返回参数：转换后的整数
 *******************************************/
-u32 char_to_int(u8 *cdata, u16 len)
+u32 char_to_int(u8 *cdata, u32 len)
 {
 	u8 i;
 	u32 ndata;

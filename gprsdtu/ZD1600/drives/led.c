@@ -30,14 +30,14 @@ int led_init(void) {
 }
 
 int get_led_state(int idx) {
-	assert(idx > 0 && idx < countof(LedPins));
+	assert(idx > 0 && idx <= countof(LedPins));
 
 	return Bit_SET == GPIO_ReadInputDataBit(LED_PORT, LedPins[idx-1]);
 }
 
 
 int set_led_state(int idx, int state) {
-	assert(idx > 0 && idx < countof(LedPins));
+	assert(idx > 0 && idx <= countof(LedPins));
 
 	GPIO_WriteBit(LED_PORT, LedPins[idx-1], (BitAction)(state));
 	return Bit_SET == GPIO_ReadInputDataBit(LED_PORT, LedPins[idx-1]);
@@ -45,11 +45,11 @@ int set_led_state(int idx, int state) {
 
 // 第二版电平改为相反值
 void led_off(int idx) {
-	assert(idx > 0 && idx < countof(LedPins));
+	assert(idx > 0 && idx <= countof(LedPins));
 	GPIO_WriteBit(LED_PORT, LedPins[idx-1], Bit_RESET);
 }
 void led_on(int idx) {
-	assert(idx > 0 && idx < countof(LedPins));
+	assert(idx > 0 && idx <= countof(LedPins));
 
 	GPIO_WriteBit(LED_PORT, LedPins[idx-1], Bit_SET);
 }

@@ -178,7 +178,7 @@ int drv_all_init(void)
 	ENABLE_IRQ();
 
 	led_init();
-	led_on(2);
+	led_on(4);
 
 			
 
