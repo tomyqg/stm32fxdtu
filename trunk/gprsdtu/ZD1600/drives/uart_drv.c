@@ -171,7 +171,7 @@ void uart1_tx_isr(void)
 		USART_SendData(ZD1600_COM1, uart1_buff.txbuf[usart1_send_position++]);
 		}else{
 		uart1_buff.txlen = 0;
-		//dissable uart1 tx interrupt
+		/*dissable uart1 tx interrupt*/
 		USART_ITConfig(ZD1600_COM1, USART_IT_TXE, DISABLE);
 		}
 
@@ -191,38 +191,39 @@ void uart2_tx_isr(void)
 		USART_SendData(ZD1600_COM2, uart2_buff.txbuf[usart2_send_position++]);
 		}else{
 		uart2_buff.txlen = 0;
-		//dissable uart2 tx interrupt
+		/*dissable uart2 tx interrupt */
 		USART_ITConfig(ZD1600_COM2, USART_IT_TXE, DISABLE);
 		}
 }
 
 /*uart1发送数据 中断方式*/
-void uart1_senddata(u8 *data, u32 len)
+u32* uart1_senddata(u8 *data, u32 len)
 {
 	uart1_buff.txbuf = data;
 	uart1_buff.txlen = len;
 	usart1_send_position = 0;
-	//emable uart1 tx interrupt
+	/*emable uart1 tx interrupt	*/
 	USART_ITConfig(ZD1600_COM1, USART_IT_TXE, ENABLE);
-	//begin send
+	/*begin send */
 	if(usart1_send_position == 0){
 		USART_SendData(ZD1600_COM1, uart1_buff.txbuf[usart1_send_position++]);
 		}
-
+	return &uart1_buff.txlen;
 
 }
 /*uart2发送数据 中断方式*/
-void uart2_senddata(u8 *data, u32 len)
+u32* uart2_senddata(u8 *data, u32 len)
 {
 	uart2_buff.txbuf = data;
 	uart2_buff.txlen = len;
 	usart2_send_position = 0;
-	//emable uart2 tx interrupt
+	/*emable uart2 tx interrupt	 */
 	USART_ITConfig(ZD1600_COM2, USART_IT_TXE, ENABLE);
-	//begin send
+	/*begin send */
 	if(usart2_send_position == 0){
 		USART_SendData(ZD1600_COM2, uart2_buff.txbuf[usart2_send_position++]);
 		}
+	return &uart2_buff.txlen;
 }
 /**/
 

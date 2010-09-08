@@ -85,8 +85,8 @@ typedef	struct {
 void ZD1600_COMInit(COM_Conf_T *uart_conf);
 void uart_rx_itconf(COM_TypeDef comx, FunctionalState newstate);
 u32* uart_rx_bufset(COM_TypeDef comx, u8 *buf, u32 maxlen);
-void uart1_senddata(u8 *data, u32 len);
-void uart2_senddata(u8 *data, u32 len);
+u32* uart1_senddata(u8 *data, u32 len);
+u32* uart2_senddata(u8 *data, u32 len);
 void uart1_rx_isr(void);
 void uart1_tx_isr(void);
 void uart2_rx_isr(void);

@@ -875,6 +875,11 @@
               <FileType>1</FileType>
               <FilePath>..\drives\3210c_rcc.c</FilePath>
             </File>
+            <File>
+              <FileName>gprsmodule.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\drives\gprsmodule.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -935,29 +940,64 @@
           </GroupOption>
           <Files>
             <File>
+              <FileName>gd_app_hook.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\gd_app_hook.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd_com_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\gd_com_init.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd_config.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\gd_config.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd_gm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\gd_gm.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd_guart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\gd_guart.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\gd_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\gd_mem.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd_mib.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\gd_mib.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd_network.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\gd_network.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd_suart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\gd_suart.c</FilePath>
+            </File>
+            <File>
+              <FileName>gd_system.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\gd_system.c</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\app\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>com_init.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\app\com_init.c</FilePath>
-            </File>
-            <File>
-              <FileName>monitor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\app\monitor.c</FilePath>
-            </File>
-            <File>
-              <FileName>App_led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\app\App_led.c</FilePath>
-            </File>
-            <File>
-              <FileName>App_Hook.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\app\App_Hook.c</FilePath>
             </File>
             <File>
               <FileName>test.c</FileName>
