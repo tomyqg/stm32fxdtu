@@ -36,6 +36,8 @@ void gd_task_suart(void *parg);
 
 extern OS_STK gd_task_guart_stk[GD_TASK_GUART_STK_SIZE];
 void gd_task_guart(void *parg);
+extern OS_STK gd_task_guart_rx_stk[GD_TASK_GUART_RX_STK_SIZE];
+void gd_task_guart_rx(void *parg);
 
 extern OS_STK gd_task_network_stk[GD_TASK_NETWORK_STK_SIZE];
 void gd_task_network(void *parg);

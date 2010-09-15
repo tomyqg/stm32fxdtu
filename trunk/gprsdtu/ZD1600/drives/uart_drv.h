@@ -71,12 +71,19 @@ typedef	struct {
 */
 
 typedef	struct {
-	u8*	rxbuf;
+	u8 *rxbuf;
 	u32	rxlen;
 	u32 rxbuflen_max;
 	u8	*txbuf;
 	u32	txlen;
 }Uart_Buff_T;
+
+
+
+
+extern u32 gd_guart_rxdp;//use for rx buf dispose
+
+
 
 
 
@@ -91,6 +98,7 @@ void uart1_rx_isr(void);
 void uart1_tx_isr(void);
 void uart2_rx_isr(void);
 void uart2_tx_isr(void);
+void guart_rx_isr(void);
 
 
   
