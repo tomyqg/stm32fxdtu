@@ -4,7 +4,7 @@
 
 
 
-void uart_init_3210e(void);
+void uart_init_3210c(void);
 
 
 

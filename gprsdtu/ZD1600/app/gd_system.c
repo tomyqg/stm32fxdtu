@@ -4,13 +4,20 @@
 
 #include "drv_init.h"
 #include "gd_tasks.h"
+#include "gd_mem.h"
+#include "../drives/uart_drv.h"
 #include "test.h"
+#include "mem_test.h"
 
 gd_system_t gd_system;	  
 
 OS_STK gd_task_init_stk[GD_TASK_INIT_STK_SIZE];
 
 void  gd_task_init(void *parg);
+
+extern INT8U sp2gm_buf_partition[SP2GM_FRAME_NODE_COUNT][GD_FRAME_NODE_SIZE];
+extern INT8U gm2sp_buf_partition[GM2SP_FRAME_NODE_COUNT][GD_FRAME_NODE_SIZE];
+
 
 struct user_task user_tasks[] = 
 {
@@ -43,6 +50,20 @@ struct user_task user_tasks[] =
 		OS_TASK_OPT_STK_CHK,
 	},
 	{
+		"guart_rx",
+		"Uart to GPRS module recieve task.",
+		1,
+		gd_task_guart_rx,
+		(void *)0,
+		&gd_task_guart_rx_stk[GD_TASK_GUART_RX_STK_SIZE - 1],
+		GD_TASK_GUART_RX_PRIO,
+		GD_TASK_GUART_RX_ID,
+		gd_task_guart_rx_stk,
+		GD_TASK_GUART_RX_STK_SIZE,
+		&user_tasks[2],
+		OS_TASK_OPT_STK_CHK,
+	},
+	{
 		"suart",
 		"Uart to serial port task.",
 		1,
@@ -53,7 +74,7 @@ struct user_task user_tasks[] =
 		GD_TASK_SUART_ID,
 		gd_task_suart_stk,
 		GD_TASK_SUART_STK_SIZE,
-		&user_tasks[2],
+		&user_tasks[3],
 		OS_TASK_OPT_STK_CHK,
 	},
 	{
@@ -67,7 +88,7 @@ struct user_task user_tasks[] =
 		GD_TASK_GUART_ID,
 		gd_task_guart_stk,
 		GD_TASK_GUART_STK_SIZE,
-		&user_tasks[3],
+		&user_tasks[4],
 		OS_TASK_OPT_STK_CHK,
 	},
 	{
@@ -81,7 +102,7 @@ struct user_task user_tasks[] =
 		GD_TASK_NETWORK_ID,
 		gd_task_network_stk,
 		GD_TASK_NETWORK_STK_SIZE,
-		&user_tasks[4],
+		&user_tasks[5],
 		OS_TASK_OPT_STK_CHK,
 	},
 	{
@@ -95,10 +116,10 @@ struct user_task user_tasks[] =
 	 	GD_TASK_LED_ID, 
 	 	gd_task_led_stk, 
 	 	GD_TASK_LED_STK_SIZE, 
-	 	&user_tasks[5], 
+	 	&user_tasks[6], 
 	 	OS_TASK_OPT_STK_CHK,
 	},
-	{
+/*	{
 		"test", 
      	"User test task.", 
      	1,
@@ -112,7 +133,21 @@ struct user_task user_tasks[] =
 	 	0, 
 	 	OS_TASK_OPT_STK_CHK,
 	},
-
+	{
+		"memery test", 
+		"User memery test task.", 
+		1,
+		App_mem_test, 
+		(void *) 0, 
+		&App_TaskMemTestStk[APP_TASK_MEM_TEST_STK_SIZE - 1],
+		APP_TASK_MEM_TEST_PRIO,
+		APP_TASK_MEM_TEST_ID, 
+		App_TaskMemTestStk, 
+		APP_TASK_MEM_TEST_STK_SIZE, 
+		0, 
+		OS_TASK_OPT_STK_CHK,
+	},
+*/
 	{NULL}
 };
 
@@ -145,6 +180,8 @@ int gd_judge_work_mode()
 {
 	gd_system.work_mode = GD_TRANS_MODE;
 
+	gd_get_config();
+
 	return 0;	
 }
 
@@ -159,7 +196,7 @@ void gd_start_tasks()
 	}
 	else if(gd_system.work_mode == GD_TRANS_MODE)
 	{
-		ptask = &user_tasks[GD_TASK_SUART_ID];
+		ptask = &user_tasks[1];
 		
 		for (; ptask->TaskName != NULL; ptask++) 
 		{
@@ -190,19 +227,51 @@ void gd_task_init(void *parg)
 int gd_start_init_task()
 {
 	Run_Task(&user_tasks[GD_TASK_INIT_ID]);	
+
+	return 0;
 }
+
+void gd_uart_init(COM_TypeDef com_type)
+{
+	COM_Conf_T conf;
+	conf.com = com_type;
+	conf.BaudRate = 115200;
+	conf.WordLength = WL_8b;
+	conf.StopBits = SB_1;
+	conf.Parity = No;
+	conf.HwFlowCtrl = None;
+	ZD1600_COMInit(&conf);
+}
+void gd_guart_init(void)//test 
+{
+	COM_Conf_T conf;
+	conf.com = COM2;
+	conf.BaudRate = 9600;
+	conf.WordLength = WL_8b;
+	conf.StopBits = SB_1;
+	conf.Parity = No;
+	conf.HwFlowCtrl = None;
+	ZD1600_COMInit(&conf);
+}
+
+
+char gd_msg_partition[GD_MSG_COUNT][GD_MSG_SIZE];
+
 
 int gd_system_init()
 {
+	INT8U err;
+
 	memset(&gd_system, 0, sizeof(gd_system_t));
 
-	/********************** Get Config Info From Flash *****************************/
+	/********************** Initialize Uart ********************************************/
+	gd_uart_init(COM1);
+	gd_guart_init();
+	/********************** Create Memory Partitions *******************************/
+	gd_system.gd_msg_PartitionPtr = OSMemCreate(gd_msg_partition, GD_MSG_COUNT, GD_MSG_SIZE, &err);
 
-	gd_get_config();
-
-	/********************** Set UART Config ****************************************/
-
-
+	gd_system.sp2gm_buf_PartitionPtr = OSMemCreate(sp2gm_buf_partition, SP2GM_FRAME_NODE_COUNT, GD_FRAME_NODE_SIZE, &err);
+	gd_system.gm2sp_buf_PartitionPtr = OSMemCreate(gm2sp_buf_partition, GM2SP_FRAME_NODE_COUNT, GD_FRAME_NODE_SIZE, &err);
 
 	/********************** Initialize Config Task *********************************/
 

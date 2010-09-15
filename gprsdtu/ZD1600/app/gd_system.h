@@ -6,24 +6,51 @@
 #include "gd_suart.h"
 #include "gd_guart.h"
 #include "gd_network.h"
+#include "gd_mem.h"
 
 #define GD_CONFIG_MODE		1
 #define GD_TRANS_MODE		2
+
+#define GD_MSG_COUNT		64
+#define GD_MSG_SIZE			8
 
 enum GD_TASK_ID
 {
 	GD_TASK_INIT_ID = 0,
 	GD_TASK_CONFIG_ID,
+	GD_TASK_GUART_RX_ID,
 	GD_TASK_SUART_ID,
 	GD_TASK_GUART_ID,
 	GD_TASK_NETWORK_ID,
 	GD_TASK_LED_ID,
-	APP_TASK_TEST_ID
+	APP_TASK_TEST_ID,
+	APP_TASK_MEM_TEST_ID,
 };
+
+enum _GD_MSG_TYPE_
+{
+	GD_MSG_CONNECTION_READY = 0,
+	GD_MSG_FRAME_READY,
+	GD_MSG_RES_FRAME_READY,
+};
+
+typedef struct _GD_MSG_
+{
+	int  		type;
+	void    	*data;
+}gd_msg_t;
 
 typedef struct _GD_SYSTEM_
 {
 	int					work_mode;
+	
+	OS_MEM 				*gd_msg_PartitionPtr;
+
+	OS_MEM 				*sp2gm_buf_PartitionPtr;
+	OS_MEM 				*gm2sp_buf_PartitionPtr;
+
+	gd_frame_list_t 	sp2gm_frame_list;
+	gd_frame_list_t 	gm2sp_frame_list;
 	
 	gd_config_task_t	config_task;
 
@@ -35,11 +62,12 @@ typedef struct _GD_SYSTEM_
 
 }gd_system_t;
 
+extern gd_system_t gd_system; 
+
 
 int gd_judge_work_mode(void);
 int  gd_system_init(void);
-void gd_start_tasks(void);
-
+int gd_start_init_task(void);
 
 
 

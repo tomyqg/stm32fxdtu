@@ -645,7 +645,9 @@ void USART2_IRQHandler(void)
     OS_EXIT_CRITICAL();
 
 	if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET) {
-		uart2_rx_isr();
+//		uart2_rx_isr();
+		/*usart for gprs */
+		guart_rx_isr();
 		}
 	if(USART_GetITStatus(USART2, USART_IT_TXE) != RESET) {
 		uart2_tx_isr();

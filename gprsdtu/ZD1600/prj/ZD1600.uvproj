@@ -400,6 +400,11 @@
               <FileType>5</FileType>
               <FilePath>..\cfg\stm32f10x_conf.h</FilePath>
             </File>
+            <File>
+              <FileName>board_inf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\cfg\board_inf.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -861,11 +866,6 @@
               <FilePath>..\drives\uart_drv.c</FilePath>
             </File>
             <File>
-              <FileName>mystring.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\drives\mystring.c</FilePath>
-            </File>
-            <File>
               <FileName>retarget.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\drives\retarget.c</FilePath>
@@ -874,11 +874,6 @@
               <FileName>3210c_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\drives\3210c_rcc.c</FilePath>
-            </File>
-            <File>
-              <FileName>gprsmodule.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\drives\gprsmodule.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1003,6 +998,11 @@
               <FileName>test.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\app\test.c</FilePath>
+            </File>
+            <File>
+              <FileName>mystring.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\mystring.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -10,9 +10,8 @@ gprs模块底层驱动
 
 
  
- 
 #define	 GPRS_DATA_LEN_MAX	1024
-#define	 GPRS_DATA_BUFFER_LEN_MAX	(GPRS_DATA_LEN_MAX*2+40) //
+#define	 GPRS_DATA_BUFFER_SIZE	(GPRS_DATA_LEN_MAX*2+40) 
 
 
 /**************************************************
@@ -37,15 +36,18 @@ GPRS接收缓冲区  用于缓存来自模块的数据
 **************************************************/
 typedef struct __gprs_databuf
 {
-	u8	recvdata[GPRS_DATA_LEN_MAX+40];
+	u8	recvdata[GPRS_DATA_BUFFER_SIZE];
 	u32 recvlen;
-	u8	senddata[GPRS_DATA_LEN_MAX*2+20];
+	u8	senddata[GPRS_DATA_BUFFER_SIZE];
 	u32 sendlen;
-}t_gprs_databuf;
-extern t_gprs_databuf	gprs_databuf;
+}gprs_databuf_t;
+extern gprs_databuf_t	gprs_databuf;
 
 
-s8	gprsmodules_init(void);
+s8	at_csq(void);            
+void	gprsmodule_shutdown(void);
+s8	gprs_bps_set(u32 rate);
+s8	gprsmodule_init(void);
 s8	gprs_tcpip_init(u8 *user, u8 *password);
 s8	gprs_tcpip_mode_init(u8 mode);
 s8	gprs_tcpip_creat_connection(u8 type, u8 *ip, u16 dest_port, u16 udp_dest_port, u16 local_port);

@@ -10,6 +10,7 @@
 #include "led.h"
 #include "gpio.h"
 
+#define	STM3210C
 #ifdef	STM3210C
 static int LedPins[] = {GPIO_Pin_2, GPIO_Pin_3, GPIO_Pin_4, GPIO_Pin_5};
 #else
@@ -55,3 +56,4 @@ void led_on(int idx) {
 }
 
 /************************************END OF FILE******************************/
+
