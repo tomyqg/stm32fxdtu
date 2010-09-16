@@ -14,17 +14,11 @@ int main(void)
 
 	OSInit();		/* Initialize "uC/OS-II, The Real-Time Kernel".*/
 
-	drv_all_init();
-	gd_component_init();
-
 	ret = gd_system_init();
 	if(ret < 0)
 		return -1;
 
-	// Judge work mode : 0 GD_CONFIG_MODE, 1 GD_TRANS_MODE
-	gd_judge_work_mode();
-
-	gd_start_tasks();
+	gd_start_init_task();
 
 	OSStart();
 

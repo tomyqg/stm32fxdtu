@@ -13,6 +13,8 @@ gd_system_t gd_system;
 
 OS_STK gd_task_init_stk[GD_TASK_INIT_STK_SIZE];
 
+const INT8U GD_DEVMAC[] = {0x0a,0x0c,0x08,0x30,0x57,0x55};	
+
 void  gd_task_init(void *parg);
 
 extern INT8U sp2gm_buf_partition[SP2GM_FRAME_NODE_COUNT][GD_FRAME_NODE_SIZE];
@@ -63,7 +65,7 @@ struct user_task user_tasks[] =
 		&user_tasks[2],
 		OS_TASK_OPT_STK_CHK,
 	},
-	{
+/*	{
 		"suart",
 		"Uart to serial port task.",
 		1,
@@ -77,7 +79,7 @@ struct user_task user_tasks[] =
 		&user_tasks[3],
 		OS_TASK_OPT_STK_CHK,
 	},
-	{
+*/	{
 		"guart",
 		"Uart to GPRS module task.",
 		1,

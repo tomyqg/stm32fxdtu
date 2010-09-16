@@ -45,11 +45,11 @@ int NVIC_Configuration(void)
 	NVIC_StructInit(&NVIC_InitStructure);
 	/* Enable USART1 USART2 Interrupt */
 	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQChannel;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 3;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
 	NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQChannel;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 3;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
 

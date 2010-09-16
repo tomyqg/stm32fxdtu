@@ -31,12 +31,16 @@
 ********************************************************************************************************* 
 */ 
 #define  GD_TASK_CONFIG_PRIO					 1
-#define  GD_TASK_SUART_PRIO					 	 2
-#define  GD_TASK_GUART_PRIO					 	 3
-#define  GD_TASK_NETWORK_PRIO					 4
-#define  GD_TASK_LED_PRIO                        5
+#define  GD_TASK_GUART_RX_PRIO					 2
+#define  GD_TASK_SUART_PRIO					 	 3
+#define  GD_TASK_GUART_PRIO					 	 4
+#define  GD_TASK_NETWORK_PRIO					 5
+#define  GD_TASK_LED_PRIO                        6
+#define  GD_TASK_INIT_PRIO						 7
+#define  APP_TASK_TEST_PRIO						 8
+#define  APP_TASK_MEM_TEST_PRIO					 9
 
-#define  APP_TASK_TEST_PRIO						 6
+
  
 #define  OS_TASK_TMR_PRIO              (OS_LOWEST_PRIO - 2) 
  
@@ -45,16 +49,17 @@
 *                                            TASK STACK SIZES 
 ********************************************************************************************************* 
 */ 
-
-#define  GD_TASK_LED_STK_SIZE                  128
+#define  GD_TASK_INIT_STK_SIZE				   128
 #define  GD_TASK_CONFIG_STK_SIZE			   512
 #define  GD_TASK_SUART_STK_SIZE			   	   512
 #define  GD_TASK_GUART_STK_SIZE			       512
+#define  GD_TASK_GUART_RX_STK_SIZE			   512
 #define  GD_TASK_NETWORK_STK_SIZE			   512
+#define  GD_TASK_LED_STK_SIZE                  128	
 
 #define	 APP_TASK_TEST_STK_SIZE				   512
+#define  APP_TASK_MEM_TEST_STK_SIZE			   128
 
- 
 /* 
 ********************************************************************************************************* 
 *                               uC/Probe plug-in for uC/OS-II CONFIGURATION 

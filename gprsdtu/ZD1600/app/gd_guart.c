@@ -10,6 +10,7 @@
 #define GUART COM2
 #define GD_GUART_RXBUF_SIZE	2048
 #define GD_GUART2SUART_BUF_SIZE	1024
+#define GD_GM_SEND_BUF_SIZE	1024
 
 INT8U	gd_guart_rxbuf[GD_GUART_RXBUF_SIZE];
 INT8U	gd_guart2suart_buf[GD_GUART2SUART_BUF_SIZE];
@@ -20,6 +21,10 @@ OS_STK gd_task_guart_stk[GD_TASK_GUART_STK_SIZE];
 OS_STK gd_task_guart_rx_stk[GD_TASK_GUART_RX_STK_SIZE];
 
 INT8U	gd_guart_ready = 1;	  //used to tell that the guart is ready;
+
+
+INT8U	gd_gm_send_buf[GD_GM_SEND_BUF_SIZE];
+void guart_send_data_test(void);
 
 
 
@@ -58,11 +63,11 @@ void gd_task_guart_rx(void *parg)
 			len = peek - data;
 			if(len) 
 			{
-/*//mode 1		while(gprs_databuf.recvlen)	
+/*			while(gprs_databuf.recvlen)	
 					OSTimeDlyHMSM(0, 0, 0, 1);
 				memcpy(gprs_databuf.recvdata, data, len);
 				gprs_databuf.recvlen = len;
-*/				if(gprs_databuf.recvlen == 0)
+*/			if(gprs_databuf.recvlen == 0)
 				{
 					memcpy(gprs_databuf.recvdata, data, len);
 					gprs_databuf.recvlen = len;		
@@ -72,7 +77,6 @@ void gd_task_guart_rx(void *parg)
 					//非请求结果码
 					//...
 				}
-/**/
  			}
 			gd_guart_rxdp += len+2;
 
@@ -140,13 +144,17 @@ void gd_task_guart(void *parg)
 			}
 		}
 		/*recv data dispose*/
-		guart_recv_data_dispose();
+//		guart_recv_data_dispose();
+
+	guart_send_data_test();
+	OSTimeDlyHMSM(0, 0, 7, 0);
+
+	
+
 
 		
 	OSTimeDlyHMSM(0, 0, 0, 50);
 	}	
-	
-//	OSTaskDel(OS_PRIO_SELF);
 }
 
 
@@ -171,11 +179,12 @@ void guart_recv_data_dispose(void)
 
 	err = OSSemPost(gd_system.gm_operate_sem);
 
-	gm2sp_cache_frame(gd_guart2suart_buf, data_len);
+
 	/*数据处理，如合包*/
 	//....
 	if(res == 0)	
 	{
+		gm2sp_cache_frame(gd_guart2suart_buf, data_len);
 	   	send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
 		send_msg->type = GD_MSG_FRAME_READY;
 		send_msg->data = (void*)gd_system.gm2sp_frame_list.head;
@@ -197,21 +206,37 @@ void guart_send_data_dispose(frame_node_t *frame)
 	len = frame->len;
 	if(len > GPRS_DATA_LEN_MAX)	
 	{
-		/*分包*/
-		
-	}
-	else		
-	{
-		OSSemPend(gd_system.gm_operate_sem, GM_OPERATE_TIMEOUT, &err);
-		if(err != OS_NO_ERR)	return;
+		/*分包、协议编解码*/
+		//...
 
-		res = gprs_tcpip_send(frame->pFrame, len, 0);
 
-		err = OSSemPost(gd_system.gm_operate_sem);
+	 	len = gd_frame_data_init(GD_DEVID, 1, frame->pFrame, len, gd_gm_send_buf);
 	}
+	
+
+	OSSemPend(gd_system.gm_operate_sem, GM_OPERATE_TIMEOUT, &err);
+	if(err != OS_NO_ERR)	return;
+	res = gprs_tcpip_send(gd_gm_send_buf, len, 0);
+	err = OSSemPost(gd_system.gm_operate_sem);
 	
 }
 
+
+/*
+test
+
+*/
+void guart_send_data_test(void)
+{
+	INT8U	err = 0;
+	INT32U  len = 0;
+	len = gd_frame_data_init("gprsdtu", 1, "gprs dtu data send test: OK", strlen("gprs dtu data send test: OK"), gd_gm_send_buf);
+
+	OSSemPend(gd_system.gm_operate_sem, GM_OPERATE_TIMEOUT, &err);
+	if(err != OS_NO_ERR)	return;
+	gprs_tcpip_send(gd_gm_send_buf, len, 0);
+	err = OSSemPost(gd_system.gm_operate_sem);
+}
 
 
 

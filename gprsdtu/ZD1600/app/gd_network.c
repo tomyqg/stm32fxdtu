@@ -11,8 +11,6 @@ OS_STK gd_task_network_stk[GD_TASK_NETWORK_STK_SIZE];
 
 
 /*heartbeat*/
-#define GD_DEVID	"gprsdtu"
-const INT8U GD_DEVMAC[] = {0x0a,0x0c,0x08,0x30,0x57,0x55};	
 INT8U gd_heart_beat[92];
 
 
@@ -75,7 +73,7 @@ void gd_task_network(void *parg)
 
 	
 	/*message that GD_MSG_CONNECTION_READY	*/		
-/*	msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+	msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
 	msg->type = GD_MSG_CONNECTION_READY;
 	msg->data =  (void*)NULL;
 	OSQPost(gd_system.guart_task.q_guart, (void*)msg);
@@ -84,7 +82,7 @@ void gd_task_network(void *parg)
 	msg->type = GD_MSG_CONNECTION_READY;
 	msg->data =  (void*)NULL;
 	OSQPost(gd_system.suart_task.q_suart, (void*)msg);
-*/
+
 
 
 	heartbeat_len = gd_heart_beat_init(GD_DEVID, GD_DEVMAC, 0, "test00000000", strlen("test00000000"), 70, gd_heart_beat);

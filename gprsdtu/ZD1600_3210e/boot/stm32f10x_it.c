@@ -616,13 +616,15 @@ void USART1_IRQHandler(void)
     OSIntNesting++;
     OS_EXIT_CRITICAL();
 
-	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) {
+	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) 
+	{
 		uart1_rx_isr();
-		}
-	if(USART_GetITStatus(USART1, USART_IT_TXE) != RESET) {
+	}
+	
+	if(USART_GetITStatus(USART1, USART_IT_TXE) != RESET) 
+	{
 		uart1_tx_isr();
-		}
-
+	}
 
     OSIntExit();                                 /* Tell uC/OS-II that we are leaving the ISR          */
 }
@@ -644,12 +646,15 @@ void USART2_IRQHandler(void)
     OSIntNesting++;
     OS_EXIT_CRITICAL();
 
-	if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET) {
-		uart2_rx_isr();
-		}
-	if(USART_GetITStatus(USART2, USART_IT_TXE) != RESET) {
+	if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET) 
+	{
+		guart_rx_isr();
+	}
+
+	if(USART_GetITStatus(USART2, USART_IT_TXE) != RESET) 
+	{
 		uart2_tx_isr();
-		}
+	}
 
     OSIntExit();                                 /* Tell uC/OS-II that we are leaving the ISR          */
 }
@@ -671,12 +676,15 @@ void USART3_IRQHandler(void)
     OSIntNesting++;
     OS_EXIT_CRITICAL();
 
-	if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET) {
+	if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET) 
+	{
 //		uart3_rx_isr();
-		}
-	if(USART_GetITStatus(USART3, USART_IT_TXE) != RESET) {
+	}
+
+	if(USART_GetITStatus(USART3, USART_IT_TXE) != RESET) 
+	{
 //		uart3_tx_isr();
-		}
+	}
 
     OSIntExit();                                 /* Tell uC/OS-II that we are leaving the ISR          */
 }

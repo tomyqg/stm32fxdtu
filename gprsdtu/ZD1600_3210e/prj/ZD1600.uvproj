@@ -400,6 +400,11 @@
               <FileType>5</FileType>
               <FilePath>..\cfg\stm32f10x_conf.h</FilePath>
             </File>
+            <File>
+              <FileName>board_inf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\cfg\board_inf.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -836,11 +841,6 @@
               <FilePath>..\drives\gpio.c</FilePath>
             </File>
             <File>
-              <FileName>gprsmodule.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\drives\gprsmodule.c</FilePath>
-            </File>
-            <File>
               <FileName>keys.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\drives\keys.c</FilePath>
@@ -849,11 +849,6 @@
               <FileName>led.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\drives\led.c</FilePath>
-            </File>
-            <File>
-              <FileName>mystring.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\drives\mystring.c</FilePath>
             </File>
             <File>
               <FileName>retarget.c</FileName>
@@ -998,6 +993,16 @@
               <FileName>test.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\app\test.c</FilePath>
+            </File>
+            <File>
+              <FileName>mem_test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\mem_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>mystring.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\mystring.c</FilePath>
             </File>
           </Files>
         </Group>

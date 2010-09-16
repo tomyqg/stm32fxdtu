@@ -9,10 +9,12 @@
 #include "uart_drv.h"
 #include "board_inf.h"
 #include "gpio.h"
+//#include "gd_system.h"
 
 
 Uart_Buff_T	uart1_buff, uart2_buff;
 u32	usart1_send_position, usart2_send_position;
+u32	gd_guart_rxdp = 0;//guart rx dispose position
 
 
 /*usart hardware define*/
@@ -101,7 +103,7 @@ void ZD1600_COMInit(COM_Conf_T *uart_conf)
 	
 	/*UART Pin Remap*/
  	//test
- //	GPIO_PinRemapConfig(GPIO_Remap_USART2, ENABLE);	 	//stm3210c board usart2 use remap
+// 	GPIO_PinRemapConfig(GPIO_Remap_USART2, ENABLE);	 	//stm3210c board usart2 use remap
 	
 	/* Configure USART Tx as alternate function push-pull */
 	GPIO_InitStructure.GPIO_Pin = COM_TX_PIN[uart_conf->com];
@@ -141,18 +143,20 @@ u32* uart_rx_bufset(COM_TypeDef comx, u8 *buf, u32 maxlen)
 {
 	if(comx == COM1){
 		uart1_buff.rxbuf = buf;
+		uart1_buff.rxlen = 0;
 		uart1_buff.rxbuflen_max = maxlen;
 		/*返回buf数据长度地址*/
 		return &uart1_buff.rxlen;
 		}
 	if(comx == COM2){
-		uart2_buff.rxbuf = buf;
+		uart2_buff.rxbuf = buf;	
+		uart2_buff.rxlen = 0;
 		uart2_buff.rxbuflen_max = maxlen;
 		/*返回buf数据长度地址*/
 		return &uart2_buff.rxlen;
 		}
 //	else if(comx == COM3){
-		
+//		
 //		}
 	return NULL;
 }
@@ -182,7 +186,7 @@ void uart2_rx_isr(void)
 	if(uart2_buff.rxlen < uart2_buff.rxbuflen_max) {
 		uart2_buff.rxbuf[uart2_buff.rxlen++] = USART_ReceiveData(ZD1600_COM2);
 		}else{
-		uart1_buff.rxlen = 0;
+		uart2_buff.rxlen = 0;
 		}
 }
 void uart2_tx_isr(void)
@@ -227,8 +231,23 @@ u32* uart2_senddata(u8 *data, u32 len)
 }
 /**/
 
-
-
+/*uart2接收中断,用于gprs module */
+void guart_rx_isr(void)
+{
+	if(uart2_buff.rxlen >= gd_guart_rxdp) {
+		uart2_buff.rxbuf[uart2_buff.rxlen++] = USART_ReceiveData(ZD1600_COM2);
+		if(uart2_buff.rxlen >= uart2_buff.rxbuflen_max){
+			uart2_buff.rxlen = 0;
+			}
+		}
+	else if(uart2_buff.rxlen < gd_guart_rxdp){
+		uart2_buff.rxbuf[uart2_buff.rxlen++] = USART_ReceiveData(ZD1600_COM2);
+		if(uart2_buff.rxlen >= gd_guart_rxdp){
+			/*error ,dispose speed is too low, data will be lost while waiting for disposing*/
+			uart2_buff.rxlen --;
+			}
+		}
+}
 
 
 

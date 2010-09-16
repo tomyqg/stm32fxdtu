@@ -5,6 +5,7 @@
 #include "gd_gm.h"
 
 
+
 OS_STK App_TaskTestStk[APP_TASK_TEST_STK_SIZE];
 void App_test(void *parg)
 {
@@ -43,6 +44,7 @@ void uart_init_3210c(void)
 	conf.HwFlowCtrl = None;
 	ZD1600_COMInit(&conf);
 }
+
 
 
 
