@@ -17,22 +17,25 @@ void App_test(void *parg)
 	rx_datalen_piont = uart_rx_bufset(COM1, rx_testbuf, 2048);
 	uart_rx_itconf(COM1, ENABLE);
 
-	while (1) {
+	while (1) 
+	{
 		datalen = *rx_datalen_piont;
-		if (datalen) {
+		if (datalen) 
+		{
 			uart_rx_itconf(COM1, DISABLE);
 			memcpy(tx_testbuf, rx_testbuf, datalen);
 			*rx_datalen_piont = 0;
 			uart_rx_itconf(COM1, ENABLE);
 			uart1_senddata(tx_testbuf, datalen);
 //			OSTimeDlyHMSM(0, 0, 1, 0);			
-			}
+		}
 //		uart1_senddata("test", strlen("test"));			
 //		OSTimeDlyHMSM(0, 0, 1, 0);
 //		uart2_senddata("usart", strlen("usart"));			
 		OSTimeDlyHMSM(0, 0, 1, 0);
-		}
+	}
 }
+
 void uart_init_3210e(void)
 {
 	COM_Conf_T conf;

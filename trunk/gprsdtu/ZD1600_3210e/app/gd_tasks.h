@@ -37,11 +37,18 @@ void gd_task_suart(void *parg);
 extern OS_STK gd_task_guart_stk[GD_TASK_GUART_STK_SIZE];
 void gd_task_guart(void *parg);
 
+extern OS_STK gd_task_guart_rx_stk[GD_TASK_GUART_RX_STK_SIZE];
+void gd_task_guart_rx(void *parg);
+
 extern OS_STK gd_task_network_stk[GD_TASK_NETWORK_STK_SIZE];
 void gd_task_network(void *parg);
 
 extern OS_STK App_TaskTestStk[];
 void App_test(void *parg);
+
+extern OS_STK App_TaskMemTestStk[APP_TASK_MEM_TEST_STK_SIZE];
+void App_mem_test(void *parg);
+
 
 //extern OS_STK Sys_TaskKeySrvStk[SYS_TASK_KEY_SRV_STK_SIZE];
 //void Task_Key_Srv(void *parg);

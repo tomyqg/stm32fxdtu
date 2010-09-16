@@ -14,6 +14,10 @@
 #define GD_MSG_COUNT		64
 #define GD_MSG_SIZE			8
 
+#define GD_DEVID	"gprsdtu"
+
+extern const INT8U GD_DEVMAC[];
+
 enum GD_TASK_ID
 {
 	GD_TASK_INIT_ID = 0,
