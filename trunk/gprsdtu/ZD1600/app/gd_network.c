@@ -9,16 +9,16 @@
 
 OS_STK gd_task_network_stk[GD_TASK_NETWORK_STK_SIZE];
 
+
 /*heartbeat*/
 #define GD_DEVID	"gprsdtu"
-const INT8U GD_DEVMAC[] = {0xff,0xff,0xff,0xff,0xff,0xff};	
+const INT8U GD_DEVMAC[] = {0x0a,0x0c,0x08,0x30,0x57,0x55};	
 INT8U gd_heart_beat[92];
 
 
-
-INT16U check_sum_16(INT8U *addr, INT16U count);
 void gd_task_network(void *parg)
 {
+	INT32U heartbeat_len;
 	INT8S res = 1;
 	INT8U err, time_tick;
 	gd_msg_t *msg = NULL;
@@ -75,7 +75,7 @@ void gd_task_network(void *parg)
 
 	
 	/*message that GD_MSG_CONNECTION_READY	*/		
-	msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+/*	msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
 	msg->type = GD_MSG_CONNECTION_READY;
 	msg->data =  (void*)NULL;
 	OSQPost(gd_system.guart_task.q_guart, (void*)msg);
@@ -84,24 +84,36 @@ void gd_task_network(void *parg)
 	msg->type = GD_MSG_CONNECTION_READY;
 	msg->data =  (void*)NULL;
 	OSQPost(gd_system.suart_task.q_suart, (void*)msg);
+*/
 
-	gd_heart_beat_init(GD_DEVID, GD_DEVMAC, "test",  strlen("test"), gd_heart_beat);
+
+	heartbeat_len = gd_heart_beat_init(GD_DEVID, GD_DEVMAC, 0, "test00000000", strlen("test00000000"), 70, gd_heart_beat);
 	time_tick = 0;
+//	gd_heart_beat_init_t(gd_heart_beat);
 	while(1)
 	{
 		/*heart beat*/
-		if(time_tick++ >=10)
+//		if(time_tick++ >=10)
 		{
 			time_tick = 0;
- 			res = gprs_tcpip_send(gd_heart_beat, 92, 0);
-			if(res != 0)
+			OSSemPend(gd_system.gm_operate_sem, GM_OPERATE_TIMEOUT, &err);
+			if(err == OS_NO_ERR)
 			{
-				/*send error*/
+	 			res = gprs_tcpip_send(gd_heart_beat, heartbeat_len, 0);
+				if(res != 0)
+				{
+					/*send error*/
+				}
+				err = OSSemPost(gd_system.gm_operate_sem);
+				if(err != OS_NO_ERR)
+				{
+
+				}
 			}
 		}
 
 
-		OSTimeDlyHMSM(0, 0, 1, 0);
+		OSTimeDlyHMSM(0, 0, 5, 0);
 	}
 
 //	OSTaskDel(OS_PRIO_SELF);

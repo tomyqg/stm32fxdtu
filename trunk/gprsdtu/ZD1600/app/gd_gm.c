@@ -4,9 +4,11 @@
 #include <ucos_ii.h>
 #include <string.h>
 #include "../drives/uart_drv.h"
+#include "gd_system.h"
 
 #define sendAT	uart2_senddata
 #define RECVAT_TIMEOUT	1000
+
 
 gprs_databuf_t	gprs_databuf;
 u8 GPRS_TCPIP_IOMODE;
@@ -23,8 +25,27 @@ u16 recvAT(void)
 		}
 	return 	gprs_databuf.recvlen;
 }
-
+void delays(void)
+{
+	OSTimeDlyHMSM(0, 0, 1, 0);	
+}
 /*
+u8 gprs_sem_pend(u16 timeout)
+{
+	INT8U err;
+	OSSemPend(gd_system.gm_operate_sem, timeout, &err);
+	return err;
+}
+u8 gprs_sem_post(void)
+{
+	INT8U err;
+	err = OSSemPost(gd_system.gm_operate_sem);
+	return err;
+}
+
+
+
+
 s8	sendAT(u8 *data, u16 len)//send data
 {
 	u16	i = 0;
@@ -216,8 +237,10 @@ s8	gprsmodule_init(void)
 //	if(res != 0) return 1;
 	res = at_ate0();
 	if(res != 0) return 2;
+	delays();
 	res = at_tsim();
 	if(res != 0) return 3;
+	delays();
 	//AT+CREG  //////  待进一步处理
 	sendAT("AT+CREG?\r\n", strlen("AT+CREG?\r\n"));
 	recvAT();
@@ -391,15 +414,15 @@ s8	gprs_tcpip_send(u8 *data, u16 len, u8 link_num)
 	//数据转换
 	if(GPRS_TCPIP_IOMODE & 0x01)
 	{
-		gprs_databuf.sendlen += hex_to_ascii(data, gprs_databuf.senddata+gprs_databuf.sendlen, len);	
+		hex_to_ascii(data, gprs_databuf.senddata+gprs_databuf.sendlen, len);
 	}
 	else
 	{
 	 	memcpy(gprs_databuf.senddata+gprs_databuf.sendlen, data, len);
-		gprs_databuf.sendlen += len;
 	}
 	strcat(gprs_databuf.senddata, "\"\r\n");
-	sendAT(gprs_databuf.senddata, strlen(gprs_databuf.senddata));
+	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
+	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
 	recvAT();
 	recvAT();
 	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen))	return 0;
@@ -495,6 +518,12 @@ tcp/ip 数据接收缓冲区删除模式不设置
 		采用默认：自动删除
 **********************************************/
 
+
+/*****************************************
+模块非请求结果码处理
+入口参数： 
+出口参数： 
+*******************************************/
 
 
 

@@ -58,11 +58,11 @@ void gd_task_guart_rx(void *parg)
 			len = peek - data;
 			if(len) 
 			{
-				while(gprs_databuf.recvlen)	
+/*//mode 1		while(gprs_databuf.recvlen)	
 					OSTimeDlyHMSM(0, 0, 0, 1);
 				memcpy(gprs_databuf.recvdata, data, len);
 				gprs_databuf.recvlen = len;
-/*//mode2		if(gprs_databuf.recvlen == 0)
+*/				if(gprs_databuf.recvlen == 0)
 				{
 					memcpy(gprs_databuf.recvdata, data, len);
 					gprs_databuf.recvlen = len;		
@@ -72,7 +72,7 @@ void gd_task_guart_rx(void *parg)
 					//非请求结果码
 					//...
 				}
-*/
+/**/
  			}
 			gd_guart_rxdp += len+2;
 
@@ -164,7 +164,13 @@ void guart_recv_data_dispose(void)
 	INT8U 			err;
 	
 //	res = gprs_tcpip_recvbuf_query(unread_num, total_num);
+	OSSemPend(gd_system.gm_operate_sem, GM_OPERATE_TIMEOUT, &err);
+	if(err != OS_NO_ERR)	return;
+
 	res = gprs_tcpip_request_data(0, &data_index, &link_num, &data_len, gd_guart2suart_buf);
+
+	err = OSSemPost(gd_system.gm_operate_sem);
+
 	gm2sp_cache_frame(gd_guart2suart_buf, data_len);
 	/*数据处理，如合包*/
 	//....
@@ -186,6 +192,7 @@ void guart_recv_data_dispose(void)
 void guart_send_data_dispose(frame_node_t *frame)
 {
 	INT32U len, i;
+	INT8U	err;
 	INT8S res = 1;
 	len = frame->len;
 	if(len > GPRS_DATA_LEN_MAX)	
@@ -193,9 +200,14 @@ void guart_send_data_dispose(frame_node_t *frame)
 		/*分包*/
 		
 	}
-	else
+	else		
 	{
+		OSSemPend(gd_system.gm_operate_sem, GM_OPERATE_TIMEOUT, &err);
+		if(err != OS_NO_ERR)	return;
+
 		res = gprs_tcpip_send(frame->pFrame, len, 0);
+
+		err = OSSemPost(gd_system.gm_operate_sem);
 	}
 	
 }

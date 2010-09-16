@@ -49,6 +49,8 @@ typedef struct _GD_SYSTEM_
 	OS_MEM 				*sp2gm_buf_PartitionPtr;
 	OS_MEM 				*gm2sp_buf_PartitionPtr;
 
+	OS_EVENT			*gm_operate_sem;
+
 	gd_frame_list_t 	sp2gm_frame_list;
 	gd_frame_list_t 	gm2sp_frame_list;
 	
