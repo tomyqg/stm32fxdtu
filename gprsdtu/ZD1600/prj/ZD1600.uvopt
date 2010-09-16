@@ -137,31 +137,16 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>UL2CM3</Key>
-          <Name>-UV0VVV123 -O206 -S0 -C0 -N00("ARM CoreSight SW-DP") -D00(1BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC800 -FN1 -FF0STM32F10x_CL -FS08000000 -FL040000</Name>
+          <Name>-UV0VVV123 -O142 -S0 -C0 -N00("ARM CoreSight JTAG-DP") -D00(3BA00477) -L00(4) -N01("Unknown JTAG device") -D01(06418041) -L01(5) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC800 -FN1 -FF0STM32F10x_CL -FS08000000 -FL040000</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
       <Breakpoint>
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>33</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>gd_network.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
           <LineNumber>101</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134242360</Address>
+          <Address>134249702</Address>
           <ByteObject>0</ByteObject>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
@@ -169,44 +154,29 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>gd_guart.c</Filename>
           <ExecCommand></ExecCommand>
+          <Expression>\gd_guart\101</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>102</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134251720</Address>
+          <ByteObject>0</ByteObject>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>gd_network.c</Filename>
+          <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>66</LineNumber>
+          <LineNumber>99</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134243568</Address>
-          <ByteObject>0</ByteObject>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>gd_network.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>44</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134243598</Address>
-          <ByteObject>0</ByteObject>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>gd_network.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>4</Number>
-          <Type>0</Type>
-          <LineNumber>55</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134243622</Address>
+          <Address>134251700</Address>
           <ByteObject>0</ByteObject>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
@@ -325,10 +295,10 @@
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>74</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>33</TopLine>
+      <CurrentLine>64</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\cfg\board_inf.h</PathWithFileName>
       <FilenameWithoutPath>board_inf.h</FilenameWithoutPath>
@@ -362,8 +332,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>673</TopLine>
-      <CurrentLine>673</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\boot\stm32f10x_it.c</PathWithFileName>
       <FilenameWithoutPath>stm32f10x_it.c</FilenameWithoutPath>
@@ -397,8 +367,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>93</TopLine>
-      <CurrentLine>103</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\ucos-ii\Ports\ARM-Cortex-M3\Generic\RealView\os_cpu_a.asm</PathWithFileName>
       <FilenameWithoutPath>os_cpu_a.asm</FilenameWithoutPath>
@@ -411,8 +381,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>147</TopLine>
-      <CurrentLine>157</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\ucos-ii\Ports\ARM-Cortex-M3\Generic\RealView\os_cpu_c.c</PathWithFileName>
       <FilenameWithoutPath>os_cpu_c.c</FilenameWithoutPath>
@@ -456,7 +426,7 @@
 
   <Group>
     <GroupName>stm32lib</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
@@ -824,8 +794,8 @@
       <Focus>0</Focus>
       <ColumnNumber>49</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>197</TopLine>
-      <CurrentLine>197</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\drives\uart_drv.c</PathWithFileName>
       <FilenameWithoutPath>uart_drv.c</FilenameWithoutPath>
@@ -913,10 +883,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>56</ColumnNumber>
+      <ColumnNumber>29</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>210</TopLine>
-      <CurrentLine>231</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>12</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\app\gd_gm.c</PathWithFileName>
       <FilenameWithoutPath>gd_gm.c</FilenameWithoutPath>
@@ -983,10 +953,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>49</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>14</TopLine>
-      <CurrentLine>33</CurrentLine>
+      <TopLine>92</TopLine>
+      <CurrentLine>121</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\app\gd_network.c</PathWithFileName>
       <FilenameWithoutPath>gd_network.c</FilenameWithoutPath>
@@ -1011,10 +981,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>25</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>49</TopLine>
-      <CurrentLine>80</CurrentLine>
+      <TopLine>267</TopLine>
+      <CurrentLine>272</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\app\gd_system.c</PathWithFileName>
       <FilenameWithoutPath>gd_system.c</FilenameWithoutPath>
@@ -1053,10 +1023,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>32</ColumnNumber>
+      <ColumnNumber>74</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>25</TopLine>
-      <CurrentLine>41</CurrentLine>
+      <TopLine>103</TopLine>
+      <CurrentLine>103</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\app\mystring.c</PathWithFileName>
       <FilenameWithoutPath>mystring.c</FilenameWithoutPath>
@@ -1064,9 +1034,35 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>E:\stm32\project\GprsDtu\ZD1600_3210c\ucos-ii\kernel\os_core.c</PathWithFilename>
-    <TopLine>1766</TopLine>
-    <CurrentLine>1776</CurrentLine>
+    <PathWithFilename>E:\stm32\project\GprsDtu\ZD1600_3210c\app\gd_system.h</PathWithFilename>
+    <TopLine>50</TopLine>
+    <CurrentLine>52</CurrentLine>
+    <Constant>0</Constant>
+    <WindowPosition>
+      <length>0</length>
+      <flags>0</flags>
+      <showCmd>0</showCmd>
+      <MinPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MinPosition>
+      <MaxPosition>
+        <xPos>0</xPos>
+        <yPos>0</yPos>
+      </MaxPosition>
+      <NormalPosition>
+        <Top>0</Top>
+        <Left>0</Left>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </NormalPosition>
+    </WindowPosition>
+  </AlienFiles>
+
+  <AlienFiles>
+    <PathWithFilename>E:\stm32\project\GprsDtu\ZD1600_3210c\app\mystring.h</PathWithFilename>
+    <TopLine>1</TopLine>
+    <CurrentLine>18</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -2430,19 +2426,13 @@
     <ActiveMDIGroup>0</ActiveMDIGroup>
     <MDIGroup>
       <Size>100</Size>
-      <ActiveTab>4</ActiveTab>
+      <ActiveTab>0</ActiveTab>
       <Documents>
         <Doc>
-          <Name>..\ucos-ii\Ports\ARM-Cortex-M3\Generic\RealView\os_cpu_c.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>147</TopLine>
-          <CurrentLine>157</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>..\ucos-ii\kernel\os_core.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>1766</TopLine>
-          <CurrentLine>1776</CurrentLine>
+          <Name>..\app\gd_network.c</Name>
+          <ColumnNumber>49</ColumnNumber>
+          <TopLine>92</TopLine>
+          <CurrentLine>121</CurrentLine>
         </Doc>
         <Doc>
           <Name>..\app\gd_guart.c</Name>
@@ -2451,16 +2441,46 @@
           <CurrentLine>101</CurrentLine>
         </Doc>
         <Doc>
-          <Name>..\app\gd_gm.c</Name>
-          <ColumnNumber>56</ColumnNumber>
-          <TopLine>210</TopLine>
-          <CurrentLine>231</CurrentLine>
+          <Name>..\app\mystring.c</Name>
+          <ColumnNumber>74</ColumnNumber>
+          <TopLine>103</TopLine>
+          <CurrentLine>103</CurrentLine>
         </Doc>
         <Doc>
-          <Name>..\app\gd_network.c</Name>
+          <Name>..\cfg\board_inf.h</Name>
+          <ColumnNumber>74</ColumnNumber>
+          <TopLine>43</TopLine>
+          <CurrentLine>64</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>..\app\mystring.h</Name>
+          <ColumnNumber>63</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>18</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>..\app\gd_gm.c</Name>
+          <ColumnNumber>29</ColumnNumber>
+          <TopLine>1</TopLine>
+          <CurrentLine>12</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>..\app\gd_system.c</Name>
+          <ColumnNumber>25</ColumnNumber>
+          <TopLine>267</TopLine>
+          <CurrentLine>272</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>..\app\gd_system.h</Name>
+          <ColumnNumber>27</ColumnNumber>
+          <TopLine>50</TopLine>
+          <CurrentLine>52</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>..\boot\startup_stm32f10x_cl.s</Name>
           <ColumnNumber>0</ColumnNumber>
-          <TopLine>14</TopLine>
-          <CurrentLine>33</CurrentLine>
+          <TopLine>142</TopLine>
+          <CurrentLine>155</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

@@ -12,6 +12,8 @@ gprsÄ£¿éµ×²ãÇý¶¯
 #include "mystring.h"
 
 
+#define GM_OPERATE_TIMEOUT	2000	
+
  
 #define	 GPRS_DATA_LEN_MAX	1024
 #define	 GPRS_DATA_BUFFER_SIZE	(GPRS_DATA_LEN_MAX*2+40) 

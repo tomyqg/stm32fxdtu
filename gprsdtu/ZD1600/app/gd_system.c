@@ -267,6 +267,9 @@ int gd_system_init()
 	/********************** Initialize Uart ********************************************/
 	gd_uart_init(COM1);
 	gd_guart_init();
+	
+	// Create guart task sem
+	gd_system.gm_operate_sem = OSSemCreate(1);
 	/********************** Create Memory Partitions *******************************/
 	gd_system.gd_msg_PartitionPtr = OSMemCreate(gd_msg_partition, GD_MSG_COUNT, GD_MSG_SIZE, &err);
 
@@ -304,6 +307,7 @@ int gd_system_init()
 	// Create guart task queue
 	gd_system.guart_task.q_guart = OSQCreate(&gd_system.guart_task.QMsgTbl[0], GUART_QMSG_COUNT);
 
+
 	/********************** Initialize Network Task *********************************/
 
 	// TaskId
@@ -320,7 +324,7 @@ int gd_system_init()
 	
 	gd_system.network_task.link_info[0].link_type = 0; //TCP
 	strcpy(gd_system.network_task.link_info[0].svr_ip, "218.94.116.78");
-	gd_system.network_task.link_info[0].svr_port = 6000;
+	gd_system.network_task.link_info[0].svr_port = 10001;
 	
 	gd_system.network_task.link_info[1].link_type = 0; //TCP
 	strcpy(gd_system.network_task.link_info[1].svr_ip, "218.94.116.78");
