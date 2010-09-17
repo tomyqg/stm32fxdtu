@@ -856,11 +856,6 @@
               <FilePath>..\drives\drv_init.c</FilePath>
             </File>
             <File>
-              <FileName>gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\drives\gpio.c</FilePath>
-            </File>
-            <File>
               <FileName>uart_drv.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\drives\uart_drv.c</FilePath>
@@ -874,6 +869,16 @@
               <FileName>3210c_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\drives\3210c_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\drives\gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\drives\flash.c</FilePath>
             </File>
           </Files>
         </Group>

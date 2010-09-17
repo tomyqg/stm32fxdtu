@@ -8,7 +8,7 @@
 #define NULL 0
 #include "uart_drv.h"
 #include "board_inf.h"
-#include "gpio.h"
+#include "stm32f10x_lib.h"
 //#include "gd_system.h"
 
 
