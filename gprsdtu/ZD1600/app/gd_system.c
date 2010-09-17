@@ -121,7 +121,7 @@ struct user_task user_tasks[] =
 	 	&user_tasks[6], 
 	 	OS_TASK_OPT_STK_CHK,
 	},
-/*	{
+	{
 		"test", 
      	"User test task.", 
      	1,
@@ -135,7 +135,7 @@ struct user_task user_tasks[] =
 	 	0, 
 	 	OS_TASK_OPT_STK_CHK,
 	},
-	{
+/*	{
 		"memery test", 
 		"User memery test task.", 
 		1,
