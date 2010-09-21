@@ -7,9 +7,18 @@ gprs模块底层驱动
 #ifndef GD_GM_INIT_H
 #define GD_GM_INIT_H
 
+#include "gd_string.h"
 
 
-#include "mystring.h"
+/*非请求结果码处理结果*/
+#define GM_TCPIP_RECIEVED_DATA	1
+#define GM_TCPIP_LINK1_CLOSE	2
+#define GM_TCPIP_LINK2_CLOSE	3
+#define GM_TCPIP_LINK3_CLOSE	4
+#define GM_TCPIP_CLOSE			6
+#define GM_TCPIP_SERVER_CLOSE	7
+
+
 
 
 #define GM_OPERATE_TIMEOUT	2000	
@@ -63,6 +72,9 @@ s8	gprs_tcpip_send(u8 *data, u16 len, u8 link_num);
 s8	gprs_tcpip_recvbuf_query(u8 *unread, u8 *total);
 s8	gprs_tcpip_request_data(u8 index, u8 *data_index_p, u8 *link_num_p, u16 *data_len_p, u8 *recvdata);
 s8	gprs_tcpip_recvbuf_delete(u8 index, u8 type);
+
+
+s8	gprs_unrequest_code_dispose(u32 len);
 
 
 

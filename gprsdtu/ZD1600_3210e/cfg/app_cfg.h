@@ -38,7 +38,6 @@
 #define  GD_TASK_LED_PRIO                        6
 #define  GD_TASK_INIT_PRIO						 7
 #define  APP_TASK_TEST_PRIO						 8
-#define  APP_TASK_MEM_TEST_PRIO					 9
 
 
  
@@ -58,7 +57,6 @@
 #define  GD_TASK_LED_STK_SIZE                  128	
 
 #define	 APP_TASK_TEST_STK_SIZE				   512
-#define  APP_TASK_MEM_TEST_STK_SIZE			   128
 
 /* 
 ********************************************************************************************************* 

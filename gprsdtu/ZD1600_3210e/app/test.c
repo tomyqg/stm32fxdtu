@@ -26,12 +26,12 @@ void App_test(void *parg)
 			memcpy(tx_testbuf, rx_testbuf, datalen);
 			*rx_datalen_piont = 0;
 			uart_rx_itconf(COM1, ENABLE);
-			uart1_senddata(tx_testbuf, datalen);
+			suart_send_data(tx_testbuf, datalen);
 //			OSTimeDlyHMSM(0, 0, 1, 0);			
 		}
-//		uart1_senddata("test", strlen("test"));			
+//		suart_send_data("test", strlen("test"));			
 //		OSTimeDlyHMSM(0, 0, 1, 0);
-//		uart2_senddata("usart", strlen("usart"));			
+//		guart_send_data("usart", strlen("usart"));			
 		OSTimeDlyHMSM(0, 0, 1, 0);
 	}
 }
