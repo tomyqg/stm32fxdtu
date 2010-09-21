@@ -46,9 +46,6 @@ void gd_task_network(void *parg);
 extern OS_STK App_TaskTestStk[];
 void App_test(void *parg);
 
-extern OS_STK App_TaskMemTestStk[APP_TASK_MEM_TEST_STK_SIZE];
-void App_mem_test(void *parg);
-
 
 //extern OS_STK Sys_TaskKeySrvStk[SYS_TASK_KEY_SRV_STK_SIZE];
 //void Task_Key_Srv(void *parg);

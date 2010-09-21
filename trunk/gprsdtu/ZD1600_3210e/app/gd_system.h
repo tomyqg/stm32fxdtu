@@ -8,6 +8,9 @@
 #include "gd_network.h"
 #include "gd_mem.h"
 
+#define SUART		COM1
+#define GUART 		COM2
+
 #define GD_CONFIG_MODE		1
 #define GD_TRANS_MODE		2
 
@@ -28,7 +31,6 @@ enum GD_TASK_ID
 	GD_TASK_NETWORK_ID,
 	GD_TASK_LED_ID,
 	APP_TASK_TEST_ID,
-	APP_TASK_MEM_TEST_ID,
 };
 
 enum _GD_MSG_TYPE_
@@ -36,6 +38,8 @@ enum _GD_MSG_TYPE_
 	GD_MSG_CONNECTION_READY = 0,
 	GD_MSG_FRAME_READY,
 	GD_MSG_RES_FRAME_READY,
+	GD_MSG_GM_RECV_DATA,
+	GD_MSG_GM_TCP_STATE_CHANGE,
 };
 
 typedef struct _GD_MSG_

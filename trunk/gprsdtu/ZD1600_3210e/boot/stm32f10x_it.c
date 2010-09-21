@@ -618,12 +618,12 @@ void USART1_IRQHandler(void)
 
 	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) 
 	{
-		uart1_rx_isr();
+		suart_rx_isr();
 	}
 	
 	if(USART_GetITStatus(USART1, USART_IT_TXE) != RESET) 
 	{
-		uart1_tx_isr();
+		suart_tx_isr();
 	}
 
     OSIntExit();                                 /* Tell uC/OS-II that we are leaving the ISR          */
@@ -653,7 +653,7 @@ void USART2_IRQHandler(void)
 
 	if(USART_GetITStatus(USART2, USART_IT_TXE) != RESET) 
 	{
-		uart2_tx_isr();
+		guart_tx_isr();
 	}
 
     OSIntExit();                                 /* Tell uC/OS-II that we are leaving the ISR          */

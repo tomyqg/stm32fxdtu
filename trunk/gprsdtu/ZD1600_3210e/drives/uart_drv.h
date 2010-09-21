@@ -81,23 +81,19 @@ typedef	struct {
 
 
 
-extern u32 gd_guart_rxdp;//use for rx buf dispose
-
-
-
-
-
+extern u32 guart_rx_dp;//use for rx buf dispose
 
 
 void ZD1600_COMInit(COM_Conf_T *uart_conf);
 void uart_rx_itconf(COM_TypeDef comx, FunctionalState newstate);
 u32* uart_rx_bufset(COM_TypeDef comx, u8 *buf, u32 maxlen);
-u32* uart1_senddata(u8 *data, u32 len);
-u32* uart2_senddata(u8 *data, u32 len);
-void uart1_rx_isr(void);
-void uart1_tx_isr(void);
-void uart2_rx_isr(void);
-void uart2_tx_isr(void);
+
+u32* suart_send_data(u8 *data, u32 len);
+void suart_rx_isr(void);
+void suart_tx_isr(void);
+
+u32* guart_send_data(u8 *data, u32 len);
+void guart_tx_isr(void);
 void guart_rx_isr(void);
 
 

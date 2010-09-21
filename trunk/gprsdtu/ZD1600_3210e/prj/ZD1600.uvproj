@@ -935,6 +935,11 @@
               <FilePath>..\app\main.c</FilePath>
             </File>
             <File>
+              <FileName>gd_string.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\app\gd_string.c</FilePath>
+            </File>
+            <File>
               <FileName>gd_config.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\app\gd_config.c</FilePath>
@@ -993,16 +998,6 @@
               <FileName>test.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\app\test.c</FilePath>
-            </File>
-            <File>
-              <FileName>mem_test.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\app\mem_test.c</FilePath>
-            </File>
-            <File>
-              <FileName>mystring.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\app\mystring.c</FilePath>
             </File>
           </Files>
         </Group>

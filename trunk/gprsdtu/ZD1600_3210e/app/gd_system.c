@@ -7,7 +7,6 @@
 #include "gd_mem.h"
 #include "../drives/uart_drv.h"
 #include "test.h"
-#include "mem_test.h"
 
 gd_system_t gd_system;	  
 
@@ -65,7 +64,7 @@ struct user_task user_tasks[] =
 		&user_tasks[2],
 		OS_TASK_OPT_STK_CHK,
 	},
-/*	{
+	{
 		"suart",
 		"Uart to serial port task.",
 		1,
@@ -79,7 +78,7 @@ struct user_task user_tasks[] =
 		&user_tasks[3],
 		OS_TASK_OPT_STK_CHK,
 	},
-*/	{
+	{
 		"guart",
 		"Uart to GPRS module task.",
 		1,
@@ -134,20 +133,6 @@ struct user_task user_tasks[] =
 	 	APP_TASK_TEST_STK_SIZE, 
 	 	0, 
 	 	OS_TASK_OPT_STK_CHK,
-	},
-	{
-		"memery test", 
-		"User memery test task.", 
-		1,
-		App_mem_test, 
-		(void *) 0, 
-		&App_TaskMemTestStk[APP_TASK_MEM_TEST_STK_SIZE - 1],
-		APP_TASK_MEM_TEST_PRIO,
-		APP_TASK_MEM_TEST_ID, 
-		App_TaskMemTestStk, 
-		APP_TASK_MEM_TEST_STK_SIZE, 
-		0, 
-		OS_TASK_OPT_STK_CHK,
 	},
 */
 	{NULL}
@@ -237,17 +222,6 @@ void gd_uart_init(COM_TypeDef com_type)
 {
 	COM_Conf_T conf;
 	conf.com = com_type;
-	conf.BaudRate = 115200;
-	conf.WordLength = WL_8b;
-	conf.StopBits = SB_1;
-	conf.Parity = No;
-	conf.HwFlowCtrl = None;
-	ZD1600_COMInit(&conf);
-}
-void gd_guart_init(void)//test 
-{
-	COM_Conf_T conf;
-	conf.com = COM2;
 	conf.BaudRate = 9600;
 	conf.WordLength = WL_8b;
 	conf.StopBits = SB_1;
@@ -255,7 +229,6 @@ void gd_guart_init(void)//test
 	conf.HwFlowCtrl = None;
 	ZD1600_COMInit(&conf);
 }
-
 
 char gd_msg_partition[GD_MSG_COUNT][GD_MSG_SIZE];
 
@@ -268,10 +241,11 @@ int gd_system_init()
 
 	/********************** Initialize Uart ********************************************/
 	gd_uart_init(COM1);
-	gd_guart_init();
+	gd_uart_init(COM2);
 	
 	// Create guart task sem
 	gd_system.gm_operate_sem = OSSemCreate(1);
+	
 	/********************** Create Memory Partitions *******************************/
 	gd_system.gd_msg_PartitionPtr = OSMemCreate(gd_msg_partition, GD_MSG_COUNT, GD_MSG_SIZE, &err);
 
