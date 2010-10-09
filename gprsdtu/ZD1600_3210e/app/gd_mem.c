@@ -111,10 +111,12 @@ INT8U sp2gm_buf[SP2GM_BUF_LEN];
 int   sp2gm_start_pos = 0;
 int	  sp2gm_free_pos = 0;
 
+/*
 INT8U gm2sp_buf_partition[GM2SP_FRAME_NODE_COUNT][GD_FRAME_NODE_SIZE];
 INT8U gm2sp_buf[GM2SP_BUF_LEN];
 int   gm2sp_start_pos = 0;
 int	  gm2sp_free_pos = 0;
+*/
 
 
 //////////////////////////////// SP2GM Memery Function////////////////////////////
@@ -267,7 +269,7 @@ int sp2gm_remove_frame(frame_node_t *frame_node)
 
 
 //////////////////////////////// GM2SP Memery Function////////////////////////////
-
+/*
 // If buf is full, overwrite the frames from beginning
 int gm2sp_buf_full_process()
 {
@@ -413,7 +415,7 @@ int gm2sp_remove_frame(frame_node_t *frame_node)
 	else // Error
 		return -1;
 }
-
+*/
 
 
 

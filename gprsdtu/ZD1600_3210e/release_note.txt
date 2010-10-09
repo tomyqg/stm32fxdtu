@@ -1,3 +1,6 @@
 
+V1.0.0 alpha4
+双向数据调通
+
 V1.0.0 alpha3
 串口到GPRS Module方向的数据发送调通

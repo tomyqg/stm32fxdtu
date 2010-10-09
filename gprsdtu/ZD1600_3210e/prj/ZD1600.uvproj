@@ -443,7 +443,7 @@
                   <MiscControls></MiscControls>
                   <Define></Define>
                   <Undefine></Undefine>
-                  <IncludePath>..\ucos-ii\kernel;..\ucos-ii\Ports\ARM-Cortex-M3\Generic\RealView</IncludePath>
+                  <IncludePath>..\ucos-ii\kernel;..\ucos-ii\Ports\ARM-Cortex-M3\Generic\RealView;..\drives;</IncludePath>
                 </VariousControls>
               </Cads>
               <Aads>
@@ -869,6 +869,16 @@
               <FileName>uart_drv.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\drives\uart_drv.c</FilePath>
+            </File>
+            <File>
+              <FileName>hw_core.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\drives\hw_core.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\drives\flash.c</FilePath>
             </File>
           </Files>
         </Group>

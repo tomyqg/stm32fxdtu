@@ -7,7 +7,7 @@
 
 int main(void)
 {
-	int ret = 0;	
+	int ret = 0;
 
 	RCC_Configuration();
 	NVIC_Configuration();
@@ -24,3 +24,5 @@ int main(void)
 
 	return 0;
 }
+
+

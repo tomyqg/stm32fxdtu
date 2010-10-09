@@ -168,6 +168,8 @@ u16 check_sum_16(u8 *addr, u16 count)
 }
 
 
+
+
 /*******************************************************************************************************
 //WS-120M协议，初始化心跳包
 //入口参数: 	dev_id	 设备ID
@@ -179,11 +181,14 @@ u16 check_sum_16(u8 *addr, u16 count)
 //			buf		 初始化后的数据存放buf
 //出口参数:	len		 初始化后的数据长度
 ********************************************************************************************************/
-u32	gd_heart_beat_init(uc8 *dev_id, uc8 *dev_mac, u8 *extra_data, u8 extra_len, u8 wifi_signal, u8 *buf)
+u32	gd_heart_beat_init(uc8 *dev_id, uc8 *dev_mac, u8 *extra_data, 
+										u8 extra_len, u8 wifi_signal, u8 *buf)
 {
 	u16	checksum;						
 
-	sprintf(buf,"%s%c%-8.8s%c%c",GD_FRAME_HEAD_FLG, WS_120M_HEARTBEAT, dev_id,((extra_len+8)>>8)&0xff,(extra_len+8)&0xff);
+	sprintf(buf,"%s%c%-8.8s%c%c",GD_FRAME_HEAD_FLG, WS_120M_HEARTBEAT, dev_id,
+										((extra_len+8)>>8)&0xff,(extra_len+8)&0xff);
+	
  	checksum=check_sum_16(buf, 18);
 	sprintf(buf+18,"%c%c", (checksum>>8)&0xff, checksum&0xff);
 	memcpy(buf+20,dev_mac,6);
@@ -202,11 +207,14 @@ u32	gd_heart_beat_init(uc8 *dev_id, uc8 *dev_mac, u8 *extra_data, u8 extra_len, 
 //			buf		 初始化后的数据存放buf
 //出口参数:	len		 初始化后的数据长度
 ********************************************************************************************************/
-u32	gd_gm_data_init(uc8 *dev_id, u8 data_type, u8 *data, u16 data_len, u8 *buf)
+u32	gd_data_init(uc8 *dev_id, u8 data_type, u8 *data, u16 data_len, u8 *buf)
 {
 
-	u16	checksum;						
-	sprintf(buf,"%s%c%-8.8s%c%c%c%c",GD_FRAME_HEAD_FLG,data_type,dev_id,(data_len>>8)&0xff,(data_len)&0xff);
+	u16	checksum;				
+	
+	sprintf(buf,"%s%c%-8.8s%c%c%c%c",GD_FRAME_HEAD_FLG,data_type,dev_id,
+												(data_len>>8)&0xff,(data_len)&0xff);
+	
 	checksum = check_sum_16(buf, 18);
   	sprintf(buf+18,"%c%c", (checksum>>8)&0xff, checksum&0xff);
 	memcpy(buf+20,data,data_len);
@@ -216,27 +224,85 @@ u32	gd_gm_data_init(uc8 *dev_id, u8 data_type, u8 *data, u16 data_len, u8 *buf)
 }
 /*******************************************************************************************************
 //WS-120M协议，初始化数据帧
+//分包
 //入口参数: 	dev_id	 设备ID
 //			data_type数据类型，0心跳 1工业数据,固定为1
-//			frame_sum	帧总数
-//			frame_index 	帧序号
-//			frame_data	 帧数据
-//			frame_len	 帧数据长度
+//			packet_sum  包总数
+//			packet_index 	包序号
+//			packet_data	 包数据
+//			packet_len	包数据长度
+//			frame_index  帧序号
 //			buf		 初始化后的数据存放buf
 //出口参数:	len		 初始化后的数据长度
 ********************************************************************************************************/
-u32	gd_gm_frame_data_init(uc8 *dev_id, u8 frame_sum, u8 frame_index, u8 *frame_data, u16 frame_len, u8 *buf)
+/*
+u32	gd_gm_frame_data_init(uc8 *dev_id, 	u8 packet_sum, u8 packet_index, 
+								u8 *packet_data, u16 packet_len, u16 frame_index,	u8 *buf)
 {
 
-	u16	checksum, data_len;
-	sprintf(buf,"%s%c%-8.8s%c%c%c%c", GD_FRAME_HEAD_FLG, WS_120M_FRAME_DATA, dev_id, ((frame_len+4)>>8)&0xff, (frame_len+4)&0xff);
+	u16	checksum;
+	
+	sprintf(buf,"%s%c%-8.8s%c%c%c%c", GD_FRAME_HEAD_FLG, WS_120M_FRAME_DATA, dev_id, 
+												((packet_len+4)>>8)&0xff, (packet_len+4)&0xff);
+	
 	checksum = check_sum_16(buf, 18);
-  	sprintf(buf+18,"%c%c%c%c%c%c", (checksum>>8)&0xff, checksum&0xff, frame_index, frame_sum, (frame_len>>8)&0xff, frame_len&0xff);
-	memcpy(buf+24, frame_data, frame_len);
+	
+  	sprintf(buf+18,"%c%c%c%c%c%c", (checksum>>8)&0xff, checksum&0xff, packet_index, packet_sum, 
+														(frame_index>>8)&0xff, frame_index&0xff);
+	
+	memcpy(buf+24,packet_data, packet_len);
 				
-	return (24+frame_len);
+	return (24+packet_len);
 
 }
+*/
+void	gd_frame_data_init(gd_frame_t *frame)
+{
+	u16	checksum;
+	
+	sprintf(frame->data,"%s%c%-8.8s%c%c%c%c", GD_FRAME_HEAD_FLG, WS_120M_FRAME_DATA, frame->dev_id, 
+												((frame->packet_len+4)>>8)&0xff, (frame->packet_len+4)&0xff);
+	
+	checksum = check_sum_16(frame->data, 18);
+	
+  	sprintf(frame->data+18,"%c%c%c%c%c%c", (checksum>>8)&0xff, checksum&0xff, frame->packet_index, frame->packet_sum, 
+														(frame->frame_index>>8)&0xff, frame->frame_index&0xff);
+	
+	memcpy(frame->data+24, frame->packet_data, frame->packet_len);
+				
+	frame->len = (frame->packet_len+24);
+
+}
+
+
+/*******************************************************************************************************
+//WS-120M协议，数据帧解析
+//合包
+//入口参数:
+//出口参数:正确返回0
+********************************************************************************************************/
+u8	gd_frame_data_resolve(gd_frame_t *frame)
+{
+
+	u32	num = 0;
+
+	if(frame->data[7] != 1)	return 1;//data type
+	num = (frame->data[18] <<8) | frame->data[19];
+	if(num != check_sum_16(frame->data, 18))	return 2;//checksum error
+	num =(frame->data[16] <<8) | frame->data[17];
+	frame->packet_len = num -4;
+	if(frame->packet_len != frame->len -24) return 3;
+	frame->packet_index = frame->data[20];
+	frame->packet_sum= frame->data[21];
+	num =(frame->data[22] <<8) | frame->data[23];
+	frame->frame_index = num;
+	memcpy(frame->dev_id, frame->data+8, 8);
+	memcpy(frame->packet_data, frame->data+24, frame->packet_len);
+				
+	return 0;
+
+}
+
 
 
 

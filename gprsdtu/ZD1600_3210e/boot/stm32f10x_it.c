@@ -18,8 +18,9 @@
 /* Includes ------------------------------------------------------------------*/
 //#include "stm32f10x_it.h"
 #include "ucos_ii.h"
-#include "../drives/uart_drv.h"
 #include "stm32f10x_lib.h"
+#include "uart_drv.h"
+#include "hw_core.h"
 
 //void key_isr(void);
 //int hwtm_isr(void);
@@ -42,6 +43,7 @@
 *******************************************************************************/
 void NMIException(void)
 {
+
 }
 
 /*******************************************************************************
