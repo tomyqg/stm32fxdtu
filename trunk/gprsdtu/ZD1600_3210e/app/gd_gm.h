@@ -11,17 +11,13 @@ gprs模块底层驱动
 
 
 /*非请求结果码处理结果*/
-#define GM_TCPIP_RECIEVED_DATA	1
+#define GM_AT_COMMAND_OK	0
+#define GM_TCPIP_RECEIVED_DATA	1
 #define GM_TCPIP_LINK1_CLOSE	2
 #define GM_TCPIP_LINK2_CLOSE	3
 #define GM_TCPIP_LINK3_CLOSE	4
 #define GM_TCPIP_CLOSE			6
 #define GM_TCPIP_SERVER_CLOSE	7
-
-
-
-
-#define GM_OPERATE_TIMEOUT	2000	
 
  
 #define	 GPRS_DATA_LEN_MAX	1024

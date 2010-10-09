@@ -12,8 +12,8 @@ void suart_msg_process(gd_msg_t *recv_msg)
 {
 	gd_msg_t 		*send_msg = NULL;
 	INT8U	 		err;
-	frame_node_t	*frame = NULL;
-	INT32U			*len;
+	gm2sp_frame_t	*frame = NULL;
+	INT32U			*plen;
 
 	switch(recv_msg->type)
 	{
@@ -23,15 +23,22 @@ void suart_msg_process(gd_msg_t *recv_msg)
 		break;
 	case GD_MSG_FRAME_READY:
 		/*process data & send to serial port*/
-		frame = (frame_node_t*) recv_msg->data;
-		len = suart_send_data(frame->pFrame, frame->len);
+		frame = (gm2sp_frame_t*) recv_msg->data;
+
+		OSSemPend(gd_system.gm2sp_buf_sem, GD_SEM_TIMEOUT, &err);
+		if(err != OS_NO_ERR)	
+			return;
+
+		plen = suart_send_data(frame->buf, frame->len);
 
 		// Wait until send data finished
-		while((*len) > 0)
+		while((*plen) > 0)
 		{
 			OSTimeDlyHMSM(0, 0, 0, 5);	
 		}
-	
+		
+		err = OSSemPost(gd_system.gm2sp_buf_sem);
+
 		send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
 		send_msg->type = GD_MSG_RES_FRAME_READY;
 		send_msg->data = (void*)recv_msg->data;
@@ -80,7 +87,7 @@ void gd_task_suart(void *parg)
 	{	
 		while(1)
 		{
-			msg = OSQAccept(suart_task->q_suart, &err);	
+			msg = (gd_msg_t *)OSQAccept(suart_task->q_suart, &err);	
 
 			if(msg != NULL)
 			{

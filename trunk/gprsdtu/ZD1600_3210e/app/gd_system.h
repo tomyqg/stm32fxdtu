@@ -19,6 +19,9 @@
 
 #define GD_DEVID	"gprsdtu"
 
+#define GD_SEM_TIMEOUT	2000	
+
+
 extern const INT8U GD_DEVMAC[];
 
 enum GD_TASK_ID
@@ -39,18 +42,40 @@ enum _GD_MSG_TYPE_
 	GD_MSG_FRAME_READY,
 	GD_MSG_RES_FRAME_READY,
 	GD_MSG_GM_RECV_DATA,
-	GD_MSG_GM_TCP_STATE_CHANGE,
+	GD_MSG_GM_RESET,
+	GD_MSG_GM_INIT,
+	GD_MSG_TCP_INIT,
+	GD_MSG_TCP_MODE_INIT,
+	GD_MSG_TCP_CONNECT,
+	GD_MSG_SEND_HEARTBEAT,
+	GD_MSG_GM_TCP_LINK1_CLOSE,
+	GD_MSG_GM_TCP_LINK2_CLOSE,
+	GD_MSG_GM_TCP_LINK3_CLOSE,
+	GD_MSG_GM_TCP_SERVER_CLOSE,
+	GD_MSG_GM_TCP_CLOSE,
+	
 };
+
+typedef enum _GD_STATE_
+{
+	GD_STATE_IDLE = 0,
+	GD_STATE_STANDBY,
+	GD_STATE_ONLINE,
+
+}gd_state_t;
+
 
 typedef struct _GD_MSG_
 {
-	int  		type;
+	INT8U  		type;
 	void    	*data;
 }gd_msg_t;
 
+
 typedef struct _GD_SYSTEM_
 {
-	int					work_mode;
+	INT32U					work_mode;
+	INT32U					state;
 	
 	OS_MEM 				*gd_msg_PartitionPtr;
 
@@ -58,6 +83,7 @@ typedef struct _GD_SYSTEM_
 	OS_MEM 				*gm2sp_buf_PartitionPtr;
 
 	OS_EVENT			*gm_operate_sem;
+	OS_EVENT            *gm2sp_buf_sem;
 
 	gd_frame_list_t 	sp2gm_frame_list;
 	gd_frame_list_t 	gm2sp_frame_list;

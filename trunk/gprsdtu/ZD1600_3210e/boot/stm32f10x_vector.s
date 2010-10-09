@@ -143,7 +143,9 @@ __heap_limit
 __Vectors        DCD  __initial_sp              ; Top of Stack
                  DCD  Reset_Handler
                  DCD  NMIException
-                 DCD  HardFaultException
+;//kidss                 DCD  HardFaultException
+                 DCD  HardFault_Handler
+
                  DCD  MemManageException
                  DCD  BusFaultException
                  DCD  UsageFaultException
@@ -219,11 +221,26 @@ __Vectors        DCD  __initial_sp              ; Top of Stack
                  
                  AREA    |.text|, CODE, READONLY
 
+;//kidss
+HardFault_Handler	PROC 
+                ;EXPORT  HardFault_Handler         [WEAK] 
+                ;B                  . 
+                                IMPORT hardfault_isr  
+                                TST LR, #4  
+                                ITE EQ  
+                                MRSEQ R0, MSP  
+                                MRSNE R0, PSP  
+                                B hardfault_isr  
+                ENDP 
+
+
 ; Reset handler routine
 Reset_Handler    PROC
                  EXPORT  Reset_Handler
     	    	 
     	    	         IF      DATA_IN_ExtSRAM == 1
+
+
 ; FSMC Bank1 NOR/SRAM3 is used for the STM3210E-EVAL, if another Bank is 
 ; required, then adjust the Register Addresses
 

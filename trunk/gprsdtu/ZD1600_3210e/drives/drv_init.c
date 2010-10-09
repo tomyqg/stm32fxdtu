@@ -140,31 +140,6 @@ int RCC_Configuration(void)
 	return 0;
 }
 
-/*=============================================================================
-* Function	: 
-* Description	: 
-* Input Para	: 
-* Output Para	: 
-* Return Value  : 
-=============================================================================*/
-int rfid_init(void) {
- /*	printf("\r\nfm1702_init(): ");
-	if (fm1702_init() == FM1702_OK) {
-		printf("OK");
-	} else {
-		printf("ERR");
-	}
-
-	printf("\r\nfm1702_reg_initial(): ");
-	if (fm1702_reg_initial(1) == FM1702_OK) {
-		printf("OK");
-	} else {
-		printf("ERR");
-	}
-*/	return 0;
-}
-
-
 
 /*=============================================================================
 * Function	: 
@@ -180,20 +155,15 @@ int drv_all_init(void)
 	led_init();
 	led_on(2);
 
-			
-
-
-
-	hwtm_init();
+//	hwtm_init();
 //	key_init();
-
-	rtc_init();
+//	rtc_init();
 	// SRAM_Init();
 
 	/* Initialize the LCD */
 //	STM3210E_LCD_Init();
 
-	adc_init();
+//	adc_init();
 
 	return 0;
 }

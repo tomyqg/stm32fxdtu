@@ -4,7 +4,7 @@
 #include <ucos_ii.h>
 
 #define SP2GM_BUF_LEN		8*1024
-#define GM2SP_BUF_LEN		4*1024
+#define GM2SP_BUF_LEN		2*1024
 
 #define SP2GM_FRAME_NODE_COUNT	512
 #define GM2SP_FRAME_NODE_COUNT	32
@@ -12,6 +12,7 @@
 
 #define GD_FRAME_NODE_SIZE		12
 
+// SP2GM Frame 
 typedef struct GD_FRAME_NODE
 {
 	char 				 *pFrame;
@@ -26,15 +27,6 @@ typedef struct GD_FRAME_LIST
 
 	int 		 frame_count;
 }gd_frame_list_t;
-
-
-
-
-
-
-
-
-
 
 
 

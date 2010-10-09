@@ -245,12 +245,14 @@ int gd_system_init()
 	
 	// Create guart task sem
 	gd_system.gm_operate_sem = OSSemCreate(1);
+
+	gd_system.gm2sp_buf_sem = OSSemCreate(1);
 	
 	/********************** Create Memory Partitions *******************************/
 	gd_system.gd_msg_PartitionPtr = OSMemCreate(gd_msg_partition, GD_MSG_COUNT, GD_MSG_SIZE, &err);
 
 	gd_system.sp2gm_buf_PartitionPtr = OSMemCreate(sp2gm_buf_partition, SP2GM_FRAME_NODE_COUNT, GD_FRAME_NODE_SIZE, &err);
-	gd_system.gm2sp_buf_PartitionPtr = OSMemCreate(gm2sp_buf_partition, GM2SP_FRAME_NODE_COUNT, GD_FRAME_NODE_SIZE, &err);
+	//gd_system.gm2sp_buf_PartitionPtr = OSMemCreate(gm2sp_buf_partition, GM2SP_FRAME_NODE_COUNT, GD_FRAME_NODE_SIZE, &err);
 
 	/********************** Initialize Config Task *********************************/
 
@@ -296,19 +298,25 @@ int gd_system_init()
 	gd_system.network_task.q_network = OSQCreate(&gd_system.network_task.QMsgTbl[0], NETWORK_QMSG_COUNT);
 
 	// Link info
-	gd_system.network_task.link_count = 3;
+	gd_system.network_task.link_count = 1;
 	
+	gd_system.network_task.link_info[0].link_num = 0;
 	gd_system.network_task.link_info[0].link_type = 0; //TCP
+	gd_system.network_task.link_info[0].link_state = GD_LINK_STATE_IDLE;
 	strcpy(gd_system.network_task.link_info[0].svr_ip, "218.94.116.78");
-	gd_system.network_task.link_info[0].svr_port = 10001;
+	gd_system.network_task.link_info[0].svr_port = 20001;
 	
+	gd_system.network_task.link_info[1].link_num = 1;
 	gd_system.network_task.link_info[1].link_type = 0; //TCP
+	gd_system.network_task.link_info[1].link_state = GD_LINK_STATE_IDLE;
 	strcpy(gd_system.network_task.link_info[1].svr_ip, "218.94.116.78");
-	gd_system.network_task.link_info[1].svr_port = 6001;
+	gd_system.network_task.link_info[1].svr_port = 20002;
 
+	gd_system.network_task.link_info[2].link_num = 2;
 	gd_system.network_task.link_info[2].link_type = 0; //TCP
+	gd_system.network_task.link_info[2].link_state = GD_LINK_STATE_IDLE;
 	strcpy(gd_system.network_task.link_info[2].svr_ip, "218.94.116.78");
-	gd_system.network_task.link_info[2].svr_port = 6002;
+	gd_system.network_task.link_info[2].svr_port = 10003;
 	
 	return 0;
 }
