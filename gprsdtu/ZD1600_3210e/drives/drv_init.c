@@ -25,7 +25,7 @@
 * Output Para	: 
 * Return Value  : 
 =============================================================================*/
-int NVIC_Configuration(void)
+void NVIC_Configuration(void)
 {
 	NVIC_InitTypeDef NVIC_InitStructure;
 #ifdef  VECT_TAB_RAM  
@@ -54,7 +54,7 @@ int NVIC_Configuration(void)
 	NVIC_Init(&NVIC_InitStructure);
 
 
-	return 0;
+//	return 0;
 }
 
 /*=============================================================================
@@ -64,7 +64,7 @@ int NVIC_Configuration(void)
 * Output Para	: 
 * Return Value  : 
 =============================================================================*/
-int RCC_Configuration(void)
+void RCC_Configuration(void)
 {
 
 	ErrorStatus HSEStartUpStatus;
@@ -122,7 +122,7 @@ int RCC_Configuration(void)
   RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE);
 
   /* Allow access to BKP Domain */
-  PWR_BackupAccessCmd(ENABLE);
+//  PWR_BackupAccessCmd(ENABLE);
 
 //  /* Reset Backup Domain */
 
@@ -137,8 +137,10 @@ int RCC_Configuration(void)
   /* Enable RTC Clock */
   RCC_RTCCLKCmd(ENABLE);  
 
-	return 0;
+//	return 0;
 }
+
+
 
 
 /*=============================================================================
@@ -148,12 +150,16 @@ int RCC_Configuration(void)
 * Output Para	: 
 * Return Value  : 
 =============================================================================*/
-int drv_all_init(void)
+void drv_all_init(void)
 {
 	ENABLE_IRQ();
 
 	led_init();
 	led_on(2);
+
+
+
+	
 
 //	hwtm_init();
 //	key_init();
@@ -165,7 +171,8 @@ int drv_all_init(void)
 
 //	adc_init();
 
-	return 0;
+//	return 0;
 }
 
 /************************************END OF FILE******************************/
+

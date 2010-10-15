@@ -147,7 +147,7 @@ int sp2gm_buf_full_process()
 	}	
 
 	
-	return 0;
+//	return 0;
 }
 
 int sp2gm_adjust_buf_pos(int frame_len)
@@ -193,6 +193,8 @@ int sp2gm_cache_frame(char *frame, int frame_len)
 	frame_node_t 	*node = NULL;
 	frame_node_t    *next_node = NULL;
 
+	OSSemPend(gd_system.sp2gm_mem_sem, GD_SEM_TIMEOUT, &err);
+
 	// Adjust the start_pos and free_pos
 	sp2gm_adjust_buf_pos(frame_len);
 
@@ -228,10 +230,11 @@ int sp2gm_cache_frame(char *frame, int frame_len)
 		node->next = next_node;
 		memcpy(next_node->pFrame, frame, frame_len);
 		sp2gm_free_pos += frame_len; 
-
 	}
 
 	gd_system.sp2gm_frame_list.frame_count++;
+
+	OSSemPost(gd_system.sp2gm_mem_sem);
 
 	return 0;
 }
@@ -239,6 +242,9 @@ int sp2gm_cache_frame(char *frame, int frame_len)
 int sp2gm_remove_frame(frame_node_t *frame_node)
 {
 	frame_node_t 	*node = NULL;
+	INT8U	 		err;
+
+	OSSemPend(gd_system.sp2gm_mem_sem, GD_SEM_TIMEOUT, &err);
 
 	if(gd_system.sp2gm_frame_list.head == NULL)
 		return -1;
@@ -262,9 +268,15 @@ int sp2gm_remove_frame(frame_node_t *frame_node)
 			OSMemPut(gd_system.sp2gm_buf_PartitionPtr, (void*)node);
 			gd_system.sp2gm_frame_list.frame_count--;
 		}
+
+		OSSemPost(gd_system.sp2gm_mem_sem);
 	}
 	else // Error
+	{
+		OSSemPost(gd_system.sp2gm_mem_sem);
 		return -1;
+	}
+	return 0;
 }
 
 

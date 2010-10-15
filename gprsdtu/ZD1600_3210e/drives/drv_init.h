@@ -31,9 +31,9 @@
 //#include "fm1702.h"
 
 
-int drv_all_init(void);
-int RCC_Configuration(void);
-int NVIC_Configuration(void);
+void drv_all_init(void);
+void RCC_Configuration(void);
+void NVIC_Configuration(void);
 
 
 #endif //__DRV_INIT_H__

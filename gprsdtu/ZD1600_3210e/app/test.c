@@ -31,6 +31,9 @@ void App_test(void *parg)
 		}
 //		suart_send_data("test", strlen("test"));			
 //		OSTimeDlyHMSM(0, 0, 1, 0);
+/*
+
+*/
 //		guart_send_data("usart", strlen("usart"));			
 		OSTimeDlyHMSM(0, 0, 1, 0);
 	}

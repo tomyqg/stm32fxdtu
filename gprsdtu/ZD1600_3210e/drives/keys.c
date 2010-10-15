@@ -399,6 +399,6 @@ int key_accept(void)
 =============================================================================*/
 int key_flush(void)
 {
-	OSQFlush(EventKey);
+//	OSQFlush(EventKey);
 	return 0;
 }

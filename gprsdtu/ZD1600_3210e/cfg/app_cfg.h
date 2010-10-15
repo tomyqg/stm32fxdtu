@@ -48,15 +48,15 @@
 *                                            TASK STACK SIZES 
 ********************************************************************************************************* 
 */ 
-#define  GD_TASK_INIT_STK_SIZE				   128
+#define  GD_TASK_INIT_STK_SIZE				   256
 #define  GD_TASK_CONFIG_STK_SIZE			   512
-#define  GD_TASK_SUART_STK_SIZE			   	   512
+#define  GD_TASK_SUART_STK_SIZE			   	   256
 #define  GD_TASK_GUART_STK_SIZE			       512
-#define  GD_TASK_GUART_RX_STK_SIZE			   512
+#define  GD_TASK_GUART_RX_STK_SIZE			   256
 #define  GD_TASK_NETWORK_STK_SIZE			   512
-#define  GD_TASK_LED_STK_SIZE                  128	
+#define  GD_TASK_LED_STK_SIZE                  32	
 
-#define	 APP_TASK_TEST_STK_SIZE				   512
+//#define	 APP_TASK_TEST_STK_SIZE				   512
 
 /* 
 ********************************************************************************************************* 

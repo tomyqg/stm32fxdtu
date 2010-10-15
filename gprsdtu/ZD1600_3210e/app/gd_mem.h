@@ -30,7 +30,8 @@ typedef struct GD_FRAME_LIST
 
 
 
-
+int sp2gm_remove_frame(frame_node_t *frame_node);
+int sp2gm_cache_frame(char *frame, int frame_len);
 
 
 
