@@ -1,6 +1,7 @@
 #ifndef	__MYSTRING_H__
 #define	__MYSTRING_H__
 #include "stm32f10x_type.h"
+#include <string.h>
 
 
 #define GD_FRAME_HEAD_FLG	"WS-120M"

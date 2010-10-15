@@ -20,6 +20,7 @@ void network_tcpip_init(void);
 void network_tcpip_mode(void);
 void network_tcpip_creat(void);
 void network_heart_beat(void);
+void network_no_signal(void);
 
 void network_tcpip_state_change(INT8U change);
 
@@ -34,13 +35,13 @@ void gd_task_network(void *parg)
 	gd_msg_t 	*recv_msg = NULL;
 	gd_network_task_t *network_task = &gd_system.network_task;
 
-
+	fail_tick = 0;
 
 
 	while(1)
 	{
 		recv_msg = (gd_msg_t *)OSQAccept(network_task->q_network, &err);
-		fail_tick = 0;
+
 		if(recv_msg != NULL)
 		{
 			switch(recv_msg->type)
@@ -63,6 +64,10 @@ void gd_task_network(void *parg)
 			case GD_MSG_SEND_HEARTBEAT:
 				network_heart_beat();
 				break;	
+
+			case GD_MSG_GM_NO_SIGNAL:
+				network_no_signal();
+				break;
 			/*unrequest at command*/
 			case GD_MSG_GM_TCP_LINK1_CLOSE:
 				network_tcpip_state_change(GM_TCPIP_LINK1_CLOSE);	
@@ -85,6 +90,7 @@ void gd_task_network(void *parg)
 			}
 			
 			res = OSMemPut(gd_system.gd_msg_PartitionPtr, (void*)recv_msg);
+
 			if(res != OS_ERR_NONE)	
 			{
 				//...error....
@@ -98,12 +104,12 @@ void gd_task_network(void *parg)
 void network_gm_reset(void)
 {
 	INT8S	res = 0;
-	INT8U 		err;
+//	INT8U 		err;
 	gd_msg_t 	*send_msg = NULL;
 	
 	res = gprsmodule_reset();
 	
-	send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+	gd_msg_malloc(&send_msg);
 	send_msg->data =  (void*)NULL;
 	if(res == 0)	
 	{
@@ -117,6 +123,7 @@ void network_gm_reset(void)
 		if(fail_tick >= NETWORK_FAIL_COUNT)
 		{
 			fail_tick = 0;
+			OSQFlush(gd_system.network_task.q_network);
 			//system reset
 			system_reset();
 		}
@@ -134,8 +141,14 @@ void network_gm_init(void)
 	INT8U 		err;
 	gd_msg_t 	*send_msg = NULL;
 	
-	res = gprsmodule_init();
-	send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+	OSSemPend(gd_system.gm_operate_sem, GD_SEM_TIMEOUT, &err);
+	if(err != OS_NO_ERR)	
+		res = -1;
+	else 
+		res = gprsmodule_init();
+ 	OSSemPost(gd_system.gm_operate_sem);
+
+	gd_msg_malloc(&send_msg);
 	send_msg->data =  (void*)NULL;				
 	if(res == 0)
 	{
@@ -148,7 +161,8 @@ void network_gm_init(void)
 		fail_tick++;
 		if(fail_tick >= NETWORK_FAIL_COUNT)
 		{
-			fail_tick = 0;						
+			fail_tick = 0;	
+			//OSQFlush(gd_system.network_task.q_network);					
 			send_msg->type = GD_MSG_GM_RESET;
 		}
 		else
@@ -165,16 +179,18 @@ void network_tcpip_init(void)
 	INT8S	res = 0;
 	INT8U 		err;
 	gd_msg_t 	*send_msg = NULL;
-	send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+
+	gd_msg_malloc(&send_msg);
 	send_msg->data =  (void*)NULL;
-	
+
+
 	OSSemPend(gd_system.gm_operate_sem, GD_SEM_TIMEOUT, &err);
 	if(err != OS_NO_ERR)	
-	{
-		goto TCPINITCONTINUE;	
-	}
+		res = -1;
+	else 	
+		res = gprs_tcpip_init("", "");	   
+ 	OSSemPost(gd_system.gm_operate_sem);
 
-	res = gprs_tcpip_init("", "");
 
 	if(res == 0)
 	{
@@ -184,10 +200,11 @@ void network_tcpip_init(void)
 	}
 	else
 	{
-TCPINITCONTINUE:		
+	
 		fail_tick++;
 		if(fail_tick >= NETWORK_FAIL_COUNT)
 		{
+	   		//OSQFlush(gd_system.network_task.q_network);
 			fail_tick = 0;	
 			send_msg->type = GD_MSG_GM_RESET;
 		}
@@ -198,18 +215,23 @@ TCPINITCONTINUE:
 		OSQPost(gd_system.network_task.q_network, (void*)send_msg);	
 	}
 
-	OSSemPost(gd_system.gm_operate_sem);
-
-
+   
 }
 void network_tcpip_mode(void)
 {
 	INT8S	res = 0;
 	INT8U 		err;
 	gd_msg_t 	*send_msg = NULL;
+
+
+	OSSemPend(gd_system.gm_operate_sem, GD_SEM_TIMEOUT, &err);
+	if(err != OS_NO_ERR)	
+		res = -1;
+	else 	
+		res = gprs_tcpip_mode_init(0x01);   
+ 	OSSemPost(gd_system.gm_operate_sem);
 	
-	res = gprs_tcpip_mode_init(0x01);
-	send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+	gd_msg_malloc(&send_msg);
 	send_msg->data =  (void*)NULL;
 	if(res == 0)
 	{
@@ -224,6 +246,7 @@ void network_tcpip_mode(void)
 		if(fail_tick >= NETWORK_FAIL_COUNT)
 		{
 			fail_tick = 0;	
+			OSQFlush(gd_system.network_task.q_network);
 			send_msg->type = GD_MSG_GM_RESET;
 		}
 		else
@@ -237,19 +260,17 @@ void network_tcpip_mode(void)
 void network_tcpip_creat(void)
 {
 	INT8S		res = 0;
-	INT8U 		err;
+//	INT8U 		err;
 	gd_msg_t 	*send_msg = NULL;
 	INT8U 		i = 0;
 
 	gd_network_task_t *network_task = &gd_system.network_task;
 
-	
-
 	for(i=0; i<network_task->link_count; i++)
 	{
 		if(network_task->link_info[i].link_state == GD_LINK_STATE_IDLE)
 		{
-			res = gprs_tcpip_creat_connection(network_task->link_info[i].link_type ,network_task->link_info[i].svr_ip, network_task->link_info[i].svr_port, 9055, 9057);
+			res = gprs_tcpip_creat_connection(network_task->link_info[i].link_type, network_task->link_info[i].svr_ip, network_task->link_info[i].svr_port, 9055, 9057);
 			if(res == 0)
 			{
 				fail_tick = 0;
@@ -261,7 +282,8 @@ void network_tcpip_creat(void)
 				if(fail_tick >= (NETWORK_FAIL_COUNT * network_task->link_count))
 				{
 					fail_tick = 0;
-					send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+					//OSQFlush(gd_system.network_task.q_network);
+					gd_msg_malloc(&send_msg);
 					send_msg->data =  (void*)NULL;
 					send_msg->type = GD_MSG_GM_RESET;
 					OSQPost(gd_system.network_task.q_network, (void*)send_msg);
@@ -276,7 +298,7 @@ void network_tcpip_creat(void)
 	{
 		if(network_task->link_info[i].link_state == GD_LINK_STATE_IDLE)
 		{
-			send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+			gd_msg_malloc(&send_msg);
 			send_msg->type = GD_MSG_TCP_CONNECT;
 			send_msg->data =  (void*)NULL;
 			OSQPost(gd_system.network_task.q_network, (void*)send_msg);	
@@ -287,30 +309,29 @@ void network_tcpip_creat(void)
 	if(gd_system.state == GD_STATE_STANDBY)
 	{
 		// Inform guart task the connection is ready	
-		send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+		gd_msg_malloc(&send_msg);
 		send_msg->type = GD_MSG_CONNECTION_READY;
 		send_msg->data =  (void*)NULL;
 		OSQPost(gd_system.guart_task.q_guart, (void*)send_msg);
 		
 		// Inform suart task the connection is ready	
-		send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+		gd_msg_malloc(&send_msg);
 		send_msg->type = GD_MSG_CONNECTION_READY;
 		send_msg->data =  (void*)NULL;
 		OSQPost(gd_system.suart_task.q_suart, (void*)send_msg);
 
 		gd_system.state = GD_STATE_ONLINE;
-		send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+		gd_msg_malloc(&send_msg);
 		send_msg->type = GD_MSG_SEND_HEARTBEAT;
 		send_msg->data =  (void*)NULL;
 		OSQPost(gd_system.network_task.q_network, (void*)send_msg);	
 	}
-
-
 }
+
 void network_heart_beat(void)
 {
 	INT8S	res = 0;
-	static INT8U		counter = 0;
+	static INT8U		counter = 50;
 	INT32U 		heartbeat_len;
 	INT8U 		err;
 	INT8U 		gd_heart_beat[92];
@@ -326,51 +347,65 @@ void network_heart_beat(void)
 		
 		if(counter > 50)
 		{
-			heartbeat_len = gd_heart_beat_init(GD_DEVID, GD_DEVMAC, NULL, 0, 70, gd_heart_beat);
 			OSSemPend(gd_system.gm_operate_sem, GD_SEM_TIMEOUT, &err);
 			if(err == OS_NO_ERR)
 			{
-				for(i=0; i<network_task->link_count; i++)
+				res = at_csq();
+				if(res>=0 && res<=31)
 				{
-					res = gprs_tcpip_send(gd_heart_beat, heartbeat_len, i);
-					if(res == 0)
+					heartbeat_len = gd_heart_beat_init(GD_DEVID, GD_DEVMAC, NULL, 0, (u8)res, gd_heart_beat);
+					for(i=0; i<network_task->link_count; i++)
 					{
-						fail_tick = 0;								
-					}
-					else
-					{
-						// Send error
-						fail_tick++;
-						if(fail_tick >= (NETWORK_FAIL_COUNT * network_task->link_count))
+						res = gprs_tcpip_send(gd_heart_beat, heartbeat_len, i);
+						if(res == 0)
 						{
-							fail_tick = 0;
-							send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
-							send_msg->data =  (void*)NULL;
-							send_msg->type = GD_MSG_GM_RESET;
-							OSQPost(gd_system.network_task.q_network, (void*)send_msg);
-							break;
+							fail_tick = 0;								
+						}
+						else
+						{
+							// Send error
+							fail_tick++;
+							if(fail_tick >= (NETWORK_FAIL_COUNT * network_task->link_count))
+							{
+								fail_tick = 0;
+								gd_msg_malloc(&send_msg);
+								send_msg->data =  (void*)NULL;
+								send_msg->type = GD_MSG_GM_RESET;
+								OSQPost(gd_system.network_task.q_network, (void*)send_msg);
+								break;
+							}
 						}
 					}
 				}
-				err = OSSemPost(gd_system.gm_operate_sem);
+				else
+				{
+					//no signal
+				 	//...
+					fail_tick = 0;
+			//		OSQFlush(gd_system.network_task.q_network);
+					gd_msg_malloc(&send_msg);
+					send_msg->data =  (void*)NULL;
+					send_msg->type = GD_MSG_GM_NO_SIGNAL;
+					OSQPost(gd_system.network_task.q_network, (void*)send_msg);
+					return;
+				}
 			}
+			OSSemPost(gd_system.gm_operate_sem);
 			counter = 0;
 		}
 		
-		send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+		gd_msg_malloc(&send_msg);
 		send_msg->type = GD_MSG_SEND_HEARTBEAT;
 		send_msg->data =  (void*)NULL;
-		OSQPost(gd_system.network_task.q_network, (void*)send_msg);
-				
+		OSQPost(gd_system.network_task.q_network, (void*)send_msg);			
 	}
-	
 }
 
 
 void network_tcpip_state_change(INT8U change)
 {
 //	INT8S	res = 0;
-	INT8U 		err;
+//	INT8U 		err;
 	gd_msg_t 	*send_msg = NULL;
 	gd_network_task_t *network_task = &gd_system.network_task;	
 
@@ -396,9 +431,9 @@ void network_tcpip_state_change(INT8U change)
 		network_task->link_info[1].link_state = GD_LINK_STATE_IDLE;
 		network_task->link_info[2].link_state = GD_LINK_STATE_IDLE;
 		gd_system.state = GD_STATE_IDLE;
-		send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+		gd_msg_malloc(&send_msg);
 		send_msg->data =  (void*)NULL;
-		send_msg->type = GD_MSG_GM_RESET;
+		send_msg->type = GD_MSG_TCP_INIT;
 		OSQPost(gd_system.network_task.q_network, (void*)send_msg);		
 		return;
 			
@@ -406,11 +441,48 @@ void network_tcpip_state_change(INT8U change)
 		return;
 	}
 	
-	send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+	gd_msg_malloc(&send_msg);
 	send_msg->data =  (void*)NULL;
 	send_msg->type = GD_MSG_TCP_CONNECT;
 	OSQPost(gd_system.network_task.q_network, (void*)send_msg);		
+}
 
+void network_no_signal(void)
+{
+	INT8U err = 0;
+	INT8S res = 0;
+	gd_msg_t 	*send_msg = NULL;
+	gd_network_task_t *network_task = &gd_system.network_task;	
+
+
+
+	OSSemPend(gd_system.gm_operate_sem, GD_SEM_TIMEOUT, &err);
+	res = at_csq();
+	OSSemPost(gd_system.gm_operate_sem);
+
+	network_task->link_info[0].link_state = GD_LINK_STATE_IDLE;
+	network_task->link_info[1].link_state = GD_LINK_STATE_IDLE;
+	network_task->link_info[2].link_state = GD_LINK_STATE_IDLE;
+	gd_system.state = GD_STATE_STANDBY;
+
+	gd_msg_malloc(&send_msg);
+	send_msg->data =  (void*)NULL;
+  	if(err == OS_NO_ERR)
+	{
+		if(res>=0 && res<=31)
+		{
+			send_msg->type = GD_MSG_TCP_CONNECT;
+			OSQPost(gd_system.network_task.q_network, (void*)send_msg);
+		}
+		else
+		{
+			//no signal
+		 	//...
+	//		OSQFlush(gd_system.network_task.q_network);
+			send_msg->type = GD_MSG_GM_NO_SIGNAL;
+			OSQPost(gd_system.network_task.q_network, (void*)send_msg);
+		}
+	}
 }
 
 

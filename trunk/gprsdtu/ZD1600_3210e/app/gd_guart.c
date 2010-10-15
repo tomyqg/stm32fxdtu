@@ -1,5 +1,7 @@
 #include <ucos_ii.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include "gd_guart.h"
 #include "gd_gm.h"
 #include "../drives/uart_drv.h"
@@ -17,6 +19,7 @@ void unrequest_at_dispose(u32 len);
 void guart_recv_data_process(void);
 void guart_send_data_process(frame_node_t *frame);
 void guart_msg_process(gd_msg_t *recv_msg);
+void gm_recvpacket_request(void);
 
 /**********************************************************************************************
 task for guart rx dispose
@@ -25,7 +28,7 @@ task for guart rx dispose
 **********************************************************************************************/
 void gd_task_guart_rx(void *parg)
 {
-	INT8U 	*data, *peek ,err;
+	INT8U 	*data, *peek;
 	INT32U 	len,len_c, rx_dp, rx_len;
 	INT32U	*pRxLen;
 	OS_CPU_SR  cpu_sr;
@@ -42,7 +45,8 @@ void gd_task_guart_rx(void *parg)
 	pRxLen = uart_rx_bufset(GUART, guart_task->rx_buf,  GUART_RX_BUF_SIZE);
 	uart_rx_itconf(GUART, ENABLE);
 	
-	send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+	gd_msg_malloc(&send_msg);
+
 	send_msg->type = GD_MSG_GM_RESET;
 	send_msg->data = NULL;
 	OSQPost(gd_system.network_task.q_network, (void*)send_msg);
@@ -116,18 +120,17 @@ void gd_task_guart_rx(void *parg)
 		}	
 		OSTimeDlyHMSM(0, 0, 0, 20); 
 	}
-
 }
 
 void unrequest_at_dispose(u32 len)
 {
-	INT8S	res = 0;
-	INT8U 	 		err;
+	INT8S	 res = 0;
+//	INT8U 	 err;
 	gd_msg_t *send_msg = NULL;
 	
 	res = gprs_unrequest_code_dispose(len);
 
-	send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+	gd_msg_malloc(&send_msg);
 	send_msg->data = NULL;
 
 	switch(res)
@@ -160,7 +163,8 @@ void unrequest_at_dispose(u32 len)
 		OSQPost(gd_system.network_task.q_network, (void*)send_msg);
 		break;
 	default:
-		return; 
+		OSMemPut(gd_system.gd_msg_PartitionPtr, (void*)send_msg);
+		break; 
 	}
 }
 
@@ -174,6 +178,7 @@ void gd_task_guart(void *parg)
 {
 	gd_msg_t *recv_msg;
 	INT8U err;
+	static INT16U gm_request_index= 0;
 	gm2sp_frame.frame_index = 12345;
 	gm2sp_frame.packet_index = 0;
 	gm2sp_frame.packet_sum = 0;
@@ -193,16 +198,23 @@ void gd_task_guart(void *parg)
 	
 	while (1) 
 	{
+		OSMemPut(gd_system.gd_msg_PartitionPtr, (void*)recv_msg);
+
 		recv_msg = (gd_msg_t*)OSQAccept(gd_system.guart_task.q_guart, &err);
 
 		if(recv_msg)	
 		{
 			guart_msg_process(recv_msg);
 		}
-
+		
+		if(gm_request_index > 200)
+		{
+			gm_request_index = 0;
+//			gm_recvpacket_request();
+		}
+		gm_request_index++;
 		OSTimeDlyHMSM(0, 0, 0, 10);
 	}	
-	
 }
 
 
@@ -223,25 +235,58 @@ void guart_msg_process(gd_msg_t *recv_msg)
 		break;
 	case GD_MSG_FRAME_READY:
 		/*process data & send to gprs*/
+		OSSemPend(gd_system.sp2gm_mem_sem, GD_SEM_TIMEOUT, &err);
 		guart_send_data_process((frame_node_t*) recv_msg->data);
+		OSSemPost(gd_system.sp2gm_mem_sem);
 		/*queue back*/
-		send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+		gd_msg_malloc(&send_msg);
 		send_msg->type = GD_MSG_RES_FRAME_READY;
 		send_msg->data = (void*)recv_msg->data;
 	
 		OSQPost(gd_system.suart_task.q_suart, (void*)send_msg);
-		/*free msg*/
-		OSMemPut(gd_system.gd_msg_PartitionPtr, (void*)recv_msg);
+	
 		break;
 	case GD_MSG_GM_RECV_DATA:
 		guart_recv_data_process();
-		OSMemPut(gd_system.gd_msg_PartitionPtr, (void*)recv_msg);
 		break;		
 	default:
 		break;
 	}
 
+	/*free msg*/
+	OSMemPut(gd_system.gd_msg_PartitionPtr, (void*)recv_msg);
 }
+/**********************************************************************************************
+gprs模块缓存数据包查询
+入口参数:
+返回参数:
+**********************************************************************************************/
+void gm_recvpacket_request(void)
+{
+	INT8U err = 0;
+	INT8U unread =0; 
+	INT8U total =0;
+	INT8S res = 0;
+	gd_msg_t *send_msg = NULL;
+	OSSemPend(gd_system.gm_operate_sem, GD_SEM_TIMEOUT, &err);
+	if(err != OS_NO_ERR)	
+		return;
+	res = gprs_tcpip_recvbuf_query(&unread, &total);
+	if(res == 0)
+	{
+		if(unread >0)	
+		{
+			gd_msg_malloc(&send_msg);
+			send_msg->data = NULL;
+			send_msg->type = GD_MSG_GM_RECV_DATA;
+			OSQPost(gd_system.guart_task.q_guart, (void*)send_msg);		
+		
+		}	
+	}
+	err = OSSemPost(gd_system.gm_operate_sem);
+
+}
+
 
 /**********************************************************************************************
 从gprs module接收数据
@@ -262,6 +307,7 @@ void guart_recv_data_process(void)
 	OSSemPend(gd_system.gm2sp_buf_sem, 0, &err);
 	if(err != OS_NO_ERR)	
 		return;
+
 	OSSemPend(gd_system.gm_operate_sem, GD_SEM_TIMEOUT, &err);
 	if(err != OS_NO_ERR)	
 		return;
@@ -296,10 +342,10 @@ void guart_recv_data_process(void)
 					gm2sp_frame.frame_index = 0;
 					return;
 				}
+
 				if(gm2sp_frame.packet_index != 0)	
 				{
-					memcpy(gm2sp_frame.buf,  gm2sp_frame.buf+gm2sp_frame.frame_len);
-
+					memcpy(gm2sp_frame.buf, gm2sp_frame.buf+gm2sp_frame.frame_len, gd_frame.packet_len);
 				}
 			}
 //			else
@@ -315,7 +361,7 @@ void guart_recv_data_process(void)
 				gm2sp_frame.frame_len = 0;
 				
 				//gm2sp_cache_frame(buf, buf_len);
-			   	send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+				gd_msg_malloc(&send_msg);
 				send_msg->type = GD_MSG_FRAME_READY;
 				send_msg->data = (void*)&gm2sp_frame;
 				OSQPost(gd_system.suart_task.q_suart, (void*)send_msg);		
@@ -335,10 +381,12 @@ void guart_send_data_process(frame_node_t *frame)
 {
 	INT8U	err;
 	INT8S 	res = 0;
-	INT8U	packet_index, packet_sum, last_len;
+	INT8U	packet_index, packet_sum;
+	INT16U last_len;
 	static INT16U	frame_index = 0;
 	gd_frame_t gd_frame;
 	
+//	gd_msg_t 	*send_msg = NULL;
 	
 	/*分包、协议编解码*/
 	packet_sum = frame->len / WS120M_FRAME_LEN;
@@ -376,7 +424,16 @@ void guart_send_data_process(frame_node_t *frame)
 		OSSemPend(gd_system.gm_operate_sem, GD_SEM_TIMEOUT, &err);
 		if(err == OS_NO_ERR)	
 		{
+		/************************ Test **********************************************/			
+//			gm2sp_frame.len = frame->len;
+//			memcpy(gm2sp_frame.buf, frame->pFrame, gm2sp_frame.len);
+//		   	gd_msg_malloc(&send_msg);
+//			send_msg->type = GD_MSG_FRAME_READY;
+//			send_msg->data = (void*)&gm2sp_frame;
+//			OSQPost(gd_system.suart_task.q_suart, (void*)send_msg);	
+		/***************************************************************************/		
 			res = gprs_tcpip_send(gd_system.guart_task.tx_buf, gd_frame.len, 0);
+		
 			if(res !=0)
 			{
 			
@@ -388,8 +445,11 @@ void guart_send_data_process(frame_node_t *frame)
 		}
 		err = OSSemPost(gd_system.gm_operate_sem);
 	}
+
 	frame_index++;
-	if(frame_index >= 65535)	frame_index = 0;
+
+	if(frame_index >= 65535)	
+		frame_index = 0;
 	
 }
 

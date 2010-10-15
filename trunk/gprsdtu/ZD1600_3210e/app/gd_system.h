@@ -14,10 +14,10 @@
 #define GD_CONFIG_MODE		1
 #define GD_TRANS_MODE		2
 
-#define GD_MSG_COUNT		64
+#define GD_MSG_COUNT		16
 #define GD_MSG_SIZE			8
 
-#define GD_DEVID	"gprsdtu"
+#define GD_DEVID	"gprs-dtu"
 
 #define GD_SEM_TIMEOUT	2000	
 
@@ -53,9 +53,9 @@ enum _GD_MSG_TYPE_
 	GD_MSG_GM_TCP_LINK3_CLOSE,
 	GD_MSG_GM_TCP_SERVER_CLOSE,
 	GD_MSG_GM_TCP_CLOSE,
+	GD_MSG_GM_NO_SIGNAL,
 	
 };
-
 typedef enum _GD_STATE_
 {
 	GD_STATE_IDLE = 0,
@@ -74,9 +74,11 @@ typedef struct _GD_MSG_
 
 typedef struct _GD_SYSTEM_
 {
-	INT32U					work_mode;
-	INT32U					state;
-	
+	gd_config_info_t	gd_config_info;
+
+	INT32U				work_mode;
+	INT32U				state;
+ 		
 	OS_MEM 				*gd_msg_PartitionPtr;
 
 	OS_MEM 				*sp2gm_buf_PartitionPtr;
@@ -84,6 +86,7 @@ typedef struct _GD_SYSTEM_
 
 	OS_EVENT			*gm_operate_sem;
 	OS_EVENT            *gm2sp_buf_sem;
+	OS_EVENT            *sp2gm_mem_sem;
 
 	gd_frame_list_t 	sp2gm_frame_list;
 	gd_frame_list_t 	gm2sp_frame_list;
@@ -101,10 +104,10 @@ typedef struct _GD_SYSTEM_
 extern gd_system_t gd_system; 
 
 
-int gd_judge_work_mode(void);
+void gd_judge_work_mode(void);
 int  gd_system_init(void);
-int gd_start_init_task(void);
-
+void gd_start_init_task(void);
+void gd_msg_malloc(gd_msg_t **msg);
 
 
 

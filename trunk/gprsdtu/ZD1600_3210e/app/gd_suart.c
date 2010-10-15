@@ -2,11 +2,13 @@
 #include "gd_suart.h"
 #include "gd_system.h"
 #include <stdio.h>
+#include <string.h>
 #include "../drives/uart_drv.h"
 
 OS_STK gd_task_suart_stk[GD_TASK_SUART_STK_SIZE];
 
-extern gd_system_t gd_system; 
+extern 	gd_system_t gd_system;
+int		frame_msg_count = 0; 
 
 void suart_msg_process(gd_msg_t *recv_msg)
 {
@@ -18,8 +20,9 @@ void suart_msg_process(gd_msg_t *recv_msg)
 	switch(recv_msg->type)
 	{
 	case GD_MSG_RES_FRAME_READY:
+		frame_msg_count--;
 		sp2gm_remove_frame((frame_node_t*)recv_msg->data);
-		OSMemPut(gd_system.gd_msg_PartitionPtr, (void*)recv_msg);
+
 		break;
 	case GD_MSG_FRAME_READY:
 		/*process data & send to serial port*/
@@ -39,17 +42,18 @@ void suart_msg_process(gd_msg_t *recv_msg)
 		
 		err = OSSemPost(gd_system.gm2sp_buf_sem);
 
-		send_msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
+		gd_msg_malloc(&send_msg);
 		send_msg->type = GD_MSG_RES_FRAME_READY;
 		send_msg->data = (void*)recv_msg->data;
 	
 		OSQPost(gd_system.guart_task.q_guart, (void*)send_msg);
 	
-		OSMemPut(gd_system.gd_msg_PartitionPtr, (void*)recv_msg);
 		break;
 	default:
 		break;
 	}
+
+	OSMemPut(gd_system.gd_msg_PartitionPtr, (void*)recv_msg);
 	
 	return;
 }
@@ -85,6 +89,8 @@ void gd_task_suart(void *parg)
 
 	if(msg->type == GD_MSG_CONNECTION_READY)
 	{	
+		OSMemPut(gd_system.gd_msg_PartitionPtr, (void*)msg);
+
 		while(1)
 		{
 			msg = (gd_msg_t *)OSQAccept(suart_task->q_suart, &err);	
@@ -113,13 +119,18 @@ void gd_task_suart(void *parg)
 					uart_rx_itconf(SUART, DISABLE);
 					sp2gm_cache_frame(suart_task->rx_buf, rx_now_len);
 					*pRxLen = 0;
+					rx_pre_len = 0;
 					uart_rx_itconf(SUART, ENABLE);
 
 					// Send msg to guart task
-					msg = (gd_msg_t *)OSMemGet(gd_system.gd_msg_PartitionPtr, &err);
-					msg->type = GD_MSG_FRAME_READY;
-					msg->data =  (void*)gd_system.sp2gm_frame_list.head;
-					OSQPost(gd_system.guart_task.q_guart, (void*)msg);
+					if(frame_msg_count < GUART_QMSG_COUNT)
+					{
+						gd_msg_malloc(&msg);
+						msg->type = GD_MSG_FRAME_READY;
+						msg->data =  (void*)gd_system.sp2gm_frame_list.head;
+						OSQPost(gd_system.guart_task.q_guart, (void*)msg);
+						frame_msg_count++;
+					}
 				}
 			}
 

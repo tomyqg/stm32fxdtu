@@ -1,7 +1,7 @@
 
 #include "gd_string.h"
 #include <string.h>
-
+#include <stdio.h>
 
 
 
@@ -32,7 +32,7 @@ u8* check_string(u8 *str, u8 *flg, u32 len)
 	return NULL;
 */
 	u32	i,j;
-	u32 flg_len = strlen(flg);
+	u32 flg_len = strlen((uc8 *)flg);
 	for(i=0; i<len; i++)
 	{
 		if(str[i] == flg[0])
@@ -121,10 +121,11 @@ u32 hex_to_ascii(u8 *data, u8 *buffer, u32 len)
 *******************************************/
 u32 char_to_int(u8 *cdata, u32 len)
 {
-	u8 i;
+	u8 i = 0;
 	u32 ndata;
 	ndata = 0;
-	for(i=0; i<len; i++)
+	if(cdata[0] == 0x20) i++;
+	for( ; i<len; i++)
 	{
 		if(cdata[i]>='0' && cdata[i]<='9')
 		{
@@ -260,12 +261,12 @@ void	gd_frame_data_init(gd_frame_t *frame)
 {
 	u16	checksum;
 	
-	sprintf(frame->data,"%s%c%-8.8s%c%c%c%c", GD_FRAME_HEAD_FLG, WS_120M_FRAME_DATA, frame->dev_id, 
+	sprintf(frame->data,"%s%c%-8.8s%c%c%c%c", GD_FRAME_HEAD_FLG, WS_120M_FRAME_DATA, frame->dev_id, 				
 												((frame->packet_len+4)>>8)&0xff, (frame->packet_len+4)&0xff);
 	
 	checksum = check_sum_16(frame->data, 18);
 	
-  	sprintf(frame->data+18,"%c%c%c%c%c%c", (checksum>>8)&0xff, checksum&0xff, frame->packet_index, frame->packet_sum, 
+  	sprintf(frame->data+18,"%c%c%c%c%c%c", (checksum>>8)&0xff, checksum&0xff, frame->packet_index, frame->packet_sum, 		
 														(frame->frame_index>>8)&0xff, frame->frame_index&0xff);
 	
 	memcpy(frame->data+24, frame->packet_data, frame->packet_len);

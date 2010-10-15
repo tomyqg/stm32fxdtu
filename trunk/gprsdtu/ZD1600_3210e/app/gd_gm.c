@@ -3,8 +3,10 @@
 
 #include <ucos_ii.h>
 #include <string.h>
+#include <stdio.h>
 #include "../drives/uart_drv.h"
 #include "gd_system.h"
+
 
 #define sendAT(s, l)	guart_send_data((s), (l))
 #define RECVAT_TIMEOUT	1200
@@ -13,8 +15,8 @@
 gprs_databuf_t	gprs_databuf;
 u8 GPRS_TCPIP_IOMODE;
 
-
-u16 recvAT(void)
+//recv wait tick*10 ms
+u16 recvAT(u16 tick)
 {
 	u16 time_count = 0;
 	gprs_databuf.recvlen = 0;
@@ -22,7 +24,7 @@ u16 recvAT(void)
 	{
 		OSTimeDlyHMSM(0, 0, 0, 10);
 		time_count++;
-		if(time_count >= RECVAT_TIMEOUT) 
+		if(time_count >= tick) 
 			return 0;
 	}
 	
@@ -38,7 +40,7 @@ void delays(u8 n_second)
 s8	at_at(void)								//测试串口
 {
 	sendAT("AT\r\n", sizeof("AT\r\n"));
- 	recvAT();
+ 	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen))	return 0;
 	else	 return -1;
 
@@ -47,26 +49,27 @@ s8	at_at(void)								//测试串口
 s8	at_ate0(void)                             //关闭回显
 {
 	sendAT("ATE0\r\n", strlen("ATE0\r\n"));
- 	recvAT();
+ 	recvAT(RECVAT_TIMEOUT);
+//	recvAT(2);
 	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen))	return 0;
 	else 	return -1;
 }
 s8	at_ate1(void)                             //打开回显
 {
 	sendAT("ATE1\r\n", strlen("ATE1\r\n"));
- 	recvAT();
+ 	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen))	return 0;
 	else 	return -1;
 }
 s8	at_tsim(void)                             //sim	 检测到sim卡返回0
 {
 	sendAT("AT%TSIM\r\n", strlen("AT%TSIM\r\n"));
- 	recvAT();
+ 	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, "%TSIM 1", gprs_databuf.recvlen)){
- 		recvAT();
+ 		recvAT(RECVAT_TIMEOUT);
 		return 0;
 		}
-	recvAT()  ;
+	recvAT(10)  ;
 	return -1;
 }
 
@@ -77,17 +80,26 @@ s8	at_tsim(void)                             //sim	 检测到sim卡返回0
 *******************************************/
 s8	at_csq(void)                            
 {
-	u8  *p, csq;
+	u8  *p, csq, num;
     	sendAT("AT+CSQ\r\n", strlen("AT+CSQ\r\n"));
-	recvAT() ;
+	recvAT(RECVAT_TIMEOUT) ;
+	csq = 0;
 //	if(check_string(gprs_databuf.recvdata, "OK", 18) == NULL)	return -1;
 	p =  check_string(gprs_databuf.recvdata, ",", gprs_databuf.recvlen);
 	if(p)	{
-		csq = (*(p-2)*10 + *(p-1));
-//		recvAT();
+		num = *(p-2);
+		if(num>='0' && num<='9'){
+			csq = (num-'0') * 10;
+			} 
+		num = *(p-1);	
+		if(num>='0' && num<='9'){
+			csq += num - '0';
+			}
+//		csq = (*(p-2)*10 + *(p-1));
+		recvAT(10);
 		return csq;
 		}	
-//	recvAT();
+	recvAT(10);
 	return -1;
 }
 /*****************************************
@@ -99,7 +111,7 @@ s8	at_iomode(u8 mode)
 {
 	sprintf(gprs_databuf.senddata, "AT%%IOMODE=%d,%d,%d\r\n", mode&0x01, ((mode&0x02)>>1)+1, (mode&0x04)>>2);
 	sendAT(gprs_databuf.senddata, strlen(gprs_databuf.senddata));
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen))	return 0;
  	else 	return -1;
 }
@@ -113,7 +125,7 @@ u8	at_iomode_check(void)
 	u8 mode = 0;
 	u8 *p;
 	sendAT("AT%IOMODE?\r\n", strlen("AT%IOMODE?\r\n"));
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
 //	if(check_string(gprs_databuf.recvdata, "OK", 13) == NULL)	return 8;
 	//数据转换
 	p = check_string(gprs_databuf.recvdata, ",", gprs_databuf.recvlen);
@@ -130,7 +142,7 @@ u8	at_iomode_check(void)
 //	if(p == NULL) return 13;
 	if(*(p+1) == '1') mode |= 0x04;
 	else if(*(p+1) != '0') return 14;
-//	recvAT();
+	recvAT(10);
 	return mode;
  	
 }
@@ -158,7 +170,7 @@ void gprsmodule_shutdown(void)
 s8 gprsmodule_reset(void)
 {
 	sendAT("AT%RST\r\n", strlen("AT%RST\r\n"));
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, "Interpreter ready", gprs_databuf.recvlen))	
 	{
 		return 0;
@@ -178,7 +190,7 @@ s8 gprs_bps_set(u32 rate)
 	sprintf(gprs_databuf.senddata, "AT+IPR=%d,\r\n", rate);
 	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
 	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen) == NULL)	return 1;
 	return 0;
 }
@@ -204,23 +216,23 @@ s8	gprsmodule_init(void)
 
 	//AT+CREG  //////  待进一步处理
 	sendAT("AT+CREG?\r\n", strlen("AT+CREG?\r\n"));
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
 //	if(check_string(gprs_databuf.recvdata, "", 10) == NULL)	return 5;
-	recvAT();
+	recvAT(10);
 	if(check_string(gprs_databuf.recvdata, "OK", 2) == NULL)	return 4;
-	delays(2);
+	delays(3);
 
 	//AT+COPS?  
 	sendAT("AT+COPS?\r\n", strlen("AT+COPS?\r\n"));
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, /*中移动*/"CHINA  MOBILE", gprs_databuf.recvlen) == NULL)	return 5;
-	recvAT();
+	recvAT(10);
 
 	//AT+CGATT?
 	sendAT("AT+CGATT?\r\n", strlen("AT+CGATT?\r\n"));
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, "+CGATT: 1", gprs_databuf.recvlen) == NULL)	return 5; 
-	recvAT(); 
+	recvAT(10); 
 
 	return 0;
 }
@@ -237,7 +249,7 @@ s8	gprs_tcpip_init(u8 *user, u8 *password)
 	if(strlen(user)>10 || strlen(password)>10)	return 1;
 	//配置apn
 	sendAT("AT+CGDCONT=1,\"IP\",\"CMNET\"\r\n", strlen("AT+CGDCONT=1,\"IP\",\"CMNET\"\r\n"));
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, "OK", 2) == NULL)	return 1;
 	//tcpip enable
 	strcpy(gprs_databuf.senddata, "AT%ETCPIP");
@@ -259,7 +271,7 @@ s8	gprs_tcpip_init(u8 *user, u8 *password)
 	gprs_databuf.senddata[gprs_databuf.sendlen++] = '\n';
 	gprs_databuf.senddata[gprs_databuf.sendlen++] = '\0'; 
 	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen))	return 0;
  	else	return 2;
 }
@@ -302,7 +314,7 @@ s8	gprs_tcpip_creat_connection(u8 type, u8 *ip, u16 dest_port, u16 udp_dest_port
 	sprintf(gprs_databuf.senddata+gprs_databuf.sendlen,",\"%s\",%d,%d,%d\r\n", ip, dest_port, udp_dest_port, local_port);
 	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
 	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, "CONNECT", gprs_databuf.recvlen))	return 0;
  	else	return 3;	 
 
@@ -332,7 +344,7 @@ s8	gprs_tcpip_creat_connection_n(u8 type, u8 *ip, u16 dest_port, u16 udp_dest_po
 	sprintf(gprs_databuf.senddata+gprs_databuf.sendlen,",\"%s\",%d,%d,%d\r\n", ip, dest_port, udp_dest_port, local_port);
 	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
 	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen))	return 0;
  	else	return 4;	 
 
@@ -347,7 +359,7 @@ s8	gprs_tcpip_close_connection(u8 link_num)
 	sprintf(gprs_databuf.senddata,"AT%%IPCLOSE=%d,\r\n", link_num);
 	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
 	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen))	return 0;
  	else	return 1;
 
@@ -378,17 +390,18 @@ s8	gprs_tcpip_send(u8 *data, u16 len, u8 link_num)
 	//数据转换
 	if(GPRS_TCPIP_IOMODE & 0x01)
 	{
-		hex_to_ascii(data, gprs_databuf.senddata+gprs_databuf.sendlen, len);
+		len = hex_to_ascii(data, gprs_databuf.senddata+gprs_databuf.sendlen, len);
 	}
 	else
 	{
 	 	memcpy(gprs_databuf.senddata+gprs_databuf.sendlen, data, len);
 	}
-	strcat(gprs_databuf.senddata, "\"\r\n");
-	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
+	gprs_databuf.sendlen += len;
+	memcpy(gprs_databuf.senddata+gprs_databuf.sendlen, "\"\r\n", 4);
+	gprs_databuf.sendlen += 4;
 	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
-	recvAT();
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
+	recvAT(10);
 	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen))	
 		return 0;
  	else	
@@ -411,7 +424,7 @@ s8 gprs_tcpip_request_data(u8 index, u8 *data_index_p, u8 *link_num_p, u16 *data
 	u8	*pF, *pB;
 	sprintf(gprs_databuf.senddata, "AT%%IPDR=%d\r\n", index);
 	sendAT(gprs_databuf.senddata, strlen(gprs_databuf.senddata));
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, "ERROR", 6))	
 		return 1;
 	pF = check_string(gprs_databuf.recvdata, ":", 9);
@@ -431,7 +444,7 @@ s8 gprs_tcpip_request_data(u8 index, u8 *data_index_p, u8 *link_num_p, u16 *data
 	*data_len_p =  char_to_int(pF, pB-pF);
 	pF = pB+2;
 	ascii_to_hex(pF, recvdata, (*data_len_p)*2);
-//	recvAT();
+	recvAT(10);
 	return 0;
 }
 
@@ -446,16 +459,16 @@ s8	gprs_tcpip_recvbuf_query(u8 *unread, u8 *total)
 	u8	*pF, *pB;
 	strcpy(gprs_databuf.senddata, "AT%IPDQ\r\n");
 	sendAT(gprs_databuf.senddata, strlen(gprs_databuf.senddata));
-	recvAT();
+	recvAT(RECVAT_TIMEOUT);
 	pF = check_string(gprs_databuf.recvdata, ":", gprs_databuf.recvlen);
 	pB = check_string(gprs_databuf.recvdata, ",", gprs_databuf.recvlen);
 	if((pF == NULL) || (pB == NULL)) return 2;
 	*unread =  char_to_int(pF+1, pB-pF);
-	pF = check_string(gprs_databuf.recvdata, ",", 15);
-	pB = check_string(gprs_databuf.recvdata, "OK", 20);
-	if((pF == NULL) || (pB == NULL)) return 3;
-	*total =  char_to_int(pF, pB-pF);
-//	recvAT();
+//	pF = check_string(gprs_databuf.recvdata, ",", 15);
+//	pB = check_string(gprs_databuf.recvdata, "OK", 20);
+//	if((pF == NULL) || (pB == NULL)) return 3;
+	*total =  char_to_int(pB+1, gprs_databuf.recvlen-(pB-gprs_databuf.recvdata));
+	recvAT(10);
 	return 0;
 }
 
@@ -471,12 +484,12 @@ s8	gprs_tcpip_recvbuf_delete(u8 index, u8 type)
 	if(index>50 || type>2)	return -1;	
 	sprintf(gprs_databuf.senddata,"AT%%IPDD=%d,%d\r\n", index, type);
 	sendAT(gprs_databuf.senddata, strlen(gprs_databuf.senddata));
-	recvAT();	
+	recvAT(RECVAT_TIMEOUT);	
 	pF =  check_string(gprs_databuf.recvdata, ":", gprs_databuf.recvlen);
 	if(pF == NULL) return -2;
 	pB =  gprs_databuf.recvdata;
 	res = char_to_int(pF, gprs_databuf.recvlen - (pF-pB));
-//	recvAT();
+	recvAT(10);
 	return res;
 	
 }
@@ -511,7 +524,7 @@ s8	gprs_unrequest_code_dispose(u32 len)
 
 	if(p)	
 	{
-		res	= char_to_int(p+10, 1);
+		res	= char_to_int(p+9, 1);
 		return (res+1); 
 	}
 

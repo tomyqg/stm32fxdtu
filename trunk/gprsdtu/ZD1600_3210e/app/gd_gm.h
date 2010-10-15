@@ -21,7 +21,7 @@ gprsÄ£¿éµ×²ãÇý¶¯
 
  
 #define	 GPRS_DATA_LEN_MAX	1024
-#define	 GPRS_DATA_BUFFER_SIZE	(GPRS_DATA_LEN_MAX*2+40) 
+#define	 GPRS_DATA_BUFFER_SIZE	(GPRS_DATA_LEN_MAX*2+30) 
 
 
 /**************************************************

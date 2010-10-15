@@ -41,8 +41,8 @@ typedef enum
 typedef enum 
 {
 	No = 	0,
-	Even =	1,
-	Odd =	2 
+	Odd =	1, 
+	Even =	2,
 }COM_Parity_T;
 typedef enum 
 {

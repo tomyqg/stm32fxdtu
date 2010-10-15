@@ -8,7 +8,7 @@
 
 #define GD_MAX_LINK			3
 
-#define NETWORK_QMSG_COUNT 	5
+#define NETWORK_QMSG_COUNT 	10
 
 #define NETWORK_FAIL_COUNT	10
 
