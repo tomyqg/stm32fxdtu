@@ -140,6 +140,23 @@ void RCC_Configuration(void)
 //	return 0;
 }
 
+void uart_init(void)
+{
+	COM_Conf_T conf;
+
+	conf.com = COM2;
+	conf.BaudRate = 9600;
+	conf.WordLength = WL_8b;
+	conf.StopBits = SB_1;
+	conf.Parity = No;
+	conf.HwFlowCtrl = None;
+	ZD1600_COMInit(&conf);
+
+	conf.com = COM1;
+	conf.BaudRate = 115200;
+	ZD1600_COMInit(&conf);
+	
+}
 
 
 
@@ -156,6 +173,8 @@ void drv_all_init(void)
 
 	led_init();
 	led_on(2);
+
+	uart_init();
 
 
 

@@ -6,7 +6,7 @@
 #include "gd_mib.h"
 
 #define GD_DEV_ID_LEN 			8
-#define GD_SIM_ID_LEN			12
+#define GD_SIM_ID_LEN			11
 #define GD_WORK_MODE_LEN		4
 #define GD_ACTI_TYPE_LEN		5
 #define GD_SERIAL_MODE_LEN		3
@@ -14,16 +14,16 @@
 #define GD_RETURN_MAIN_LEN		1
 #define GD_DATA_INT_LEN			4
 #define GD_SVR_CNT_LEN			1
-#define GD_SVR_IP_LEN			16
+#define GD_SVR_IP_LEN			15
 #define GD_SVR_PORT_LEN			5
-#define GD_BKP_SVR_IP_LEN		16
+#define GD_BKP_SVR_IP_LEN		15
 #define GD_BKP_SVR_PORT_LEN		5
-#define GD_SVR1_IP_LEN			16
+#define GD_SVR1_IP_LEN			15
 #define GD_SVR1_PORT_LEN		5
-#define GD_SVR2_IP_LEN			16
+#define GD_SVR2_IP_LEN			15
 #define GD_SVR2_PORT_LEN		5
-#define GD_DNS_SVR_LEN			17
-#define GD_BKP_DNS_SVR_LEN		16
+#define GD_DNS_SVR_LEN			15
+#define GD_BKP_DNS_SVR_LEN		15
 #define GD_APN_LEN				6
 #define GD_APN_USER_LEN			11
 #define GD_APN_PWD_LEN			11
@@ -36,52 +36,52 @@
 typedef struct	_GD_DEV_ID_
 {
 	const char *oid;
-	char value[GD_DEV_ID_LEN];
+	char value[GD_DEV_ID_LEN+1];
 }gd_dev_id_t;
 
 typedef struct	_GD_SIM_ID_
 {
 	const char *oid;
-	char value[GD_SIM_ID_LEN];
+	char value[GD_SIM_ID_LEN+1];
 }gd_sim_id_t;
 
-enum gd_work_mode_value_t
+typedef enum 
 {
 	GD_WORK_MODE_PROT = 0,
 	GD_WORK_MODE_TTRN ,
-	GD_WORK_MODE_TUDP ,
-};
+	GD_WORK_MODE_TUDP 
+}gd_work_mode_value_t;
 typedef struct	_GD_WORK_MODE_
 {
 	const char *oid;
-	char value;
+	gd_work_mode_value_t value;
 }gd_work_mode_t;
 
-enum gd_acti_type_value_t
+typedef enum 
 {
 	GD_ACTI_TYPE_AUTO = 0,
 	GD_ACTI_TYPE_SMS ,
 	GD_ACTI_TYPE_PHONE,
 	GD_ACTI_TYPE_DATA,
-	GD_ACTI_TYPE_MIX,
-};
+	GD_ACTI_TYPE_MIX
+}gd_acti_type_value_t;
 typedef struct	_GD_ACTI_TYPE_
 {
 	const char *oid;
-	char value;
+	gd_acti_type_value_t value;
 }gd_acti_type_t;
 
-enum gd_serial_mode_value_t
+typedef enum 
 {
 	GD_SERIAL_MODE_8N1 = 0,
 	GD_SERIAL_MODE_8O1 = 1,
-	GD_SERIAL_MODE_8E1 = 2,
+	GD_SERIAL_MODE_8E1 = 2
 
-};
+}gd_serial_mode_value_t;
 typedef struct	_GD_SERIAL_MODE_
 {
 	const char *oid;
-	char value;
+	gd_serial_mode_value_t value;
 }gd_serial_mode_t;
 
 typedef struct	_GD_BAUD_RATE_
@@ -90,15 +90,16 @@ typedef struct	_GD_BAUD_RATE_
 	int value;
 }gd_baud_rate_t;
 
-enum gd_return_main_value_t
+typedef enum 
 {
 	GD_RETURN_MAIN_NO  = 0,
 	GD_RETURN_MAIN_YES  ,
-};
+}gd_return_main_value_t;
+
 typedef struct _GD_RETURN_MAIN_
 {
 	const char *oid;
-	char value; 
+	gd_return_main_value_t value; 
 }gd_return_main_t;
 
 typedef struct _GD_DATA_INT_
@@ -116,7 +117,7 @@ typedef struct _GD_SVR_CNT_
 typedef struct _GD_SVR_IP_
 {
 	const char *oid;
-	char value[GD_SVR_IP_LEN]; 
+	char value[GD_SVR_IP_LEN+1]; 
 }gd_svr_ip_t;
 
 typedef struct _GD_SVR_PORT_
@@ -128,7 +129,7 @@ typedef struct _GD_SVR_PORT_
 typedef struct _GD_BKP_SVR_IP_
 {
 	const char *oid;
-	char value[GD_BKP_SVR_IP_LEN]; 	
+	char value[GD_BKP_SVR_IP_LEN+1]; 	
 }gd_bkp_svr_ip_t;
 
 typedef struct _GD_BKP_SVR_PORT_
@@ -140,7 +141,7 @@ typedef struct _GD_BKP_SVR_PORT_
 typedef struct _GD_SVR1_IP_
 {
 	const char *oid;
-	char value[GD_SVR1_IP_LEN]; 
+	char value[GD_SVR1_IP_LEN+1]; 
 }gd_svr1_ip_t;
 
 typedef struct _GD_SVR1_PORT_
@@ -152,7 +153,7 @@ typedef struct _GD_SVR1_PORT_
 typedef struct _GD_SVR2_IP_
 {
 	const char *oid;
-	char value[GD_SVR2_IP_LEN]; 
+	char value[GD_SVR2_IP_LEN+1]; 
 }gd_svr2_ip_t;
 
 typedef struct _GD_SVR2_PORT_
@@ -164,43 +165,43 @@ typedef struct _GD_SVR2_PORT_
 typedef struct _GD_DNS_SVR_
 {
 	const char *oid;
-	char value[GD_DNS_SVR_LEN]; 
+	char value[GD_DNS_SVR_LEN+1]; 
 }gd_dns_svr_t;
 
 typedef struct _GD_BKP_DNS_SVR_
 {
 	const char *oid;
-	char value[GD_BKP_DNS_SVR_LEN]; 
+	char value[GD_BKP_DNS_SVR_LEN+1]; 
 }gd_bkp_dns_svr_t;
 
 typedef struct _GD_APN_
 {
 	const char *oid;
-	char value[GD_APN_LEN]; 
+	char value[GD_APN_LEN+1]; 
 }gd_apn_t;
 
 typedef struct _GD_APN_USER_
 {
 	const char *oid;
-	char value[GD_APN_USER_LEN]; 
+	char value[GD_APN_USER_LEN+1]; 
 }gd_apn_user_t;
 
 typedef struct _GD_APN_PWD_
 {
 	const char *oid;
-	char value[GD_APN_PWD_LEN]; 
+	char value[GD_APN_PWD_LEN+1]; 
 }gd_apn_pwd_t;
 
 typedef struct _GD_APN_CENTER_
 {
 	const char *oid;
-	char value[GD_APN_CENTER_LEN]; 
+	char value[GD_APN_CENTER_LEN+1]; 
 }gd_apn_center_t;
 
 typedef struct _GD_SMSC_
 {
 	const char *oid;
-	char value[GD_SMSC_LEN]; 
+	char value[GD_SMSC_LEN+1]; 
 }gd_smsc_t;
 
 typedef struct _GD_POLL_INT_
@@ -212,13 +213,13 @@ typedef struct _GD_POLL_INT_
 typedef struct _GD_WAKE_PHONE_
 {
 	const char *oid;
-	char value[GD_WAKE_PHONE_LEN]; 
+	char value[GD_WAKE_PHONE_LEN+1]; 
 }gd_wake_phone_t;
 
 typedef struct _GD_WAKE_SMS_
 {
 	const char *oid;
-	char value[GD_WAKE_SMS_LEN]; 
+	char value[GD_WAKE_SMS_LEN+1]; 
 }gd_wake_sms_t;
 
 typedef struct GD_CONFIG_INFO
