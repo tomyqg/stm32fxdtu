@@ -108,6 +108,7 @@ void gd_judge_work_mode(void);
 int  gd_system_init(void);
 void gd_start_init_task(void);
 void gd_msg_malloc(gd_msg_t **msg);
+void gd_config_info_store(gd_config_info_t *gd_conf);
 
 
 

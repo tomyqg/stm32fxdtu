@@ -28,6 +28,8 @@ void gd_config_info_store(gd_config_info_t *gd_conf);
 void gd_config_link_info(gd_config_info_t *gd_conf);
 void gd_config_info_init(gd_config_info_t *gd_conf);
 
+void gd_uart_init(gd_config_info_t *gd_conf);
+
 
 struct user_task user_tasks[] = 
 {
@@ -187,11 +189,12 @@ void gd_start_tasks()
 
 	if(gd_system.work_mode == GD_CONFIG_MODE)
 	{
-		Run_Task(&user_tasks[GD_TASK_CONFIG_ID]);	
+		Run_Task(&user_tasks[GD_TASK_CONFIG_ID]);
+		Run_Task(&user_tasks[GD_TASK_LED_ID]);	
 	}
 	else if(gd_system.work_mode == GD_TRANS_MODE)
 	{
-		ptask = &user_tasks[1];
+		ptask = &user_tasks[2];
 		
 		for (; ptask->TaskName != NULL; ptask++) 
 		{
@@ -215,13 +218,17 @@ void gd_task_init(void *parg)
 	drv_all_init();
 	gd_config_info_init(gd_conf);
 	gd_config_link_info(gd_conf);
-	
-	
-	gd_component_init(gd_conf);
 
 
+
+	gd_component_init(gd_conf);	
 	// Judge work mode : 0 GD_CONFIG_MODE, 1 GD_TRANS_MODE
 	gd_judge_work_mode();
+	if(gd_system.work_mode == GD_TRANS_MODE)
+	{
+		gd_uart_init(gd_conf);
+	}	
+
 
 	gd_start_tasks();
 	
@@ -356,10 +363,11 @@ void gd_config_info_init(gd_config_info_t *gd_conf)
 	if(i == sizeof(gd_config_info_t))
 	{
 		gd_conf->gd_dev_id.oid = GD_OID_DEVICE_ID;
-		memset(gd_conf->gd_dev_id.value, 0, GD_DEV_ID_LEN);
+		memset(gd_conf->gd_dev_id.value, '0', GD_DEV_ID_LEN);
 		
 		gd_conf->gd_sim_id.oid = GD_OID_SIM_ID;
-		memset(gd_conf->gd_sim_id.value, 0, GD_SIM_ID_LEN);
+		memset(gd_conf->gd_sim_id.value, '0', GD_SIM_ID_LEN);
+		gd_conf->gd_sim_id.value[GD_SIM_ID_LEN -1] = '\0';
 		
 		gd_conf->gd_work_mode.oid = GD_OID_WORK_MODE;
 		gd_conf->gd_work_mode.value= GD_WORK_MODE_PROT;
@@ -465,4 +473,16 @@ void gd_msg_malloc(gd_msg_t **msg)
 		}
 	}
 }
-
+void gd_uart_init(gd_config_info_t *gd_conf)
+{
+	COM_Conf_T conf;
+	conf.com = COM1;
+	conf.BaudRate = 15200;
+	conf.Parity = (COM_Parity_T)gd_conf->gd_serial_mode.value;
+	conf.BaudRate = gd_conf->gd_baud_rate.value;
+	conf.WordLength = WL_8b;
+	conf.StopBits = SB_1;
+	conf.Parity = No;
+	conf.HwFlowCtrl = None;
+	ZD1600_COMInit(&conf);
+}
