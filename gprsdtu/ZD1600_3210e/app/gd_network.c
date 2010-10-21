@@ -446,7 +446,7 @@ void heart_beat(void)
 				res = gprs_tcpip_send(gd_heart_beat, heartbeat_len, i);
 				if(res == 0)
 				{
-					return;		
+
 				}
 				else
 				{
@@ -463,7 +463,6 @@ void heart_beat(void)
 			send_msg->data =  (void*)NULL;
 			send_msg->type = GD_MSG_GM_NO_SIGNAL;
 			OSQPost(gd_system.network_task.q_network, (void*)send_msg);
-			return;
 		}
 	}
 	OSSemPost(gd_system.gm_operate_sem);
@@ -571,13 +570,40 @@ void network_no_signal(void)
 
 void network_wakeup(INT8U ctype)
 {
-	if(ctype == GM_TCPIP_RECEIVED_SMS)
+	INT8U err = 0;
+	INT8U smsdata[100];
+	INT8S res = 0;
+	INT8U len = 0;
+	INT8U *p = NULL;
+	if(ctype == GM_TCPIP_RECEIVED_RING)
 	{
-		;
+		//..
+		//memcmp(gd_system.network_task.ring_num, gd_system.gd_config_info.gd_wake_phone.value)	
+		//sleep or wakeup	
 	}
 	else if(ctype == GM_TCPIP_RECEIVED_SMS)
 	{
-		;
+		OSSemPend(gd_system.gm_operate_sem, GD_SEM_TIMEOUT, &err);
+		res = gm_sms_read(gd_system.network_task.sms_index, smsdata, &len);
+		OSSemPost(gd_system.gm_operate_sem);
+		if(res != 0)	return;
+		p = check_string(smsdata, gd_system.gd_config_info.gd_wake_sms.value, len);	
+		if(p)
+		{
+			//wakeup
+		}
+		else
+		{
+			p = check_string(smsdata, gd_system.gd_config_info.gd_wake_smssleep.value, len);
+			if(p)
+			{
+				//sleep
+			
+			}
+		
+		}
+
+
 	}
 }
 

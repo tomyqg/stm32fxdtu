@@ -220,7 +220,7 @@ s8	gprsmodule_init(void)
 //	if(check_string(gprs_databuf.recvdata, "", 10) == NULL)	return 5;
 	recvAT(10);
 	if(check_string(gprs_databuf.recvdata, "OK", 2) == NULL)	return 4;
-	delays(3);
+	delays(2);
 
 	//AT+COPS?  
 	sendAT("AT+COPS?\r\n", strlen("AT+COPS?\r\n"));
@@ -302,6 +302,7 @@ s8	gm_sms_read(u8 sms_index, u8 *buf, u8 *len)
 	recvAT(RECVAT_TIMEOUT);
 	if(check_string(gprs_databuf.recvdata, "ERROR", gprs_databuf.recvlen) != NULL)	return 1;
 	recvAT(RECVAT_TIMEOUT);
+	if(gprs_databuf.recvlen > 100)	gprs_databuf.recvlen = 100;
 	memcpy(buf, gprs_databuf.recvdata, gprs_databuf.recvlen);
 	*len = gprs_databuf.recvlen;
 	recvAT(10);
@@ -444,12 +445,12 @@ s8	gprs_tcpip_creat_connection_n(u8 type, u8 *ip, u16 dest_port, u16 udp_dest_po
 	strcpy(gprs_databuf.senddata, "AT%IPOPEN=");
 	if(link_num==0 || link_num>3)	return 2;
 	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
-	sprintf(gprs_databuf.senddata+gprs_databuf.sendlen,"%d,", link_num);
+	sprintf(gprs_databuf.senddata+gprs_databuf.sendlen,"%u,", link_num);
 	if(type == 1)	strcat(gprs_databuf.senddata, "\"UDP\"");	
 	else if(type == 0)	strcat(gprs_databuf.senddata, "\"TCP\"");
 	else return 3;
 	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
-	sprintf(gprs_databuf.senddata+gprs_databuf.sendlen,",\"%s\",%d,%d,%d\r\n", ip, dest_port, udp_dest_port, local_port);
+	sprintf(gprs_databuf.senddata+gprs_databuf.sendlen,",\"%s\",%u,%u,%u\r\n", ip, dest_port, udp_dest_port, local_port);
 	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
 	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
 	recvAT(RECVAT_TIMEOUT);
@@ -464,7 +465,7 @@ tcp/ip关闭链接、注销gprs、关闭服务器
 *******************************************/
 s8	gprs_tcpip_close_connection(u8 link_num)
 {
-	sprintf(gprs_databuf.senddata,"AT%%IPCLOSE=%d,\r\n", link_num);
+	sprintf(gprs_databuf.senddata,"AT%%IPCLOSE=%u\r\n", link_num);
 	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
 	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
 	recvAT(RECVAT_TIMEOUT);
@@ -653,7 +654,7 @@ s8	gprs_unrequest_code_dispose(u32 len)
 		p = check_string(p+6, ",", len);
 		if(p==NULL)	return -5;
 		p++;
-		gd_system.network_task.sms_index = char_to_int(p+1, len-(p-(u8 *)gprs_databuf.recvdata));
+		gd_system.network_task.sms_index = char_to_int(p, len-(p-(u8 *)gprs_databuf.recvdata));
 		return GM_TCPIP_RECEIVED_SMS;
 	}
 	
