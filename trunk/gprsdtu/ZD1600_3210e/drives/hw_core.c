@@ -17,6 +17,7 @@ void system_reset(void )
 {
   NVIC_SETFAULTMASK();
   NVIC_GenerateSystemReset();
+  NVIC_GenerateCoreReset();
 }
 
 void hardfault_isr(u32 *hardfault_args)
@@ -52,9 +53,10 @@ void hardfault_isr(u32 *hardfault_args)
 	while(1)
 	{
 	
-	}  
-
-
+	} 
+NVIC_SETFAULTMASK();
+NVIC_GenerateSystemReset(); 
+//system_reset();
 }
 
 

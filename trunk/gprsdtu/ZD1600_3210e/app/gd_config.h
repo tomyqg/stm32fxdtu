@@ -30,8 +30,11 @@
 #define GD_APN_CENTER_LEN		11
 #define GD_SMSC_LEN				15
 #define GD_POLL_INT_LEN			2
-#define GD_WAKE_PHONE_LEN		9
-#define GD_WAKE_SMS_LEN			11
+#define GD_WAKE_PHONE_LEN		11
+#define GD_WAKE_SMSWP_LEN			11
+#define GD_WAKE_SMSSLEEP_LEN		11
+#define GD_WAKE_DATAWP_LEN			11
+#define GD_WAKE_DATASLEEP_LEN		11
 
 typedef struct	_GD_DEV_ID_
 {
@@ -219,8 +222,23 @@ typedef struct _GD_WAKE_PHONE_
 typedef struct _GD_WAKE_SMS_
 {
 	const char *oid;
-	char value[GD_WAKE_SMS_LEN+1]; 
+	char value[GD_WAKE_SMSWP_LEN+1]; 
 }gd_wake_sms_t;
+typedef struct _GD_WAKE_SMSSLEEP_
+{
+	const char *oid;
+	char value[GD_WAKE_SMSSLEEP_LEN+1]; 
+}gd_wake_smssleep_t;
+typedef struct _GD_WAKE_datawp_
+{
+	const char *oid;
+	char value[GD_WAKE_DATAWP_LEN+1]; 
+}gd_wake_datawp_t;
+typedef struct _GD_WAKE_datasleep_
+{
+	const char *oid;
+	char value[GD_WAKE_DATASLEEP_LEN+1]; 
+}gd_wake_datasleep_t;
 
 typedef struct GD_CONFIG_INFO
 {
@@ -251,7 +269,9 @@ typedef struct GD_CONFIG_INFO
 	gd_poll_int_t		gd_poll_int;
     gd_wake_phone_t		gd_wake_phone;
 	gd_wake_sms_t		gd_wake_sms;
-
+	gd_wake_smssleep_t	gd_wake_smssleep;
+	gd_wake_datawp_t		gd_wake_datawp;
+	gd_wake_datasleep_t	gd_wake_datasleep;
 }gd_config_info_t;
 
 typedef struct GD_CONFIG_TASK

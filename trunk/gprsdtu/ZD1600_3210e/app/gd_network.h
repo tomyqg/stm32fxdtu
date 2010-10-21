@@ -38,6 +38,11 @@ typedef struct GD_NETWORK_TASK
 	int 		link_index;
 	gd_link_t	link_info[GD_MAX_LINK];
 
+	INT8U	ring_num[11];
+	INT8U	sms_index;
+
+	int			heartbeat_int;
+
 }gd_network_task_t;
 
 

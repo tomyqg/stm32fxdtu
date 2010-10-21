@@ -55,11 +55,15 @@ void sys_restart(void);
 #define  GD_CONFIG_BKPDNSSVR		13			
 #define  GD_CONFIG_SVRCNT			14
 
-#define  GD_CONFIG_WP				15
-#define  GD_CONFIG_SMSPWD			16
+#define  GD_CONFIG_PHONEWP				15
+#define  GD_CONFIG_SMSWP			16
+#define  GD_CONFIG_SMSSLEEP			17
+#define  GD_CONFIG_DATAWP			18
+#define  GD_CONFIG_DATASLEEP			19
 
-#define  GD_CONFIG_SERMODE			17
-#define  GD_CONFIG_COMBR			18
+
+#define  GD_CONFIG_SERMODE			20
+#define  GD_CONFIG_COMBR			21
 
 
 
@@ -101,8 +105,6 @@ INT32U gd_get_config()
 		time_index ++;
 		if(time_index > 300)	return GD_TRANS_MODE;
 		OSTimeDlyHMSM(0, 0, 0, 10);
-
-
 	}
 
 //	return GD_TRANS_MODE;
@@ -255,6 +257,8 @@ void at_dispose(void)
 /*
 +ZDATAINT:xxx							//DTUÊý¾ÝÖ¡¼ä¸ôÊ±¼ä
 +ZDID:aabbccdd							//DTUÉè±¸ID
++ZDATAWP:xxx							//Êý¾Ý»½ÐÑÃÜÂë
++ZDATASLEEP:xxx							//Êý¾ÝË¯ÃßÃÜÂë
 +ZDNSSVR:aaa.bbb.ccc.ddd 				//Ö÷ÓòÃû·þÎñÆ÷IP
 */		
 	case 'D':
@@ -270,6 +274,20 @@ void at_dispose(void)
 		{
 			len -= 4;
 			did_config(posi+8, len);
+			return;
+		}
+		pcheck = check_string(posi+4, "DATAWP=", len);
+		if(pcheck)	
+		{
+			len -= 7;
+			wakeup_config(posi+11, len, GD_CONFIG_DATAWP);
+			return;
+		}
+		pcheck = check_string(posi+4, "DATASLEEP=", len);
+		if(pcheck)	
+		{
+			len -= 10;
+			wakeup_config(posi+14, len, GD_CONFIG_DATASLEEP);
 			return;
 		}
 		pcheck = check_string(posi+4, "DNSSVR=", len);
@@ -326,7 +344,9 @@ void at_dispose(void)
 /*
 +ZPORT:xxx  								//Ö÷ÖÐÐÄ·þÎñÆ÷PORT
 +ZPORTn:xxx								//ÖÐÐÄ·þÎñÆ÷nµÄPORT
-+ZPOLLINT:xxx							//ÐÄÌø°ü¼ä¸ôÊ±¼ä£¨µ¥Î»£ºÃë£©
++ZPOLLINT:xxx							//ÐÄÌø°ü¼ä¸ôÊ±¼ä£¨µ¥Î»£ºÃë£
++ZPHONEWP=xxx								//²¦ºÅ»½ÐÑºÅÂë		
+
 */	
 	case 'P':
 		pcheck = check_string(posi+4, "PORT=", len);
@@ -355,6 +375,13 @@ void at_dispose(void)
 		{
 			len -= 8;
 			pollint_config(posi+12, len);
+			return;
+		}
+		pcheck = check_string(posi+4, "PHONEWP=", len);
+		if(pcheck)	
+		{
+			len -= 8;
+			wakeup_config(posi+12, len, GD_CONFIG_PHONEWP);
 			return;
 		}
 		break;
@@ -386,7 +413,8 @@ void at_dispose(void)
 /*
 +ZSVRCNT:x								//ÖÐÐÄ·þÎñÆ÷ÊýÄ¿
 +ZSMSC:xxx								//¶ÌÐÅÖÐÐÄºÅÂë
-+ZSMSPWD=xxx							//¶ÌÐÅ»½ÐÑÃÜÂë
++ZSMSWP=xxx							//¶ÌÐÅ»½ÐÑÃÜÂë
++ZSMSSLEEP=xxx							//¶ÌÐÅË¯ÃßÃÜÂë
 +ZSIM:xxxxxxxxxx							//DTU SIM¿¨ºÅÂë
 +ZSERMODE:xxx							//DTUÊý¾Ý¡¢Ð£Ñé¼°Í£Ö¹Î»
 */		
@@ -405,17 +433,24 @@ void at_dispose(void)
 			smsc_config(posi+9, len);
 			return;
 		}
-		pcheck = check_string(posi+4, "SMSPWD=", len);
+		pcheck = check_string(posi+4, "SMSWP=", len);
 		if(pcheck)	
 		{
-			len -= 7;
-			wakeup_config(posi+11, len, GD_CONFIG_SMSPWD);
+			len -= 6;
+			wakeup_config(posi+10, len, GD_CONFIG_SMSWP);
+			return;
+		}
+		pcheck = check_string(posi+4, "SMSSLEEP=", len);
+		if(pcheck)	
+		{
+			len -= 9;
+			wakeup_config(posi+13, len, GD_CONFIG_SMSSLEEP);
 			return;
 		}
 		pcheck = check_string(posi+4, "SIM=", len);
 		if(pcheck)	
 		{
-			len -= 3;
+			len -= 4;
 			sim_config(posi+8, len);
 			return;
 		}
@@ -427,18 +462,9 @@ void at_dispose(void)
 			return;
 		}		
 		break;
-/*
-+ZWP=xxx								//²¦ºÅ»½ÐÑºÅÂë		
-*/
-	case 'W':
-		pcheck = check_string(posi+4, "WP=", len);
-		if(pcheck)	
-		{
-			len -= 3;
-			wakeup_config(posi+7, len, GD_WAKE_PHONE_LEN);
-			return;
-		}
-		break;
+
+//	case 'W':
+
 	default :
 		error_command();
 		break;
@@ -748,9 +774,10 @@ void dataint_config(INT8U *cdata, INT8U clen)
 	gd_conf->gd_data_int.value = char_to_int(cdata, clen);
 	command_ok();
 }
+
 void wakeup_config(INT8U *cdata, INT8U clen, INT8U ctype)
 {
-	if(ctype ==  GD_WAKE_PHONE_LEN)	
+	if(ctype ==  GD_CONFIG_PHONEWP)	
 	{
 		gd_config_info_t *gd_conf = NULL;
 		gd_conf = &gd_system.gd_config_info;
@@ -763,18 +790,57 @@ void wakeup_config(INT8U *cdata, INT8U clen, INT8U ctype)
 		memcpy(gd_conf->gd_wake_phone.value, cdata, clen);
 		gd_conf->gd_wake_phone.value[GD_WAKE_PHONE_LEN] = '\0';
 	}
-	else if(ctype == GD_CONFIG_SMSPWD)
+	else if(ctype == GD_CONFIG_SMSWP)
 	{
 		gd_config_info_t *gd_conf = NULL;
 		gd_conf = &gd_system.gd_config_info;
-		if(clen > GD_WAKE_SMS_LEN) 
+		if(clen > GD_WAKE_SMSWP_LEN) 
 		{
 			error_command();
 			return;
 	
 		}
 		memcpy(gd_conf->gd_wake_sms.value, cdata, clen);
-		gd_conf->gd_wake_sms.value[GD_WAKE_SMS_LEN] = '\0';
+		gd_conf->gd_wake_sms.value[GD_WAKE_SMSWP_LEN] = '\0';
+	}
+	else if(ctype == GD_CONFIG_SMSSLEEP)
+	{
+		gd_config_info_t *gd_conf = NULL;
+		gd_conf = &gd_system.gd_config_info;
+		if(clen > GD_WAKE_SMSWP_LEN) 
+		{
+			error_command();
+			return;
+	
+		}
+		memcpy(gd_conf->gd_wake_smssleep.value, cdata, clen);
+		gd_conf->gd_wake_smssleep.value[GD_WAKE_SMSWP_LEN] = '\0';
+	}
+	else if(ctype == GD_CONFIG_DATAWP)
+	{
+		gd_config_info_t *gd_conf = NULL;
+		gd_conf = &gd_system.gd_config_info;
+		if(clen > GD_WAKE_SMSWP_LEN) 
+		{
+			error_command();
+			return;
+	
+		}
+		memcpy(gd_conf->gd_wake_datawp.value, cdata, clen);
+		gd_conf->gd_wake_datawp.value[GD_WAKE_SMSWP_LEN] = '\0';
+	}
+	else if(ctype == GD_CONFIG_DATASLEEP)
+	{
+		gd_config_info_t *gd_conf = NULL;
+		gd_conf = &gd_system.gd_config_info;
+		if(clen > GD_WAKE_SMSWP_LEN) 
+		{
+			error_command();
+			return;
+	
+		}
+		memcpy(gd_conf->gd_wake_datasleep.value, cdata, clen);
+		gd_conf->gd_wake_datasleep.value[GD_WAKE_SMSWP_LEN] = '\0';
 	}
 	command_ok();
 }
@@ -865,7 +931,6 @@ OK
 	config_databuf.sendlen = strlen("+ZSIM:");
 	strcpy(config_databuf.senddata, "+ZSIM:");
 	strcat(config_databuf.senddata + config_databuf.sendlen, gd_conf->gd_sim_id.value);
-//	config_databuf.sendlen += GD_SIM_ID_LEN;
 	config_databuf.sendlen = strlen(config_databuf.senddata);
 	config_databuf.senddata[config_databuf.sendlen++] = '\r';
 	config_databuf.senddata[config_databuf.sendlen++] = '\n';	
@@ -1167,8 +1232,8 @@ OK
 		if(*sendlen == 0)	break;
 	}
 
-	config_databuf.sendlen = strlen("+ZWP:");
-	strcpy(config_databuf.senddata, "+ZWP:");
+	config_databuf.sendlen = strlen("+ZPHONEWP:");
+	strcpy(config_databuf.senddata, "+ZPHONEWP:");
 	sprintf(config_databuf.senddata + config_databuf.sendlen, "%s\r\n", gd_conf->gd_wake_phone.value);
 	config_databuf.sendlen = strlen(config_databuf.senddata);
 	sendlen = suart_send_data(config_databuf.senddata, config_databuf.sendlen);
@@ -1178,9 +1243,42 @@ OK
 		if(*sendlen == 0)	break;
 	}
 
-	config_databuf.sendlen = strlen("+ZSMSPWD:");
-	strcpy(config_databuf.senddata, "+ZSMSPWD:");
+	config_databuf.sendlen = strlen("+ZSMSWP:");
+	strcpy(config_databuf.senddata, "+ZSMSWP:");
 	sprintf(config_databuf.senddata + config_databuf.sendlen, "%s\r\n", gd_conf->gd_wake_sms.value);
+	config_databuf.sendlen = strlen(config_databuf.senddata);
+	sendlen = suart_send_data(config_databuf.senddata, config_databuf.sendlen);
+	while(1)
+	{
+		OSTimeDlyHMSM(0,0,0,1);
+		if(*sendlen == 0)	break;
+	}
+
+	config_databuf.sendlen = strlen("+ZSMSSLEEP:");
+	strcpy(config_databuf.senddata, "+ZSMSSLEEP:");
+	sprintf(config_databuf.senddata + config_databuf.sendlen, "%s\r\n", gd_conf->gd_wake_smssleep.value);
+	config_databuf.sendlen = strlen(config_databuf.senddata);
+	sendlen = suart_send_data(config_databuf.senddata, config_databuf.sendlen);
+	while(1)
+	{
+		OSTimeDlyHMSM(0,0,0,1);
+		if(*sendlen == 0)	break;
+	}
+
+	config_databuf.sendlen = strlen("+ZDATAWP:");
+	strcpy(config_databuf.senddata, "+ZDATAWP:");
+	sprintf(config_databuf.senddata + config_databuf.sendlen, "%s\r\n", gd_conf->gd_wake_datawp.value);
+	config_databuf.sendlen = strlen(config_databuf.senddata);
+	sendlen = suart_send_data(config_databuf.senddata, config_databuf.sendlen);
+	while(1)
+	{
+		OSTimeDlyHMSM(0,0,0,1);
+		if(*sendlen == 0)	break;
+	}
+
+	config_databuf.sendlen = strlen("+ZDATASLEEP:");
+	strcpy(config_databuf.senddata, "+ZDATASLEEP:");
+	sprintf(config_databuf.senddata + config_databuf.sendlen, "%s\r\n", gd_conf->gd_wake_datasleep.value);
 	config_databuf.sendlen = strlen(config_databuf.senddata);
 	sendlen = suart_send_data(config_databuf.senddata, config_databuf.sendlen);
 	while(1)
@@ -1230,11 +1328,17 @@ void at_command_ready(void)
 }
 void sys_restart(void)
 {
+	INT32U *sendlen;
 	gd_config_info_t *gd_conf = NULL;
 	gd_conf = &gd_system.gd_config_info;
 	gd_config_info_store(gd_conf);
 	
-	command_ok();
+	sendlen = suart_send_data("OK\r\n", 4);
+	while(1)
+	{
+		OSTimeDlyHMSM(0,0,0,1);
+		if(*sendlen == 0)	break;
+	}
 	
 	system_reset();
 }

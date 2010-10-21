@@ -18,6 +18,8 @@ gprsÄ£¿éµ×²ãÇý¶¯
 #define GM_TCPIP_LINK3_CLOSE	4
 #define GM_TCPIP_CLOSE			6
 #define GM_TCPIP_SERVER_CLOSE	7
+#define GM_TCPIP_RECEIVED_SMS	8
+#define GM_TCPIP_RECEIVED_RING	9
 
  
 #define	 GPRS_DATA_LEN_MAX	1024
@@ -59,7 +61,7 @@ void	gprsmodule_shutdown(void);
 s8 gprsmodule_reset(void);
 s8	gprs_bps_set(u32 rate);
 s8	gprsmodule_init(void);
-s8	gprs_tcpip_init(u8 *user, u8 *password);
+s8	gprs_tcpip_init(u8 *apn, u8 *apnuser, u8 *apnpassword);
 s8	gprs_tcpip_mode_init(u8 mode);
 s8	gprs_tcpip_creat_connection(u8 type, u8 *ip, u16 dest_port, u16 udp_dest_port, u16 local_port);
 s8	gprs_tcpip_creat_connection_n(u8 type, u8 *ip, u16 dest_port, u16 udp_dest_port, u16 local_port, u8 link_num);
@@ -73,6 +75,11 @@ s8	gprs_tcpip_recvbuf_delete(u8 index, u8 type);
 s8	gprs_unrequest_code_dispose(u32 len);
 
 
+s8	gm_sms_init(u8 *smssvr);
+s8	gm_sms_delete(u8 sms_index, u8 delete_type);
+s8	gm_sms_read(u8 sms_index, u8 *buf, u8 *len);
+s8	gm_sms_query(u8 *query_type);
+s8	gm_phone_init(void);
 
 
 

@@ -310,6 +310,7 @@ int gd_system_init()
 
 	// Link info
 
+
 	return 0;
 }
 
@@ -336,6 +337,8 @@ void gd_config_link_info(gd_config_info_t *gd_conf)
 	gd_system.network_task.link_info[2].link_state = GD_LINK_STATE_IDLE;
 	strcpy(gd_system.network_task.link_info[2].svr_ip, gd_conf->gd_svr2_ip.value);
 	gd_system.network_task.link_info[2].svr_port = gd_conf->gd_svr2_port.value;
+
+	gd_system.network_task.heartbeat_int = gd_system.gd_config_info.gd_data_int.value * 10;
 
 
 }
@@ -385,7 +388,7 @@ void gd_config_info_init(gd_config_info_t *gd_conf)
 		gd_conf->gd_return_main.value = GD_RETURN_MAIN_NO;		 
 
 		gd_conf->gd_data_int.oid = GD_OID_DATA_INT;
-		gd_conf->gd_data_int.value = 100;		 
+		gd_conf->gd_data_int.value = 10;		 
 
 		gd_conf->gd_svr_cnt.oid = GD_OID_SERVER_COUNT;
 		gd_conf->gd_svr_cnt.value = 1;		 
@@ -433,9 +436,16 @@ void gd_config_info_init(gd_config_info_t *gd_conf)
 		 
 		gd_conf->gd_wake_phone.oid = GD_OID_WAKE_PHONE;
 		memset(gd_conf->gd_wake_phone.value, 0, GD_WAKE_PHONE_LEN);
-		 
 		gd_conf->gd_wake_sms.oid = GD_OID_WAKE_SMS;	
-		memset(gd_conf->gd_wake_sms.value, 0, GD_WAKE_SMS_LEN);	 	
+		memset(gd_conf->gd_wake_sms.value, 0, GD_WAKE_SMSWP_LEN);	 	
+		gd_conf->gd_wake_sms.oid = GD_OID_WAKE_SMSSLEEP;	
+		memset(gd_conf->gd_wake_smssleep.value, 0, GD_WAKE_SMSSLEEP_LEN);	 	
+		gd_conf->gd_wake_sms.oid = GD_OID_WAKE_DATAWP;	
+		memset(gd_conf->gd_wake_datawp.value, 0, GD_WAKE_DATAWP_LEN);	 	
+		gd_conf->gd_wake_sms.oid = GD_OID_WAKE_DATASLEEP;	
+		memset(gd_conf->gd_wake_datasleep.value, 0, GD_WAKE_DATASLEEP_LEN);	 	
+
+
 
 		gd_config_info_store(gd_conf);
 		
@@ -477,7 +487,6 @@ void gd_uart_init(gd_config_info_t *gd_conf)
 {
 	COM_Conf_T conf;
 	conf.com = COM1;
-	conf.BaudRate = 15200;
 	conf.Parity = (COM_Parity_T)gd_conf->gd_serial_mode.value;
 	conf.BaudRate = gd_conf->gd_baud_rate.value;
 	conf.WordLength = WL_8b;

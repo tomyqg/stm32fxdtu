@@ -21,6 +21,7 @@ void network_tcpip_mode(void);
 void network_tcpip_creat(void);
 void network_heart_beat(void);
 void network_no_signal(void);
+void network_wakeup(INT8U ctype);
 
 void network_tcpip_state_change(INT8U change);
 
@@ -84,6 +85,13 @@ void gd_task_network(void *parg)
 			case GD_MSG_GM_TCP_CLOSE:
 				network_tcpip_state_change(GM_TCPIP_CLOSE);	
 				break;	
+			case GD_MSG_GM_RECV_SMS:
+				network_wakeup(GM_TCPIP_RECEIVED_SMS);
+				break;
+			case GD_MSG_GM_RECV_RING:
+				network_wakeup(GM_TCPIP_RECEIVED_RING);
+				break;
+		
 				
 			default:
 				break;				
@@ -96,7 +104,8 @@ void gd_task_network(void *parg)
 				//...error....
 			}
 		}
-		OSTimeDlyHMSM(0, 0, 0, 200);
+		network_heart_beat();
+		OSTimeDlyHMSM(0, 0, 0, 100);
 	}
 	
 }
@@ -146,18 +155,30 @@ void network_gm_init(void)
 		res = -1;
 	else 
 		res = gprsmodule_init();
- 	OSSemPost(gd_system.gm_operate_sem);
-
 	gd_msg_malloc(&send_msg);
 	send_msg->data =  (void*)NULL;				
 	if(res == 0)
 	{
-		fail_tick = 0;				
-		send_msg->type = GD_MSG_TCP_INIT;
-		OSQPost(gd_system.network_task.q_network, (void*)send_msg);		
+
+		res = gm_sms_init("13500250500");
+		if(res == 0)
+		{
+			res = gm_phone_init();
+			if(res == 0)
+			{
+ 	OSSemPost(gd_system.gm_operate_sem);
+
+				fail_tick = 0;				
+				send_msg->type = GD_MSG_TCP_INIT;
+				OSQPost(gd_system.network_task.q_network, (void*)send_msg);		
+				return;
+			}
+		}
+		
 	}
-	else
+//	else
 	{
+ 	OSSemPost(gd_system.gm_operate_sem);
 		fail_tick++;
 		if(fail_tick >= NETWORK_FAIL_COUNT)
 		{
@@ -188,7 +209,7 @@ void network_tcpip_init(void)
 	if(err != OS_NO_ERR)	
 		res = -1;
 	else 	
-		res = gprs_tcpip_init("", "");	   
+		res = gprs_tcpip_init("CMNET", " ", " ");	   
  	OSSemPost(gd_system.gm_operate_sem);
 
 
@@ -327,7 +348,7 @@ void network_tcpip_creat(void)
 		OSQPost(gd_system.network_task.q_network, (void*)send_msg);	
 	}
 }
-
+/*
 void network_heart_beat(void)
 {
 	INT8S	res = 0;
@@ -400,7 +421,70 @@ void network_heart_beat(void)
 		OSQPost(gd_system.network_task.q_network, (void*)send_msg);			
 	}
 }
+*/
+void heart_beat(void)
+{
 
+	INT32U 		heartbeat_len;
+	INT8U 		err;
+	INT8U 		gd_heart_beat[92];
+	INT8U 		i = 0;
+	INT8S		res = 0;
+
+	gd_msg_t 	*send_msg = NULL;
+	gd_network_task_t *network_task = &gd_system.network_task;
+
+	OSSemPend(gd_system.gm_operate_sem, GD_SEM_TIMEOUT, &err);
+	if(err == OS_NO_ERR)
+	{
+		res = at_csq();
+		if(res>=0 && res<=31)
+		{
+			heartbeat_len = gd_heart_beat_init(GD_DEVID, GD_DEVMAC, NULL, 0, (u8)res, gd_heart_beat);
+			for(i=0; i<network_task->link_count; i++)
+			{
+				res = gprs_tcpip_send(gd_heart_beat, heartbeat_len, i);
+				if(res == 0)
+				{
+					return;		
+				}
+				else
+				{
+					
+				// Send error
+				}
+			}
+		}
+		else
+		{
+			//no signal
+	//		OSQFlush(gd_system.network_task.q_network);
+			gd_msg_malloc(&send_msg);
+			send_msg->data =  (void*)NULL;
+			send_msg->type = GD_MSG_GM_NO_SIGNAL;
+			OSQPost(gd_system.network_task.q_network, (void*)send_msg);
+			return;
+		}
+	}
+	OSSemPost(gd_system.gm_operate_sem);
+
+}
+void network_heart_beat(void)
+{
+	static INT16U		counter = 10000;
+
+	if(gd_system.state == GD_STATE_ONLINE)
+	{
+		counter++;
+		if(counter >= gd_system.network_task.heartbeat_int)
+		{
+			heart_beat();
+			counter = 0;
+		}
+	}
+
+	
+}
 
 void network_tcpip_state_change(INT8U change)
 {
@@ -485,6 +569,17 @@ void network_no_signal(void)
 	}
 }
 
+void network_wakeup(INT8U ctype)
+{
+	if(ctype == GM_TCPIP_RECEIVED_SMS)
+	{
+		;
+	}
+	else if(ctype == GM_TCPIP_RECEIVED_SMS)
+	{
+		;
+	}
+}
 
 
 

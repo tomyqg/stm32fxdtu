@@ -14,23 +14,6 @@
 **************************************************/
 u8* check_string(u8 *str, u8 *flg, u32 len)
 {
-/*	u8	*p;
-	u32	i;
-	u32 flg_len = strlen(flg);
-	p = memchr(str, flg[0], len);
-	while(p)
-	{
-		i = 0;
-		while(p[i] == flg[i])	
-		{
-			i++;
-			if(i >= flg_len)	return p;
-		}
-		p = memchr(p+1, flg[0], str-p-1);
-		//p = strchr(p, flg[0]);
-	}
-	return NULL;
-*/
 	u32	i,j;
 	u32 flg_len = strlen((uc8 *)flg);
 	for(i=0; i<len; i++)
