@@ -237,35 +237,143 @@ s8	gprsmodule_init(void)
 	return 0;
 }
 
+
+/*****************************************
+短信初始化
+入口参数：
+返回参数：
+*******************************************/
+s8	gm_sms_init(u8 *smssvr)
+{
+	//AT+CPMS 
+	sendAT("AT+CPMS=\"ME\",\"ME\",\"ME\"\r\n", strlen("AT+CPMS=\"ME\",\"ME\",\"ME\"\r\n"));
+	recvAT(RECVAT_TIMEOUT);
+	if(check_string(gprs_databuf.recvdata, "ERROR", gprs_databuf.recvlen) != NULL)	return 1;
+	recvAT(10);
+
+	//AT+CMGF 
+	sendAT("AT+CMGF=1\r\n", strlen("AT+CMGF=1\r\n"));
+	recvAT(RECVAT_TIMEOUT);
+	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen) == NULL)	return 2;
+
+	//AT+CSCA 
+	sprintf(gprs_databuf.senddata,"AT+CSCA=\"86%s\",145\r\n", smssvr);
+	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
+	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
+	recvAT(RECVAT_TIMEOUT);
+	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen) == NULL)	return 3;
+
+	//AT+CNMI 
+	sendAT("AT+CNMI=2,1\r\n", strlen("AT+CNMI=2,1\r\n"));
+	recvAT(RECVAT_TIMEOUT);
+	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen) == NULL)	return 4;
+
+	return 0;
+}
+/*****************************************
+短信删除
+入口参数：sms_index
+				delete_type
+返回参数：
+*******************************************/
+s8	gm_sms_delete(u8 sms_index, u8 delete_type)
+{
+	//AT+CMGD 
+	sprintf(gprs_databuf.senddata,"AT+CMGD=%u, %u\r\n", sms_index, delete_type);
+	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
+	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
+	recvAT(RECVAT_TIMEOUT);
+	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen) == NULL)	return 1;
+
+	return 0;
+}
+/*****************************************
+短信读取
+入口参数：sms_index
+				buf
+返回参数：
+*******************************************/
+s8	gm_sms_read(u8 sms_index, u8 *buf, u8 *len)
+{
+	//AT+CMGR 
+	sprintf(gprs_databuf.senddata,"AT+CMGR=%u\r\n", sms_index);
+	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
+	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
+	recvAT(RECVAT_TIMEOUT);
+	if(check_string(gprs_databuf.recvdata, "ERROR", gprs_databuf.recvlen) != NULL)	return 1;
+	recvAT(RECVAT_TIMEOUT);
+	memcpy(buf, gprs_databuf.recvdata, gprs_databuf.recvlen);
+	*len = gprs_databuf.recvlen;
+	recvAT(10);
+
+	return 0;
+}
+/*****************************************
+短信查询
+入口参数：query_type
+				
+返回参数：
+*******************************************/
+s8	gm_sms_query(u8 *query_type)
+{
+	//AT+CMGR 
+	sprintf(gprs_databuf.senddata,"AT+CMGL=%s\r\n", query_type);
+	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
+//	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
+//	recvAT(RECVAT_TIMEOUT);
+
+	return 0;
+}
+
+/*****************************************
+电话初始化
+入口参数：
+返回参数：
+*******************************************/
+s8	gm_phone_init(void)
+{
+	//AT+CPMS 
+	sendAT("AT+CLIP=1\r\n", strlen("AT+CLIP=1\r\n"));
+	recvAT(RECVAT_TIMEOUT);
+	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen) == NULL)	return 1;
+
+	return 0;
+}
+
+
+
 /*****************************************
 tcp/ip初始化
-入口参数：user 用户名 长度最大10
+入口参数：apnuser 用户名 长度最大10
 		  password 密码	长度最大10
 		  可以为空 
 返回参数：正确返回0
 *******************************************/
-s8	gprs_tcpip_init(u8 *user, u8 *password)                    
+s8	gprs_tcpip_init(u8 *apn, u8 *apnuser, u8 *apnpassword)                    
 {
-	if(strlen(user)>10 || strlen(password)>10)	return 1;
+	if(strlen(apnuser)>10 || strlen(apnpassword)>10)	return 1;
 	//配置apn
-	sendAT("AT+CGDCONT=1,\"IP\",\"CMNET\"\r\n", strlen("AT+CGDCONT=1,\"IP\",\"CMNET\"\r\n"));
+	sprintf(gprs_databuf.senddata,"AT+CGDCONT=1,\"IP\",\"%s\"\r\n", apn);
+	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
+	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
 	recvAT(RECVAT_TIMEOUT);
-	if(check_string(gprs_databuf.recvdata, "OK", 2) == NULL)	return 1;
+	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen) == NULL)	return 1;
 	//tcpip enable
 	strcpy(gprs_databuf.senddata, "AT%ETCPIP");
 	gprs_databuf.sendlen = strlen(gprs_databuf.senddata);
-	if(user)
+	if(apnuser)
 	{
 		gprs_databuf.senddata[gprs_databuf.sendlen++] = '=';
 		gprs_databuf.senddata[gprs_databuf.sendlen++] = '\"';
-		strcpy(gprs_databuf.senddata+gprs_databuf.sendlen, user);
-		gprs_databuf.sendlen += strlen(user);
+		strcpy(gprs_databuf.senddata+gprs_databuf.sendlen, apnuser);
+		gprs_databuf.sendlen += strlen(apnuser);
 		gprs_databuf.senddata[gprs_databuf.sendlen++] = '\"';
 		gprs_databuf.senddata[gprs_databuf.sendlen++] = ',';
 		gprs_databuf.senddata[gprs_databuf.sendlen++] = '\"';
-		strcpy(gprs_databuf.senddata+gprs_databuf.sendlen, password);
+		strcpy(gprs_databuf.senddata+gprs_databuf.sendlen, apnpassword);
+		gprs_databuf.sendlen += strlen(apnpassword);	
 		gprs_databuf.senddata[gprs_databuf.sendlen++] = '\"';
-		gprs_databuf.sendlen = strlen(gprs_databuf.senddata);	
+	
 	}
 	gprs_databuf.senddata[gprs_databuf.sendlen++] = '\r';
 	gprs_databuf.senddata[gprs_databuf.sendlen++] = '\n';
@@ -401,11 +509,13 @@ s8	gprs_tcpip_send(u8 *data, u16 len, u8 link_num)
 	gprs_databuf.sendlen += 4;
 	sendAT(gprs_databuf.senddata, gprs_databuf.sendlen);
 	recvAT(RECVAT_TIMEOUT);
+	if(check_string(gprs_databuf.recvdata, "ERROR", gprs_databuf.recvlen))
+		return 2;		
 	recvAT(10);
 	if(check_string(gprs_databuf.recvdata, "OK", gprs_databuf.recvlen))	
 		return 0;
  	else	
-		return 2;
+		return 3;
 
 }
 
@@ -509,24 +619,44 @@ tcp/ip 数据接收缓冲区删除模式不设置
 *******************************************/
 s8	gprs_unrequest_code_dispose(u32 len)
 {
-	u8	*p, res;
+	u8	*p=NULL, res, *pb=NULL;
 	if(len < 6)	
 		return -1;
 	p = check_string(gprs_databuf.recvdata, "OK", len);
 	if(p)	
-		return 0;
+		return GM_AT_COMMAND_OK;
 
 	p = check_string(gprs_databuf.recvdata, "%IPDATA:", len);
 	if(p)	
 		return GM_TCPIP_RECEIVED_DATA;
 
 	p = check_string(gprs_databuf.recvdata, "%IPCLOSE:", len);
-
 	if(p)	
 	{
 		res	= char_to_int(p+9, 1);
-		return (res+1); 
+		if(res >=1 && res <=6)
+			return (res+1); 
 	}
+	p = check_string(gprs_databuf.recvdata, "+CLIP:", len);
+	if(p)	
+	{
+		p = check_string(p+5, "\"", len);
+		p++;
+		pb = check_string(p, "\"", len);
+		if(p==NULL || pb==NULL)	return -3;
+		memcpy(gd_system.network_task.ring_num, p, 11);
+		return GM_TCPIP_RECEIVED_RING;
+	}
+	p = check_string(gprs_databuf.recvdata, "+CMTI:", len);
+	if(p)	
+	{
+		p = check_string(p+6, ",", len);
+		if(p==NULL)	return -5;
+		p++;
+		gd_system.network_task.sms_index = char_to_int(p+1, len-(p-(u8 *)gprs_databuf.recvdata));
+		return GM_TCPIP_RECEIVED_SMS;
+	}
+	
 
 	return -2; 
 }

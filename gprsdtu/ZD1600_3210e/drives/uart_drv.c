@@ -175,13 +175,10 @@ u32* uart_rx_bufset(COM_TypeDef comx, u8 *buf, u32 maxlen)
 /*uart1 ’∑¢÷–∂œ*/
 void suart_rx_isr(void)
 {
-	if(uart1_buff.rxlen < uart1_buff.rxbuflen_max) 
+	uart1_buff.rxbuf[uart1_buff.rxlen++] = USART_ReceiveData(ZD1600_COM1);
+	if(uart1_buff.rxlen >= uart1_buff.rxbuflen_max) 
 	{
-		uart1_buff.rxbuf[uart1_buff.rxlen++] = USART_ReceiveData(ZD1600_COM1);
-	}
-	else
-	{
-		uart1_buff.rxlen = 0;
+		uart1_buff.rxlen = 0;	
 	}
 }
 

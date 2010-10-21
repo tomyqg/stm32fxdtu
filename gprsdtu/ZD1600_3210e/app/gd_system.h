@@ -24,7 +24,7 @@
 
 extern const INT8U GD_DEVMAC[];
 
-enum GD_TASK_ID
+typedef enum 	GD_TASK_ID
 {
 	GD_TASK_INIT_ID = 0,
 	GD_TASK_CONFIG_ID,
@@ -34,14 +34,16 @@ enum GD_TASK_ID
 	GD_TASK_NETWORK_ID,
 	GD_TASK_LED_ID,
 	APP_TASK_TEST_ID,
-};
+}gd_task_id_t;
 
-enum _GD_MSG_TYPE_
+typedef enum   _GD_MSG_TYPE_
 {
 	GD_MSG_CONNECTION_READY = 0,
 	GD_MSG_FRAME_READY,
 	GD_MSG_RES_FRAME_READY,
 	GD_MSG_GM_RECV_DATA,
+	GD_MSG_GM_RECV_SMS,
+	GD_MSG_GM_RECV_RING,
 	GD_MSG_GM_RESET,
 	GD_MSG_GM_INIT,
 	GD_MSG_TCP_INIT,
@@ -55,7 +57,7 @@ enum _GD_MSG_TYPE_
 	GD_MSG_GM_TCP_CLOSE,
 	GD_MSG_GM_NO_SIGNAL,
 	
-};
+}gd_msg_type_t;
 typedef enum _GD_STATE_
 {
 	GD_STATE_IDLE = 0,

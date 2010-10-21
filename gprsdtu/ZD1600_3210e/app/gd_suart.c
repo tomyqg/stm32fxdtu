@@ -69,6 +69,7 @@ void gd_task_suart(void *parg)
 	INT32U			rx_pre_ticks = 0;
 	INT32U			rx_now_ticks = 0;
 	INT32U			rx_interval = 0;
+	static INT32U	recv_frame_count = 0;
 
 	suart_task = &gd_system.suart_task;
 
@@ -114,27 +115,32 @@ void gd_task_suart(void *parg)
 			{
 				rx_interval = rx_now_ticks - rx_pre_ticks;
 
-				if(rx_interval >= 100) // Frame interval
+				if(rx_interval >= 50) // Frame interval
 				{
 					uart_rx_itconf(SUART, DISABLE);
 					sp2gm_cache_frame(suart_task->rx_buf, rx_now_len);
 					*pRxLen = 0;
 					rx_pre_len = 0;
 					uart_rx_itconf(SUART, ENABLE);
-
-					// Send msg to guart task
-					if(frame_msg_count < GUART_QMSG_COUNT)
-					{
-						gd_msg_malloc(&msg);
-						msg->type = GD_MSG_FRAME_READY;
-						msg->data =  (void*)gd_system.sp2gm_frame_list.head;
-						OSQPost(gd_system.guart_task.q_guart, (void*)msg);
-						frame_msg_count++;
-					}
+					recv_frame_count++;
 				}
 			}
 
-			OSTimeDlyHMSM(0, 0, 0, 10);
+			// Send msg to guart task
+			if(frame_msg_count < GUART_QMSG_COUNT)
+			{
+				if(recv_frame_count > 0)
+				{
+					gd_msg_malloc(&msg);
+					msg->type = GD_MSG_FRAME_READY;
+					msg->data =  (void*)gd_system.sp2gm_frame_list.head;
+					OSQPost(gd_system.guart_task.q_guart, (void*)msg);
+					frame_msg_count++;
+					recv_frame_count--;
+				}
+			}
+
+			OSTimeDlyHMSM(0, 0, 0, 20);
 		}
 	}
 }
